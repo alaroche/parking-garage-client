@@ -19,15 +19,13 @@ function App() {
   return (
     <Site>
       <Site.Wrapper>
-        <Site.Header className="App App-header">
+        <Site.Header className="header">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Welcome to Parking Garage
-        </p>
+          <p>Welcome to Parking Garage</p>
         </Site.Header>
         <Card>
           <Card.Header>
-            <Card.Title>Chart title</Card.Title>
+            <Card.Title>Free Parking</Card.Title>
           </Card.Header>
           <Card.Body>
             <C3Chart
@@ -35,7 +33,7 @@ function App() {
               data={{
                 names: {
                   data1: "Taken",
-                  data2: "Empty",
+                  data2: "Available",
                 },
                 columns: [
                   // ["data-item-name", data-point-int]
