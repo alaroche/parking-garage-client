@@ -18,7 +18,7 @@ const mainOptions = {
   elements: {
     arc: {
       borderWidth: 2,
-      borderColor: 'darkblue',
+      borderColor: '#233e94',
     }
   }
 };
@@ -36,7 +36,7 @@ const options = {
   elements: {
     arc: {
       borderWidth: 2,
-      borderColor: 'darkblue',
+      borderColor: '#233e94',
     }
   }
 };
