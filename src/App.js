@@ -18,13 +18,13 @@ import C3Chart from "react-c3js";
 function App() {
   return (
     <Site>
-      <div className="App">
-        <header className="App-header">
+      <Site.Wrapper>
+        <Site.Header className="App App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
             Welcome to Parking Garage
         </p>
-        </header>
+        </Site.Header>
         <Card>
           <Card.Header>
             <Card.Title>Chart title</Card.Title>
@@ -45,8 +45,8 @@ function App() {
                 },
                 names: {
                   // name of each serie
-                  data1: "Maximum",
-                  data2: "Minimum",
+                  data1: "Taken",
+                  data2: "Empty",
                 },
               }}
               legend={{
@@ -59,7 +59,7 @@ function App() {
             />
           </Card.Body>
         </Card>
-      </div>
+      </Site.Wrapper>
     </Site>
   );
 }
