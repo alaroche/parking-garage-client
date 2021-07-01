@@ -1,60 +1,87 @@
-// @flow
-
-import * as React from "react";
-import logo from './logo.svg';
+import { Pie } from 'react-chartjs-2';
 import './App.css';
+import { chartColors } from "./colors";
 
-import {
-  Page,
-  Grid,
-  Card,
-  colors,
-  Site,
-  SiteHeader,
-} from "tabler-react";
+const mainOptions = {
+  plugins: {
+    legend: {
+      position: 'bottom'
+    },
+    title: {
+      display: true,
+      text: 'Free Parking',
+    }
+  },
+  elements: {
+    arc: {
+      borderWidth: 2,
+      borderColor: 'darkblue',
+    }
+  }
+};
 
-import C3Chart from "react-c3js";
+const options = {
+  plugins: {
+    legend: {
+      display: false
+    },
+    title: {
+      display: true,
+      text: 'Level 1',
+    }
+  },
+  elements: {
+    arc: {
+      borderWidth: 2,
+      borderColor: 'darkblue',
+    }
+  }
+};
+
+const mainData = {
+  maintainAspectRatio: false,
+  responsive: false,
+  labels: ["Taken", "Available"],
+  datasets: [
+    {
+      data: [100 - 37, 37],
+      backgroundColor: chartColors,
+      hoverBackgroundColor: chartColors
+    }
+  ]
+};
+
+const data = {
+  maintainAspectRatio: false,
+  responsive: false,
+  datasets: [
+    {
+      data: [100 - 37, 37],
+      backgroundColor: chartColors,
+      hoverBackgroundColor: chartColors
+    }
+  ]
+};
 
 function App() {
   return (
-    <Site>
-      <Site.Wrapper>
-        <Site.Header className="header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>Welcome to Parking Garage</p>
-        </Site.Header>
-        <Card>
-          <Card.Header>
-            <Card.Title>Free Parking</Card.Title>
-          </Card.Header>
-          <Card.Body>
-            <C3Chart
-              style={{ height: "12rem" }}
-              data={{
-                names: {
-                  data1: "Taken",
-                  data2: "Available",
-                },
-                columns: [
-                  // ["data-item-name", data-point-int]
-                  ["data1", 63],
-                  ["data2", 37],
-                ],
-                type: "donut",
-                colors: {
-                  data1: colors["blue-dark"],
-                  data2: colors["blue-light"],
-                },
-              }}
-              legend={{ show: false }}
-              padding={{ bottom: 0, top: 0 }}
-            />
-          </Card.Body>
-        </Card>
-      </Site.Wrapper>
-    </Site>
+    <div className="App">
+      <header className="App-header">
+        <span>Welcome to Parking Garage</span>
+      </header>
+      <div className="main-pie-graph">
+        <Pie data={mainData} options={mainOptions} />
+      </div>
+      <hr />
+      <div className="minor-pie-graphs">
+        <Pie data={data} options={options} />
+        <Pie data={data} options={options} />
+        <Pie data={data} options={options} />
+        <Pie data={data} options={options} />
+        <Pie data={data} options={options} />
+      </div>
+    </div>
   );
 }
 
 export default App;
-
