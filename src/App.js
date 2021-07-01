@@ -33,29 +33,23 @@ function App() {
             <C3Chart
               style={{ height: "12rem" }}
               data={{
+                names: {
+                  data1: "Taken",
+                  data2: "Empty",
+                },
                 columns: [
-                  // each columns data
+                  // ["data-item-name", data-point-int]
                   ["data1", 63],
                   ["data2", 37],
                 ],
-                type: "donut", // default type of chart
+                type: "donut",
                 colors: {
                   data1: colors["blue-dark"],
                   data2: colors["blue-light"],
                 },
-                names: {
-                  // name of each serie
-                  data1: "Taken",
-                  data2: "Empty",
-                },
               }}
-              legend={{
-                show: false, //hide legend
-              }}
-              padding={{
-                bottom: 0,
-                top: 0,
-              }}
+              legend={{ show: false }}
+              padding={{ bottom: 0, top: 0 }}
             />
           </Card.Body>
         </Card>
