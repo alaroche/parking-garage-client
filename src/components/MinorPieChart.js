@@ -1,18 +1,18 @@
 import { Pie } from 'react-chartjs-2';
-import { chartColors } from "../helpers/colors";
+import { chartColors, pgBlue } from "../helpers/colors";
 
 const options = {
   plugins: {
     title: {
       display: true,
       text: 'Level 1',
-      color: '#233e94',
+      color: pgBlue,
     }
   },
   elements: {
     arc: {
       borderWidth: 2,
-      borderColor: '#233e94',
+      borderColor: pgBlue,
     }
   }
 };

@@ -1,4 +1,4 @@
-import { chartColors } from "../helpers/colors";
+import { chartColors, pgBlue } from "../helpers/colors";
 import { extended } from "../helpers/datetimeFormats.js"
 import { Pie } from 'react-chartjs-2';
 
@@ -7,11 +7,11 @@ const currentTime = new Date().toLocaleDateString('en-US', extended);
 const options = {
   plugins: {
     legend: {
-      color: '#233e94',
+      color: pgBlue,
       position: 'bottom'
     },
     title: {
-      color: '#233e94',
+      color: pgBlue,
       display: true,
       fontWeight: 'normal',
       text: currentTime,
@@ -19,7 +19,7 @@ const options = {
   },
   elements: {
     arc: {
-      borderColor: '#233e94',
+      borderColor: pgBlue,
       borderWidth: 2
     }
   }
