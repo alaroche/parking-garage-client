@@ -20,6 +20,7 @@ hr {
   color: #233e94;
   display: flex;
   flex-direction: column;
+  font-family: serif;
 }
 
 .App-header div {
@@ -29,7 +30,7 @@ hr {
 .App-logo {
   width: 2.5rem;
   height: 2.5rem;
-  display:block;
+  display: block;
   margin: 0 auto;
 }
 

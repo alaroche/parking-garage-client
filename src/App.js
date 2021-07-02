@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import { Pie } from 'react-chartjs-2';
 import './App.css';
 import { chartColors } from "./colors";
+import { normalize } from 'yargs';
 
 const currentTime = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' })
 
@@ -9,10 +10,13 @@ const mainOptions = {
   plugins: {
     legend: {
       position: 'bottom',
+      color: '#233e94',
     },
     title: {
       display: true,
-      text: 'Available Parking as of ' + currentTime,
+      text: currentTime,
+      color: '#233e94',
+      fontWeight: 'normal',
     }
   },
   elements: {
@@ -31,6 +35,7 @@ const options = {
     title: {
       display: true,
       text: 'Level 1',
+      color: '#233e94',
     }
   },
   elements: {
@@ -72,7 +77,7 @@ function App() {
       <header className="App-header">
         <div>
           <img src={logo} className="App-logo" alt="logo" />
-          <div>Parking Garage</div>
+          <div>Available Parking</div>
         </div>
       </header>
       <div className="main-pie-graph">
