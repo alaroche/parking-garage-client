@@ -8,7 +8,7 @@ const currentTime = new Date().toLocaleDateString('en-US', { weekday: 'long', ye
 const mainOptions = {
   plugins: {
     legend: {
-      position: 'bottom'
+      position: 'bottom',
     },
     title: {
       display: true,

@@ -1,7 +1,6 @@
 export const chartColors = [
-    "darkgray",
-    "skyblue",
     "#336699",
+    "skyblue",
     "#99CCFF",
     "#999933",
     "#666699",
