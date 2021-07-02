@@ -1,12 +1,15 @@
+import { chartColors } from "../helpers/colors";
+import { extended } from "../helpers/datetimeFormats.js"
 import { Pie } from 'react-chartjs-2';
-import { chartColors } from "../colors";
-import { extended } from "../datetimeFormats.js"
 
 const currentTime = new Date().toLocaleDateString('en-US', extended);
 
 const options = {
   plugins: {
-    legend: { color: '#233e94', position: 'bottom' },
+    legend: {
+      color: '#233e94',
+      position: 'bottom'
+    },
     title: {
       color: '#233e94',
       display: true,
@@ -15,7 +18,10 @@ const options = {
     }
   },
   elements: {
-    arc: { borderColor: '#233e94', borderWidth: 2 }
+    arc: {
+      borderColor: '#233e94',
+      borderWidth: 2
+    }
   }
 };
 

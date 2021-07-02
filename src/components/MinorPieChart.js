@@ -1,11 +1,8 @@
 import { Pie } from 'react-chartjs-2';
-import { chartColors } from "../colors";
+import { chartColors } from "../helpers/colors";
 
 const options = {
   plugins: {
-    legend: {
-      display: false
-    },
     title: {
       display: true,
       text: 'Level 1',
@@ -25,7 +22,7 @@ const data = {
   responsive: false,
   datasets: [
     {
-      data: [100 - 28, 28],
+      data: [100 - 37, 37],
       backgroundColor: chartColors,
       hoverBackgroundColor: chartColors
     }
