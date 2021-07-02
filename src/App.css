@@ -9,28 +9,32 @@ hr {
 
 .App {
   margin: 0 auto;
+  align-items: center;
+  justify-content: center;
 }
 
 .App-header {
   background-color: lightblue;
   border-bottom: 2px solid #233e94;
-  padding: 1rem;
-  align-items: center;
-  justify-content: center;
   font-size: 1.5rem;
   color: #233e94;
+  display: flex;
+  flex-direction: column;
 }
 
-.App-header span {
-  text-align: center;
+.App-header div {
+  padding: 0.25rem;
 }
 
 .App-logo {
   width: 2.5rem;
   height: 2.5rem;
   display:block;
-  -ms-flex-align: center;
-  align-items: center;
+  margin: 0 auto;
+}
+
+.App-header div{
+  margin: 0 auto;
 }
 
 .main-pie-graph {

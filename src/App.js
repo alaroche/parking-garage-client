@@ -70,8 +70,10 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <span>Welcome to Parking Garage</span>
+        <div>
+          <img src={logo} className="App-logo" alt="logo" />
+          <div>Parking Garage</div>
+        </div>
       </header>
       <div className="main-pie-graph">
         <Pie data={mainData} options={mainOptions} />
