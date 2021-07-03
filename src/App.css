@@ -7,12 +7,6 @@ hr {
   border-top: 1px dashed #233e94;
 }
 
-.App {
-  margin: 0 auto;
-  align-items: center;
-  justify-content: center;
-}
-
 .header {
   background-color: lightblue;
   border-bottom: 2px solid #233e94;
@@ -27,7 +21,6 @@ hr {
 .header__logo {
   width: 2.5rem;
   height: 2.5rem;
-  display: block;
   margin: 0 auto;
 }
 

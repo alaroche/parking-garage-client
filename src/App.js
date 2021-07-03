@@ -5,7 +5,7 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <header className="header">
         <img src={logo} className="header__logo" alt="logo" />
         <div className="header__title">Available Parking</div>
