@@ -6,17 +6,15 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <header className="App__header">
-        <div>
-          <img src={logo} className="App__header__logo" alt="logo" />
-          <div>Available Parking</div>
-        </div>
+      <header className="header">
+        <img src={logo} className="header__logo" alt="logo" />
+        <div className="header__title">Available Parking</div>
       </header>
-      <div className="App__main-pie-graph">
+      <div className="main-pie-graph">
         <MainPieChart />
       </div>
       <hr />
-      <div className="App__minor-pie-graphs">
+      <div className="minor-pie-graphs">
         <MinorPieChart />
         <MinorPieChart />
         <MinorPieChart />

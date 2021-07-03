@@ -13,7 +13,7 @@ hr {
   justify-content: center;
 }
 
-.App__header {
+.header {
   background-color: lightblue;
   border-bottom: 2px solid #233e94;
   font-size: 1.5rem;
@@ -21,28 +21,28 @@ hr {
   display: flex;
   flex-direction: column;
   font-family: serif;
-}
-
-.App__header div {
   padding: 0.25rem;
-  margin: 0 auto;
 }
 
-.App__header__logo {
+.header__logo {
   width: 2.5rem;
   height: 2.5rem;
   display: block;
   margin: 0 auto;
 }
 
-.App__main-pie-graph {
+.header__title {
+  margin: 0 auto;
+}
+
+.main-pie-graph {
   width: 20%;
   height: 20%;
   margin: 0 auto;
   padding: 1rem;
 }
 
-.App__minor-pie-graphs {
+.minor-pie-graphs {
   width: 8%;
   height: 8%;
   display: flex;
