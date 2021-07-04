@@ -10,11 +10,11 @@ function App() {
         <img src={logo} className="header__logo" alt="logo" />
         <div className="header__title">Available Parking</div>
       </header>
-      <div className="main-pie-graph">
+      <div className="main-pie-chart">
         <MainPieChart />
       </div>
       <hr />
-      <div className="minor-pie-graphs">
+      <div className="minor-pie-charts">
         <MinorPieChart />
         <MinorPieChart />
         <MinorPieChart />
