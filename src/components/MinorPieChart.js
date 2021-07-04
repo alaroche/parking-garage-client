@@ -8,6 +8,9 @@ const options = {
       display: true,
       text: 'Level 1',
       color: pgBlue,
+      padding: {
+          top: '1rem',
+      }
     }
   },
   elements: {
