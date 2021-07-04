@@ -28,20 +28,9 @@ hr {
   margin: 0 auto;
 }
 
-.main-pie-chart {
-  width: 18rem;
-  height: 18rem;
-  margin: 0 auto;
-  padding: 1rem;
-}
-
 .minor-pie-charts {
   flex-wrap: wrap;
   display: flex;
   flex-direction: row;
-}
-
-.minor-pie-charts div {
-  width: 6rem;
-  height: 6rem;
+  justify-content: center;
 }

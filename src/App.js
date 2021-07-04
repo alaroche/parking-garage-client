@@ -1,4 +1,4 @@
-import MainPieChart from "./components/MainPieChart"
+import MainPieChart from "./components/MainPieChart";
 import MinorPieChart from './components/MinorPieChart';
 import logo from './logo.svg';
 import './App.css';
@@ -10,9 +10,7 @@ function App() {
         <img src={logo} className="header__logo" alt="logo" />
         <div className="header__title">Available Parking</div>
       </header>
-      <div className="main-pie-chart">
-        <MainPieChart />
-      </div>
+      <MainPieChart />
       <hr />
       <div className="minor-pie-charts">
         <MinorPieChart />

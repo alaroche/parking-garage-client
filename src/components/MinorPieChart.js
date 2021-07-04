@@ -1,5 +1,6 @@
 import { Pie } from 'react-chartjs-2';
 import { chartColors, pgBlue } from "../helpers/colors";
+import './MinorPieChart.css';
 
 const options = {
   plugins: {
@@ -30,9 +31,14 @@ const data = {
 };
 
 function MinorPieChart() {
-  return (
-    <Pie data={data} options={options} />
-  );
+    return (
+        <div className="minor-pie-chart">
+        <Pie
+            data={data}
+            options={options}
+        />
+        </div>
+    );
 }
 
 export default MinorPieChart;
