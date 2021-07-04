@@ -1,7 +1,6 @@
 import { chartColors, pgBlue } from "../helpers/colors";
 import { extended } from "../helpers/datetimeFormats.js"
 import { Pie } from 'react-chartjs-2';
-import './MainPieChart.css';
 
 const currentTime = new Date().toLocaleDateString('en-US', extended);
 
@@ -41,11 +40,12 @@ const data = {
 
 function MainPieChart() {
   return (
-    <Pie
-      className="main-pie-chart"
-      data={data}
-      options={options}
-    />
+    <div style={{width: '6rem', height: '6rem'}}>
+      <Pie
+        data={data}
+        options={options}
+      />
+    </div>
   );
 }
 
