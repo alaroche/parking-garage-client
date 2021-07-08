@@ -32,6 +32,7 @@ const data = {
   ]
 };
 
+// TODO: Pass down width/height size dimensions from the parent
 function MinorPieChart() {
     return (
       <div style={{width: '6rem', height: '6rem'}}>

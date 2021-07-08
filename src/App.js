@@ -1,6 +1,6 @@
 import MainPieChart from "./components/MainPieChart";
 import MinorPieChart from './components/MinorPieChart';
-import logo from './logo.svg';
+import logo from './images/logo.svg';
 import './App.css';
 
 function App() {

@@ -30,6 +30,8 @@ hr {
 
 .main-pie-chart {
   margin: 0 auto;
+  width: 16rem;
+  height: 16rem;
 }
 
 .minor-pie-charts {

@@ -40,12 +40,10 @@ const data = {
 
 function MainPieChart() {
   return (
-    <div style={{width: '6rem', height: '6rem'}}>
-      <Pie
-        data={data}
-        options={options}
-      />
-    </div>
+    <Pie
+      data={data}
+      options={options}
+    />
   );
 }
 
