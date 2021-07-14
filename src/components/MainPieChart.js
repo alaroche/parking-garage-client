@@ -4,6 +4,35 @@ import { Pie } from 'react-chartjs-2';
 
 const currentTime = new Date().toLocaleDateString('en-US', extended);
 
+function buildData(spots_free, total_spots) {
+  var spots_taken = total_spots - spots_free;
+
+  var data = {
+    maintainAspectRatio: false,
+    responsive: false,
+    labels: ["Taken", "Available"],
+    datasets: [
+      {
+        data: [spots_taken, spots_free],
+        backgroundColor: chartColors,
+        hoverBackgroundColor: chartColors
+      }
+    ]
+  };
+  return data;
+}
+
+function MainPieChart(props) {
+  var { spots_free, total_spots } = props;
+
+  return (
+    <Pie
+      data={buildData(spots_free, total_spots)}
+      options={options}
+    />
+  );
+}
+
 const options = {
   plugins: {
     legend: {
@@ -24,27 +53,5 @@ const options = {
     }
   }
 };
-
-const data = {
-  maintainAspectRatio: false,
-  responsive: false,
-  labels: ["Taken", "Available"],
-  datasets: [
-    {
-      data: [100 - 37, 37],
-      backgroundColor: chartColors,
-      hoverBackgroundColor: chartColors
-    }
-  ]
-};
-
-function MainPieChart() {
-  return (
-    <Pie
-      data={data}
-      options={options}
-    />
-  );
-}
 
 export default MainPieChart;
