@@ -22,11 +22,11 @@ class App extends React.Component {
 
   getData = () => {
     fetch("http://127.0.0.1:8000/availability")
-      .then(res => res.json())
+      .then(r => r.json())
       .then(
-        (result) => {
+        (api_result) => {
           this.setState({
-            availability: result,
+            availability: api_result,
             isLoaded: true
           })
         },
