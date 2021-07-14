@@ -15,6 +15,12 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    this.getData();
+
+    setInterval(this.getData, 30000);
+  }
+
+  getData = () => {
     fetch("http://127.0.0.1:8000/availability")
       .then(res => res.json())
       .then(
