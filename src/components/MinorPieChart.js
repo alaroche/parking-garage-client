@@ -1,36 +1,6 @@
 import { Pie } from 'react-chartjs-2';
 import { chartColors, pgBlue } from "../helpers/colors";
-
-const options = {
-  plugins: {
-    title: {
-      display: true,
-      text: 'Level 1',
-      color: pgBlue,
-      padding: {
-          top: '1rem',
-      }
-    }
-  },
-  elements: {
-    arc: {
-      borderWidth: 2,
-      borderColor: pgBlue,
-    }
-  }
-};
-
-const data = {
-  maintainAspectRatio: false,
-  responsive: false,
-  datasets: [
-    {
-      data: [100 - 37, 37],
-      backgroundColor: chartColors,
-      hoverBackgroundColor: chartColors
-    }
-  ]
-};
+import React from 'react';
 
 const style = {
   width: '6rem',
@@ -38,7 +8,60 @@ const style = {
 }
 
 // TODO: Pass down width/height size dimensions from the parent
-function MinorPieChart(props) {
+class MinorPieChart extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      data: null,
+      options: null,
+    }
+  }
+
+  componentDidMount() {
+    var { name, total_spots, spots_free } = this.props;
+
+    var spots_taken = total_spots - spots_free;
+    var data = {
+      maintainAspectRatio: false,
+      responsive: false,
+      datasets: [
+        {
+          data: [spots_taken, spots_free],
+          backgroundColor: chartColors,
+          hoverBackgroundColor: chartColors
+        }
+      ]
+    };
+
+    var options = {
+      plugins: {
+        title: {
+          display: true,
+          text: name,
+          color: pgBlue,
+          padding: {
+            top: '1rem',
+          }
+        }
+      },
+      elements: {
+        arc: {
+          borderWidth: 2,
+          borderColor: pgBlue,
+        }
+      }
+    };
+
+    this.setState({
+      data: data,
+      options: options,
+    })
+  }
+
+  render() {
+    var {data, options} = this.state;
+
     return (
       <div style={style}>
         <Pie
@@ -47,6 +70,7 @@ function MinorPieChart(props) {
         />
       </div>
     );
+  }
 }
 
 export default MinorPieChart;
