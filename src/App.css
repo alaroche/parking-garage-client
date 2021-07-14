@@ -28,6 +28,11 @@ hr {
   margin: 0 auto;
 }
 
+.loading-msg {
+  text-align: center;
+  margin: 1rem;
+}
+
 .main-pie-chart {
   margin: 0 auto;
   width: 16rem;

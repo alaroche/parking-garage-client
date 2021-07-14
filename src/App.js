@@ -15,9 +15,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.getData();
-
-    setInterval(this.getData, 30000);
+    setInterval(this.getData(), 30000);
   }
 
   getData = () => {
@@ -38,21 +36,23 @@ class App extends React.Component {
       )
   }
 
+  renderHeader() {
+    return (
+      <header className="header">
+        <img src={logo} className="header__logo" alt="logo" />
+        <div className="header__title">Available Parking</div>
+      </header>
+    )
+  }
+
   render() {
     var { availability, error, isLoaded } = this.state;
     var { total_spots, total_spots_free, levels } = availability;
 
-    if (error) {
-      return <div>Error: {error.message}</div>;
-    } else if (!isLoaded) {
-      return <div>Loading...</div>;
-    } else {
+    if (!error && isLoaded) {
       return (
         <div>
-          <header className="header">
-            <img src={logo} className="header__logo" alt="logo" />
-            <div className="header__title">Available Parking</div>
-          </header>
+          {this.renderHeader()}
           <div className="main-pie-chart">
             <MainPieChart spots_free={total_spots_free} total_spots={total_spots} />
           </div>
@@ -66,6 +66,16 @@ class App extends React.Component {
               />
             )}
           </div>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          {this.renderHeader()}
+          <div className="loading-msg">
+            Loading...
+          </div>
+          <hr />
         </div>
       );
     }

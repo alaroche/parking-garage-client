@@ -1,5 +1,5 @@
 import { chartColors, pgBlue } from "../helpers/colors";
-import { extended } from "../helpers/datetimeFormats.js"
+import { currentTime } from "../helpers/currentTime.js"
 import { Pie } from 'react-chartjs-2';
 import React from 'react';
 
@@ -44,8 +44,6 @@ class MainPieChart extends React.Component {
     );
   }
 }
-
-const currentTime = new Date().toLocaleDateString('en-US', extended);
 
 const options = {
   plugins: {
