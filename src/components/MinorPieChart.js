@@ -38,7 +38,7 @@ const style = {
 }
 
 // TODO: Pass down width/height size dimensions from the parent
-function MinorPieChart() {
+function MinorPieChart(props) {
     return (
       <div style={style}>
         <Pie
