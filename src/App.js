@@ -60,6 +60,7 @@ class App extends React.Component {
           <div className="minor-pie-charts">
             {Object.keys(levels).map((i) =>
               <MinorPieChart
+                key={i}
                 name={levels[i].name}
                 spots_free={levels[i].spots_free}
                 total_spots={levels[i].total_spots}
