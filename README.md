@@ -4,7 +4,7 @@ Parking Garage Client is a front-end web application for interaction with [Parki
 * [Parking Garage Server](https://github.com/alaroche/parking-garage-server)
 * [Yarn](https://yarnpkg.com/)
 ## Installation
-* Follow the instructions for setting up [Parking Garage Server](https://github.com/alaroche/parking-garage-server).
+* Follow the instructions for setting up [Parking Garage Server](https://github.com/alaroche/parking-garage-server#readme).
 * Clone this repo to a local directory, and then in `parking-garage-client/` run:
 ```
 yarn install
