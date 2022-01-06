@@ -1,4 +1,5 @@
 import React from 'react';
+import { withCookies } from 'react-cookie';
 import MainPieChart from "./components/MainPieChart";
 import MinorPieChart from './components/MinorPieChart';
 import { currentTime } from './helpers/currentTime';
@@ -14,9 +15,11 @@ import './App.css';
 class App extends React.Component {
   constructor(props) {
     super(props);
+    var themeFromCookie = (this.props.cookies.get('pg-theme') !== 'dark-mode' ? this.setDefaultTheme() : this.setDarkTheme());
+
     this.state = {
       availability: [],
-      currentTheme: defaultTheme,
+      currentTheme: themeFromCookie,
       error: null,
       isLoaded: false,
     }
@@ -64,28 +67,34 @@ class App extends React.Component {
     )
   }
 
+  setDefaultTheme = () => {
+    const { cookies } = this.props;
+
+    document.body.classList.remove(darkTheme.className)
+    cookies.set("pg-theme", defaultTheme.className, { path: '/' });
+
+    return defaultTheme;
+  }
+
+  setDarkTheme = () => {
+    const { cookies } = this.props;
+
+    document.body.classList.add(darkTheme.className);
+    cookies.set("pg-theme", darkTheme.className, { path: '/' });
+
+    return darkTheme;
+  }
+
   toggleTheme = () => {
     var { currentTheme } = this.state;
-    var newTheme;
-
     defaults.transitions = false;
 
-    if (currentTheme === darkTheme) {
-      document.body.classList.remove(darkTheme.className);
-      newTheme = defaultTheme;
-    } else {
-      document.body.classList.add(darkTheme.className)
-      newTheme = darkTheme;
-    }
-
-    this.setState({ currentTheme: newTheme });
+    this.setState({ currentTheme: currentTheme !== darkTheme ? this.setDarkTheme() : this.setDefaultTheme() });
   }
 
   render() {
     var { currentTheme, availability, error, isLoaded } = this.state;
     var { total_spots, total_spots_free, levels } = availability;
-
-    //console.log('render');
 
     if (!error && isLoaded) {
       return (
@@ -138,4 +147,4 @@ export const darkTheme = createTheme({
   themeToggleIcon: <Brightness7Icon htmlColor="#829ab1" />,
 });
 
-export default App;
+export default withCookies(App);
