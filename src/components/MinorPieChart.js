@@ -1,4 +1,4 @@
-import { chartConfigGeneration } from '../helpers/chartConfig.js';
+import { chartConfigGeneration } from '../helpers/chartBuilder.js';
 import { Pie } from 'react-chartjs-2';
 import React from 'react';
 import { useTheme } from '@mui/material/styles';

@@ -1,4 +1,4 @@
-import { pieChartColors, pieChartColorsDark, chartTextAndOutlineColor, chartTextAndOutlineColorDark } from "../helpers/colors";
+import { pieChartColors, pieChartColorsDark, chartTextAndOutlineColor, chartTextAndOutlineColorDark } from "./colors";
 
 export function getColorsFromMode(theme) {
   var chartColors, chartTextAndOutlineColors;
@@ -35,14 +35,19 @@ export function chartConfigGeneration(theme, props) {
           color: chartTextAndOutlineColors,
           position: 'bottom',
           labels: {
-            color: chartTextAndOutlineColors
+            color: chartTextAndOutlineColors,
+            font: {
+              size: '20rem'
+            }
           }
         },
         title: {
           color: chartTextAndOutlineColors,
           display: true,
-          fontWeight: 'normal',
           text: chartTitle,
+          font: {
+            size: '20rem'
+          }
         }
       },
       elements: {

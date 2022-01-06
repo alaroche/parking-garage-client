@@ -9,9 +9,9 @@ body {
 
 .header {
   display: flex;
-  padding: 0.25rem;
+  padding: 0.5rem;
   border-bottom: 2px solid;
-  font-size: 1.5rem;
+  font-size: 2.25rem;
   background-color: #add8e6;
   border-bottom-color: #233e94;
   color: #233e94;
@@ -31,8 +31,8 @@ body {
 }
 
 .header__logo {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 4rem;
+  height: 4rem;
   margin: 0 auto;
   border-radius: 5px;
   border: solid 1px #add8e6;
@@ -45,8 +45,8 @@ body {
 
 .main-chart {
   margin: 0 auto;
-  width: 16rem;
-  height: 16rem;
+  width: 24rem;
+  height: 24rem;
 }
 
 hr {
@@ -62,8 +62,8 @@ hr {
 }
 
 .minor-charts__chart {
-  width: 6rem;
-  height: 6rem;
+  width: 9rem;
+  height: 9rem;
 }
 
 /* ==========================================================================
