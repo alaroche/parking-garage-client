@@ -4,6 +4,7 @@
 
 body {
   background-color: #f8f8ff;
+  color: #233e94;
 }
 
 .header {
@@ -71,6 +72,7 @@ hr {
 
 body.dark-mode {
   background-color: #222222;
+  color: #829ab1;
 }
 
 .header--dark-mode {
