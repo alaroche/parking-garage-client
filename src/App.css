@@ -37,7 +37,7 @@ body {
   border: solid 1px #add8e6;
 }
 
-.loading-msg {
+.rendering-msg {
   text-align: center;
   margin: 1rem;
 }

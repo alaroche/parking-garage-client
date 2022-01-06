@@ -117,8 +117,8 @@ class App extends React.Component {
       return (
         <div>
           {this.renderHeader(currentTheme)}
-          <div className="loading-msg">
-            Loading...
+          <div className="rendering-msg">
+            {error && error.message ? '[Service unavailable]' : 'Loading...'}
           </div>
           <hr />
         </div>
