@@ -85,6 +85,8 @@ class App extends React.Component {
     var { currentTheme, availability, error, isLoaded } = this.state;
     var { total_spots, total_spots_free, levels } = availability;
 
+    //console.log('render');
+
     if (!error && isLoaded) {
       return (
         <ThemeProvider theme={currentTheme}>
@@ -99,9 +101,8 @@ class App extends React.Component {
           <hr className={"main-divider main-divider--" + currentTheme.className} />
           <div className="minor-charts">
             {Object.keys(levels).map((i) =>
-              <div className="minor-charts__chart">
+              <div className="minor-charts__chart" key={i}>
                 <MinorPieChart
-                  key={i}
                   isInDarkMode={currentTheme.className === darkTheme.className}
                   chartTitle={levels[i].name}
                   spots_free={levels[i].spots_free}
