@@ -1,31 +1,40 @@
+/* ==========================================================================
+   Template Defaults
+   ========================================================================== */
+
 body {
   background-color: #f8f8ff;
 }
 
-hr {
-  width: 95%;
-  border-top: 1px dashed #233e94;
+.header {
+  display: flex;
+  padding: 0.25rem;
+  border-bottom: 2px solid;
+  font-size: 1.5rem;
+  background-color: #add8e6;
+  border-bottom-color: #233e94;
+  color: #233e94;
 }
 
-.header {
-  background-color: lightblue;
-  border-bottom: 2px solid #233e94;
-  font-size: 1.5rem;
-  color: #233e94;
+.header__contents {
   display: flex;
   flex-direction: column;
-  font-family: serif;
-  padding: 0.25rem;
+  flex-grow: 1;
+  position: relative;
+  left: 1rem;
+}
+
+.header__title {
+  margin: 0 auto;
+  font-weight: bolder;
 }
 
 .header__logo {
   width: 2.5rem;
   height: 2.5rem;
   margin: 0 auto;
-}
-
-.header__title {
-  margin: 0 auto;
+  border-radius: 5px;
+  border: solid 1px #add8e6;
 }
 
 .loading-msg {
@@ -33,15 +42,47 @@ hr {
   margin: 1rem;
 }
 
-.main-pie-chart {
+.main-chart {
   margin: 0 auto;
   width: 16rem;
   height: 16rem;
 }
 
-.minor-pie-charts {
+hr {
+  width: 95%;
+  border-top: 1px dashed #233e94;
+}
+
+.minor-charts {
   flex-wrap: wrap;
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+.minor-charts__chart {
+  width: 6rem;
+  height: 6rem;
+}
+
+/* ==========================================================================
+   Dark Mode Settings
+   ========================================================================== */
+
+body.dark-mode {
+  background-color: #222222;
+}
+
+.header--dark-mode {
+  background-color: #383838;
+  border-bottom-color: #829ab1;
+  color: #9e9e9e;
+}
+
+.header__logo--dark-mode {
+  border: solid 1px #212121;
+}
+
+.main-divider--dark-mode {
+  border-top: 1px dashed #829ab1;
 }
