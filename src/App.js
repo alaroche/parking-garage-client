@@ -3,6 +3,7 @@ import { withCookies } from 'react-cookie';
 import MainPieChart from "./components/MainPieChart";
 import MinorPieChart from './components/MinorPieChart';
 import { currentTime } from './helpers/currentTime';
+import themeableClassName from './helpers/themeableClassName';
 import { createTheme } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import IconButton from "@mui/material/IconButton";
@@ -54,9 +55,9 @@ class App extends React.Component {
     var { currentTheme } = this.state;
 
     return (
-      <header className={"header header--" + currentTheme.className}>
+      <header className={themeableClassName('header', currentTheme)}>
         <div className='header__contents'>
-          <img src={logo} className={"header__logo header__logo--" + currentTheme.className} alt="logo" />
+          <img src={logo} className={themeableClassName('header__logo', currentTheme)} alt="logo" />
           <div className="header__title">Available Parking</div>
         </div>
         <IconButton
@@ -101,14 +102,14 @@ class App extends React.Component {
       return (
         <ThemeProvider theme={currentTheme}>
           {this.renderHeader(currentTheme)}
-          <div className={"main-chart main-chart--" + currentTheme.className}>
+          <div className={themeableClassName('main-chart', currentTheme)}>
             <MainPieChart
               chartTitle={currentTime}
               spots_free={total_spots_free}
               total_spots={total_spots}
             />
           </div>
-          <hr className={"main-divider main-divider--" + currentTheme.className} />
+          <hr className={themeableClassName('main-divider', currentTheme)}/>
           <div className="minor-charts">
             {Object.keys(levels).map((i) =>
               <div className="minor-charts__chart" key={i}>
