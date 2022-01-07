@@ -9,8 +9,9 @@ import IconButton from "@mui/material/IconButton";
 import Brightness3Icon from "@mui/icons-material/Brightness3";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { defaults } from "react-chartjs-2";
-import logo from './images/logo.svg';
-import './App.css';
+import logo from './logo.svg';
+import './stylesheets/App.scss';
+import * as colors from './stylesheets/colors.module.scss';
 
 class App extends React.Component {
   constructor(props) {
@@ -138,13 +139,13 @@ class App extends React.Component {
 
 // TODO: Soft code color values maybe with scss
 export const defaultTheme = createTheme({
-  className: "default-mode",
-  themeToggleIcon: <Brightness3Icon htmlColor="#233e94" />,
+  className: "default",
+  themeToggleIcon: <Brightness3Icon htmlColor={colors.fontDefault} />,
 });
 
 export const darkTheme = createTheme({
   className: 'dark-mode',
-  themeToggleIcon: <Brightness7Icon htmlColor="#829ab1" />,
+  themeToggleIcon: <Brightness7Icon htmlColor={colors.fontDarkMode} />,
 });
 
 export default withCookies(App);

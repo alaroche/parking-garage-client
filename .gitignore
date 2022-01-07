@@ -1,5 +1,6 @@
-node_modules/
 *.DS_Store
-build/
-yarn-error.log
 .editorconfig
+yarn-error.log
+build/
+node_modules/
+src/stylesheets/App.css*

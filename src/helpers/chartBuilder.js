@@ -1,13 +1,14 @@
-import { pieChartColors, pieChartColorsDark, chartTextAndOutlineColor, chartTextAndOutlineColorDark } from "./colors";
+import * as colors from '../stylesheets/colors.module.scss';
 
 export function getColorsFromMode(theme) {
   var chartColors, chartTextAndOutlineColors;
 
+
   if (theme.className !== 'dark-mode') {
-    [chartColors, chartTextAndOutlineColors] = [pieChartColors, chartTextAndOutlineColor]
+    [chartColors, chartTextAndOutlineColors] = [[colors.pieChartPrimaryDefault, colors.pieChartSecondaryDefault], colors.fontDefault];
   }
   else {
-    [chartColors, chartTextAndOutlineColors] = [pieChartColorsDark, chartTextAndOutlineColorDark]
+    [chartColors, chartTextAndOutlineColors] = [[colors.pieChartPrimaryDarkMode, colors.pieChartSecondaryDarkMode], colors.fontDarkMode];
   }
 
   return [chartColors, chartTextAndOutlineColors];
