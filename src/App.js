@@ -1,18 +1,14 @@
 import React from 'react';
+import { defaults } from 'react-chartjs-2';
 import { withCookies } from 'react-cookie';
-import MainPieChart from "./components/MainPieChart";
-import MinorPieChart from './components/MinorPieChart';
+import { ThemeProvider } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
+import { MainPieChart, MinorPieChart } from './charts';
 import { currentTime } from './helpers/currentTime';
 import themeableClassName from './helpers/themeableClassName';
-import { createTheme } from '@mui/material';
-import { ThemeProvider } from '@mui/material/styles';
-import IconButton from "@mui/material/IconButton";
-import Brightness3Icon from "@mui/icons-material/Brightness3";
-import Brightness7Icon from "@mui/icons-material/Brightness7";
-import { defaults } from "react-chartjs-2";
-import logo from './logo.svg';
+import { defaultTheme, darkTheme } from './helpers/themes';
 import './stylesheets/App.scss';
-import * as colors from './stylesheets/colors.module.scss';
+import logo from './logo.svg';
 
 class App extends React.Component {
   constructor(props) {
@@ -20,7 +16,7 @@ class App extends React.Component {
     var themeFromCookie = (this.props.cookies.get('pg-theme') !== 'dark-mode' ? this.setDefaultTheme() : this.setDarkTheme());
 
     this.state = {
-      availability: [],
+      data: [],
       currentTheme: themeFromCookie,
       error: null,
       isLoaded: false,
@@ -34,12 +30,12 @@ class App extends React.Component {
   }
 
   getData = () => {
-    fetch("http://127.0.0.1:8000/availability")
+    fetch('http://127.0.0.1:8000/availability')
       .then(r => r.json())
       .then(
         (api_result) => {
           this.setState({
-            availability: api_result,
+            data: api_result,
             isLoaded: true
           })
         },
@@ -57,8 +53,8 @@ class App extends React.Component {
     return (
       <header className={themeableClassName('header', currentTheme)}>
         <div className='header__contents'>
-          <img src={logo} className={themeableClassName('header__logo', currentTheme)} alt="logo" />
-          <div className="header__title">Available Parking</div>
+          <img src={logo} className={themeableClassName('header__logo', currentTheme)} alt='logo' />
+          <div className='header__title'>Available Parking</div>
         </div>
         <IconButton
           onClick={() => this.toggleTheme()}
@@ -73,7 +69,7 @@ class App extends React.Component {
     const { cookies } = this.props;
 
     document.body.classList.remove(darkTheme.className)
-    cookies.set("pg-theme", defaultTheme.className, { path: '/' });
+    cookies.set('pg-theme', defaultTheme.className, { path: '/' });
 
     return defaultTheme;
   }
@@ -82,21 +78,22 @@ class App extends React.Component {
     const { cookies } = this.props;
 
     document.body.classList.add(darkTheme.className);
-    cookies.set("pg-theme", darkTheme.className, { path: '/' });
+    cookies.set('pg-theme', darkTheme.className, { path: '/' });
 
     return darkTheme;
   }
 
   toggleTheme = () => {
     var { currentTheme } = this.state;
+
     defaults.transitions = false;
 
     this.setState({ currentTheme: currentTheme !== darkTheme ? this.setDarkTheme() : this.setDefaultTheme() });
   }
 
   render() {
-    var { currentTheme, availability, error, isLoaded } = this.state;
-    var { total_spots, total_spots_free, levels } = availability;
+    var { currentTheme, data, error, isLoaded } = this.state;
+    var { total_spots, total_spots_free, levels } = data;
 
     if (!error && isLoaded) {
       return (
@@ -110,11 +107,10 @@ class App extends React.Component {
             />
           </div>
           <hr className={themeableClassName('main-divider', currentTheme)}/>
-          <div className="minor-charts">
+          <div className='minor-charts'>
             {Object.keys(levels).map((i) =>
-              <div className="minor-charts__chart" key={i}>
+              <div className='minor-charts__chart' key={i}>
                 <MinorPieChart
-                  isInDarkMode={currentTheme.className === darkTheme.className}
                   chartTitle={levels[i].name}
                   spots_free={levels[i].spots_free}
                   total_spots={levels[i].total_spots}
@@ -128,7 +124,7 @@ class App extends React.Component {
       return (
         <div>
           {this.renderHeader(currentTheme)}
-          <div className="rendering-msg">
+          <div className='rendering-msg'>
             {error && error.message ? '(Service unavailable)' : 'Loading...'}
           </div>
           <hr />
@@ -137,16 +133,5 @@ class App extends React.Component {
     }
   }
 }
-
-// TODO: Soft code color values maybe with scss
-export const defaultTheme = createTheme({
-  className: "default",
-  themeToggleIcon: <Brightness3Icon htmlColor={colors.fontDefault} />,
-});
-
-export const darkTheme = createTheme({
-  className: 'dark-mode',
-  themeToggleIcon: <Brightness7Icon htmlColor={colors.fontDarkMode} />,
-});
 
 export default withCookies(App);
