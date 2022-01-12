@@ -93,7 +93,7 @@ class App extends React.Component {
 
   render() {
     var { currentTheme, data, error, isLoaded } = this.state;
-    var { total_spots, total_spots_free, levels } = data;
+    var { total_spots, total_spots_free, parking_levels } = data;
 
     if (!error && isLoaded) {
       return (
@@ -108,12 +108,12 @@ class App extends React.Component {
           </div>
           <hr className={themeableClassName('main-divider', currentTheme)}/>
           <div className='minor-charts'>
-            {Object.keys(levels).map((i) =>
+            {Object.keys(parking_levels).map((i) =>
               <div className='minor-charts__chart' key={i}>
                 <MinorPieChart
-                  chartTitle={levels[i].name}
-                  spots_free={levels[i].spots_free}
-                  total_spots={levels[i].total_spots}
+                  chartTitle={parking_levels[i].name}
+                  spots_free={parking_levels[i].spots_free}
+                  total_spots={parking_levels[i].total_spots}
                 />
               </div>
             )}
