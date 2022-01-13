@@ -3,12 +3,14 @@ import { defaults } from 'react-chartjs-2';
 import { withCookies } from 'react-cookie';
 import { ThemeProvider } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
+import { withTranslation } from 'react-i18next';
 import { MainPieChart, MinorPieChart } from './charts';
-import { currentTime } from './helpers/currentTime';
+import { currentTimeToLocale } from './helpers/currentTime';
 import themeableClassName from './helpers/themeableClassName';
 import { defaultTheme, darkTheme } from './helpers/themes';
 import './stylesheets/App.scss';
 import logo from './logo.svg';
+import i18n from './i18n';
 
 class App extends React.Component {
   constructor(props) {
@@ -54,7 +56,7 @@ class App extends React.Component {
       <header className={themeableClassName('header', currentTheme)}>
         <div className='header__contents'>
           <img src={logo} className={themeableClassName('header__logo', currentTheme)} alt='logo' />
-          <div className='header__title'>Available Parking</div>
+          <div className='header__title'>{i18n.t('Available Parking')}</div>
         </div>
         <IconButton
           onClick={() => this.toggleTheme()}
@@ -63,6 +65,10 @@ class App extends React.Component {
         </IconButton>
       </header>
     )
+  }
+
+  changeLanguage = (lng) => {
+    i18n.changeLanguage(lng)
   }
 
   setDefaultTheme = () => {
@@ -101,7 +107,7 @@ class App extends React.Component {
           {this.renderHeader(currentTheme)}
           <div className={themeableClassName('main-chart', currentTheme)}>
             <MainPieChart
-              chartTitle={currentTime}
+              chartTitle={currentTimeToLocale(i18n.language)}
               spots_free={total_spots_free}
               total_spots={total_spots}
             />
@@ -118,6 +124,10 @@ class App extends React.Component {
               </div>
             )}
           </div>
+          <div className={themeableClassName('lang-select', currentTheme)}>
+            <hr />
+            <button onClick={() => this.changeLanguage('en-US')}>English</button> | <button onClick={() => this.changeLanguage('fr-CA')}>Français</button> | <button onClick={() => this.changeLanguage('es-MX')}>Español</button>
+          </div>
         </ThemeProvider>
       );
     } else {
@@ -127,11 +137,11 @@ class App extends React.Component {
           <div className='rendering-msg'>
             {error && error.message ? '(Service unavailable)' : 'Loading...'}
           </div>
-          <hr />
+          <hr className={themeableClassName('main-divider', currentTheme)}/>
         </div>
       );
     }
   }
 }
 
-export default withCookies(App);
+export default withTranslation()(withCookies(App));

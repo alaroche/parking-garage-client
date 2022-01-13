@@ -5,6 +5,14 @@ body {
   color: $font-default;
 }
 
+body a {
+  color: $pie-chart-primary-default;
+}
+
+hr {
+  border: none;
+}
+
 .header {
   display: flex;
   padding: 0.5rem;
@@ -33,7 +41,7 @@ body {
   height: 4rem;
   margin: 0 auto;
   border-radius: 5px;
-  border: solid 1px $header-background-default;
+  border: 1px solid $header-background-default;
 }
 
 .rendering-msg {
@@ -47,9 +55,9 @@ body {
   height: 24rem;
 }
 
-hr {
-  width: 95%;
-  border-top: 1px dashed $font-default;
+hr.main-divider {
+  width: 75%;
+  border-top: 1px dashed $pie-chart-secondary-default;
 }
 
 .minor-charts {
@@ -64,6 +72,29 @@ hr {
   height: 9rem;
 }
 
+.lang-select {
+  text-align: center;
+  padding: 7rem 0 0 0;
+}
+
+.lang-select button {
+  font-weight: bold;
+  padding: 0.25rem 0.5rem;
+  background-color: $header-background-default;
+  color: $font-default;
+  border: solid 1px $pie-chart-secondary-default;
+}
+
+.lang-select button:hover {
+  cursor: pointer;
+  border-color: $pie-chart-primary-default;
+}
+
+.lang-select hr {
+  width: 15%;
+  border-top: 1px dashed $pie-chart-secondary-default;
+}
+
 /* ==========================================================================
    Dark Mode
    ========================================================================== */
@@ -71,6 +102,10 @@ hr {
 body.dark-mode {
   background-color: $body-background-dark-mode;
   color: $font-dark-mode;
+}
+
+body.dark-mode a {
+  color: $pie-chart-secondary-default;
 }
 
 .header--dark-mode {
@@ -83,6 +118,20 @@ body.dark-mode {
   border: solid 1px $body-background-dark-mode;
 }
 
-.main-divider--dark-mode {
-  border-top: 1px dashed $font-dark-mode;
+hr.main-divider--dark-mode {
+  border-top: dashed 1px $pie-chart-secondary-dark-mode;
+}
+
+.lang-select--dark-mode button {
+  background-color: $header-background-dark-mode;
+  border: solid 1px $pie-chart-secondary-dark-mode;
+  color: $font-dark-mode;
+}
+
+.lang-select button:hover {
+  border-color: $pie-chart-primary-dark-mode;
+}
+
+.lang-select--dark-mode hr {
+  border-top: solid 1px $pie-chart-secondary-dark-mode;
 }
