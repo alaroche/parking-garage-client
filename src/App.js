@@ -1,16 +1,22 @@
+// React
 import React from 'react';
-import { defaults } from 'react-chartjs-2';
-import { withCookies } from 'react-cookie';
+// Packages
 import { ThemeProvider } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
+import { defaults } from 'react-chartjs-2';
+import { withCookies } from 'react-cookie';
 import { withTranslation } from 'react-i18next';
-import { MainPieChart, MinorPieChart } from './charts';
+import i18n from './i18n';
+// Helpers
 import { currentTimeToLocale } from './helpers/currentTime';
 import themeableClassName from './helpers/themeableClassName';
 import { defaultTheme, darkTheme } from './helpers/themes';
-import './stylesheets/App.scss';
+// Components
+import { MainPieChart, MinorPieChart } from './charts';
+// Assets
 import logo from './logo.svg';
-import i18n from './i18n';
+// Styles
+import './stylesheets/App.scss';
 
 class App extends React.Component {
   constructor(props) {
