@@ -1,21 +1,21 @@
-// React
+// REACT
 import React from 'react';
-// Packages
+// PACKAGES
 import { ThemeProvider } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import { defaults } from 'react-chartjs-2';
 import { withCookies } from 'react-cookie';
 import { withTranslation } from 'react-i18next';
 import i18n from './i18n';
-// Helpers
+// HELPERS
 import { currentTimeToLocale } from './helpers/currentTime';
 import themeableClassName from './helpers/themeableClassName';
 import { defaultTheme, darkTheme } from './helpers/themes';
-// Components
+// COMPONENTS
 import { MainPieChart, MinorPieChart } from './charts';
-// Assets
+// ASSETS
 import logo from './logo.svg';
-// Styles
+// STYLES
 import './stylesheets/App.scss';
 
 class App extends React.Component {
