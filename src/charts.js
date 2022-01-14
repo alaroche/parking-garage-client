@@ -33,3 +33,15 @@ export function MinorPieChart(props) {
     />
   );
 }
+
+MainPieChart.propTypes = {
+  chartTitle: PropTypes.string.isRequired,
+  spots_free: PropTypes.number.isRequired,
+  total_spots: PropTypes.number.isRequired,
+}
+
+MinorPieChart.propTypes = {
+  chartTitle: PropTypes.string.isRequired,
+  spots_free: PropTypes.number.isRequired,
+  total_spots: PropTypes.number.isRequired,
+}
