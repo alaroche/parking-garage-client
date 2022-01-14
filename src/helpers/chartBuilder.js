@@ -15,7 +15,7 @@ export function getColorsFromMode(theme) {
 }
 
 export function chartConfigGeneration(theme, props) {
-    var { chartTitle, total_spots, spots_free } = props;
+    var { chartTitle, numSpotsFree, numSpotsTotal } = props;
     var [chartColors, chartTextAndOutlineColors] = getColorsFromMode(theme);
   
     var chartDataAndDisplayOptions = {
@@ -23,7 +23,7 @@ export function chartConfigGeneration(theme, props) {
       responsive: false,
       datasets: [
         {
-          data: [total_spots - spots_free, spots_free],
+          data: [numSpotsTotal - numSpotsFree, numSpotsFree],
           backgroundColor: chartColors,
           hoverBackgroundColor: chartColors
         }

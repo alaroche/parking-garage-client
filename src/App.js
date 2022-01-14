@@ -114,8 +114,8 @@ class App extends React.Component {
           <div className={themeableClassName('main-chart', currentTheme)}>
             <MainPieChart
               chartTitle={currentTimeToLocale(i18n.language)}
-              spots_free={total_spots_free}
-              total_spots={total_spots}
+              numSpotsFree={total_spots_free}
+              numSpotsTotal={total_spots}
             />
           </div>
           <hr className={themeableClassName('main-divider', currentTheme)}/>
@@ -124,8 +124,8 @@ class App extends React.Component {
               <div className='minor-charts__chart' key={i}>
                 <MinorPieChart
                   chartTitle={parking_levels[i].name}
-                  spots_free={parking_levels[i].spots_free}
-                  total_spots={parking_levels[i].total_spots}
+                  numSpotsFree={parking_levels[i].spots_free}
+                  numSpotsTotal={parking_levels[i].total_spots}
                 />
               </div>
             )}
