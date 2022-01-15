@@ -79,8 +79,8 @@ class App extends React.Component {
     return (
       <div className={themeableClassName('lang-select', currentTheme)}>
         <hr />
-        <button onClick={() => this.changeLanguage('en-US')}>English</button> |
-        <button onClick={() => this.changeLanguage('fr-CA')}>Français</button> | 
+        <button onClick={() => this.changeLanguage('en-US')}>English</button>|
+        <button onClick={() => this.changeLanguage('fr-CA')}>Français</button>| 
         <button onClick={() => this.changeLanguage('es-MX')}>Español</button>
       </div>
     )
