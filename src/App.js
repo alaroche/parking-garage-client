@@ -73,6 +73,19 @@ class App extends React.Component {
     )
   }
 
+  renderFootNav() {
+    var { currentTheme } = this.state;
+
+    return (
+      <div className={themeableClassName('lang-select', currentTheme)}>
+        <hr />
+        <button onClick={() => this.changeLanguage('en-US')}>English</button> |
+        <button onClick={() => this.changeLanguage('fr-CA')}>Français</button> | 
+        <button onClick={() => this.changeLanguage('es-MX')}>Español</button>
+      </div>
+    )
+  }
+
   changeLanguage = (lng) => {
     i18n.changeLanguage(lng)
   }
@@ -110,7 +123,7 @@ class App extends React.Component {
     if (!error && isLoaded) {
       return (
         <ThemeProvider theme={currentTheme}>
-          {this.renderHeader(currentTheme)}
+          {this.renderHeader()}
           <div className={themeableClassName('main-chart', currentTheme)}>
             <MainPieChart
               chartTitle={currentTimeToLocale(i18n.language)}
@@ -130,20 +143,18 @@ class App extends React.Component {
               </div>
             )}
           </div>
-          <div className={themeableClassName('lang-select', currentTheme)}>
-            <hr />
-            <button onClick={() => this.changeLanguage('en-US')}>English</button> | <button onClick={() => this.changeLanguage('fr-CA')}>Français</button> | <button onClick={() => this.changeLanguage('es-MX')}>Español</button>
-          </div>
+          {this.renderFootNav()}
         </ThemeProvider>
       );
     } else {
       return (
         <div>
-          {this.renderHeader(currentTheme)}
+          {this.renderHeader()}
           <div className='rendering-msg'>
-            {error && error.message ? '(Service unavailable)' : 'Loading...'}
+            ({error && error.message ? i18n.t('Service unavailable') : i18n.t('Loading...')})
           </div>
           <hr className={themeableClassName('main-divider', currentTheme)}/>
+          {this.renderFootNav()}
         </div>
       );
     }
