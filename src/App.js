@@ -66,6 +66,7 @@ class App extends React.Component {
         </div>
         <IconButton
           onClick={() => this.toggleTheme()}
+          data-testid='theming-button'
         >
           {currentTheme.themeToggleIcon}
         </IconButton>
@@ -79,9 +80,9 @@ class App extends React.Component {
     return (
       <div className={themeableClassName('lang-select', currentTheme)}>
         <hr />
-        <button onClick={() => this.changeLanguage('en-US')}>English</button>|
-        <button onClick={() => this.changeLanguage('fr-CA')}>Français</button>| 
-        <button onClick={() => this.changeLanguage('es-MX')}>Español</button>
+        <button onClick={() => this.changeLanguage('en-US')} data-testid='button-to-en'>English</button>|
+        <button onClick={() => this.changeLanguage('fr-CA')} data-testid='button-to-fr'>Français</button>| 
+        <button onClick={() => this.changeLanguage('es-MX')} data-testid='button-to-es'>Español</button>
       </div>
     )
   }
