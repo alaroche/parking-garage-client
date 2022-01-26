@@ -1,4 +1,3 @@
-// TODO: correctly order the attributes
 @import 'colors.module';
 
 div.background-overlay {
@@ -27,17 +26,17 @@ hr {
   display: flex;
   padding: 0.5rem;
   border-bottom: 2px solid $font-default;
-  font-size: 2.25rem;
   background-color: $header-background-default;
+  font-size: 2.25rem;
   color: $font-default;
 }
 
 .header__contents {
+  position: relative;
+  left: 1rem;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  position: relative;
-  left: 1rem;
 }
 
 .header__title {
@@ -46,16 +45,16 @@ hr {
 }
 
 .header__logo {
+  margin: 0 auto;
+  border: 1px solid $header-background-default;
+  border-radius: 5px;
   width: 4rem;
   height: 4rem;
-  margin: 0 auto;
-  border-radius: 5px;
-  border: 1px solid $header-background-default;
 }
 
 .rendering-msg {
-  text-align: center;
   margin: 1rem;
+  text-align: center;
 }
 
 .main-chart {
@@ -65,13 +64,13 @@ hr {
 }
 
 hr.main-divider {
-  width: 75%;
   border-top: 1px dashed $pie-chart-secondary-default;
+  width: 75%;
 }
 
 .minor-charts {
-  flex-wrap: wrap;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
 }
@@ -87,23 +86,23 @@ hr.main-divider {
 }
 
 .lang-select {
-  text-align: center;
   padding: 7rem 0 0 0;
+  text-align: center;
 }
 
 .lang-select button {
-  font-weight: bold;
-  padding: 0.25rem 0.5rem;
   margin: 0 0.5rem;
-  background-color: $header-background-default;
-  color: $font-default;
+  padding: 0.25rem 0.5rem;
   border: 1px solid $pie-chart-secondary-default;
   border-radius: 2rem;
+  background-color: $header-background-default;
+  font-weight: bold;
+  color: $font-default;
 }
 
 .lang-select button:hover {
-  cursor: pointer;
   border-color: $pie-chart-primary-default;
+  cursor: pointer;
 }
 
 .lang-select hr {
@@ -112,13 +111,13 @@ hr.main-divider {
 }
 
 .login-link {
-  margin: 1rem auto;
   float: none;
+  margin: 1rem auto;
 }
 
 .login-link button {
-  background: none;
   border: none;
+  background: none;
   color: $pie-chart-primary-default;
   text-decoration: underline;
 }
@@ -141,8 +140,8 @@ body.dark-mode a {
 }
 
 .header--dark-mode {
-  background-color: $header-background-dark-mode;
   border-bottom-color: $font-dark-mode;
+  background-color: $header-background-dark-mode;
   color: $font-dark-mode;
 }
 
@@ -155,8 +154,8 @@ hr.main-divider--dark-mode {
 }
 
 .lang-select--dark-mode button {
-  background-color: $header-background-dark-mode;
   border: 1px solid $pie-chart-secondary-dark-mode;
+  background-color: $header-background-dark-mode;
   color: $font-dark-mode;
 }
 

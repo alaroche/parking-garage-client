@@ -66,7 +66,6 @@ class App extends React.Component {
   renderHeader() {
     var { currentTheme } = this.state;
 
-    // TODO: i18n.t -> t
     return (
       <header className={themeableClassName('header', currentTheme)}>
         <div className='header__contents'>
