@@ -1,4 +1,14 @@
+// TODO: correctly order the attributes
 @import 'colors.module';
+
+div.background-overlay {
+  position: absolute;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+}
 
 body {
   background-color: $body-background-default;
@@ -16,10 +26,9 @@ hr {
 .header {
   display: flex;
   padding: 0.5rem;
-  border-bottom: 2px solid;
+  border-bottom: 2px solid $font-default;
   font-size: 2.25rem;
   background-color: $header-background-default;
-  border-bottom-color: $font-default;
   color: $font-default;
 }
 
@@ -72,6 +81,11 @@ hr.main-divider {
   height: 9rem;
 }
 
+.footer-nav {
+  display: flex;
+  flex-direction: column;
+}
+
 .lang-select {
   text-align: center;
   padding: 7rem 0 0 0;
@@ -83,7 +97,8 @@ hr.main-divider {
   margin: 0 0.5rem;
   background-color: $header-background-default;
   color: $font-default;
-  border: solid 1px $pie-chart-secondary-default;
+  border: 1px solid $pie-chart-secondary-default;
+  border-radius: 2rem;
 }
 
 .lang-select button:hover {
@@ -94,6 +109,22 @@ hr.main-divider {
 .lang-select hr {
   width: 15%;
   border-top: 1px dashed $pie-chart-secondary-default;
+}
+
+.login-link {
+  margin: 1rem auto;
+  float: none;
+}
+
+.login-link button {
+  background: none;
+  border: none;
+  color: $pie-chart-primary-default;
+  text-decoration: underline;
+}
+
+.login-link button:hover {
+  cursor: pointer;
 }
 
 /* ==========================================================================
@@ -116,7 +147,7 @@ body.dark-mode a {
 }
 
 .header__logo--dark-mode {
-  border: solid 1px $body-background-dark-mode;
+  border: 1px solid $body-background-dark-mode;
 }
 
 hr.main-divider--dark-mode {
@@ -125,7 +156,7 @@ hr.main-divider--dark-mode {
 
 .lang-select--dark-mode button {
   background-color: $header-background-dark-mode;
-  border: solid 1px $pie-chart-secondary-dark-mode;
+  border: 1px solid $pie-chart-secondary-dark-mode;
   color: $font-dark-mode;
 }
 
@@ -134,5 +165,5 @@ hr.main-divider--dark-mode {
 }
 
 .lang-select--dark-mode hr {
-  border-top: solid 1px $pie-chart-secondary-dark-mode;
+  border-top: 1px solid $pie-chart-secondary-dark-mode;
 }

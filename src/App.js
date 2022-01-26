@@ -13,6 +13,7 @@ import themeableClassName from './helpers/themeableClassName';
 import { defaultTheme, darkTheme } from './helpers/themes';
 // COMPONENTS
 import { MainPieChart, MinorPieChart } from './charts';
+import Login from './Login';
 // ASSETS
 import logo from './logo.svg';
 // STYLES
@@ -28,6 +29,7 @@ class App extends React.Component {
       currentTheme: themeFromCookie,
       error: null,
       isLoaded: false,
+      showLogin: false,
     }
 
     defaults.transitions = true;
@@ -55,9 +57,16 @@ class App extends React.Component {
       )
   }
 
+  showLogin() {
+    var { showLogin } = this.state;
+
+    this.setState({showLogin: !showLogin})
+  }
+
   renderHeader() {
     var { currentTheme } = this.state;
 
+    // TODO: i18n.t -> t
     return (
       <header className={themeableClassName('header', currentTheme)}>
         <div className='header__contents'>
@@ -78,11 +87,14 @@ class App extends React.Component {
     var { currentTheme } = this.state;
 
     return (
-      <div className={themeableClassName('lang-select', currentTheme)}>
-        <hr />
-        <button onClick={() => this.changeLanguage('en-US')} data-testid='button-to-en'>English</button>|
-        <button onClick={() => this.changeLanguage('fr-CA')} data-testid='button-to-fr'>Français</button>| 
-        <button onClick={() => this.changeLanguage('es-MX')} data-testid='button-to-es'>Español</button>
+      <div className={themeableClassName('footer-nav', currentTheme)}>
+        <div className={themeableClassName('lang-select', currentTheme)}>
+          <hr />
+          <button onClick={() => this.changeLanguage('en-US')} data-testid='button-to-en'>English</button>|
+          <button onClick={() => this.changeLanguage('fr-CA')} data-testid='button-to-fr'>Français</button>|
+          <button onClick={() => this.changeLanguage('es-MX')} data-testid='button-to-es'>Español</button>
+        </div>
+        <div className='login-link'><button onClick={() => this.toggleLoginShow()}>{i18n.t('Sign in')}</button></div>
       </div>
     )
   }
@@ -117,13 +129,34 @@ class App extends React.Component {
     this.setState({ currentTheme: currentTheme !== darkTheme ? this.setDarkTheme() : this.setDefaultTheme() });
   }
 
+  toggleLoginShow = () => {
+    var { showLogin } = this.state;
+
+    this.setState({ showLogin: !showLogin });
+  }
+
+  renderLoginModal() {
+    var { currentTheme } = this.state;
+
+    return (
+      <div>
+        <div className='background-overlay' />
+        <Login
+          currentTheme={currentTheme}
+          onClose={() => this.toggleLoginShow()}
+        />
+      </div>
+    )
+  }
+
   render() {
-    var { currentTheme, data, error, isLoaded } = this.state;
+    var { currentTheme, data, error, isLoaded, showLogin } = this.state;
     var { total_spots, total_spots_free, parking_levels } = data;
 
     if (!error && isLoaded) {
       return (
         <ThemeProvider theme={currentTheme}>
+          {showLogin ?  this.renderLoginModal() : ''}
           {this.renderHeader()}
           <div className={themeableClassName('main-chart', currentTheme)}>
             <MainPieChart

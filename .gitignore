@@ -6,4 +6,5 @@ coverage/
 node_modules/
 src/.DS_Store
 src/components/.DS_Store
-src/stylesheets/App.css*
+src/stylesheets/*.css
+src/stylesheets/*.css.map
