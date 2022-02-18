@@ -40,19 +40,14 @@ class App extends React.Component {
   }
 
   getData = () => {
-    fetch('http://127.0.0.1:8000/availability')
-      .then(r => r.json())
+    fetch('http://aaronhost:8000/availability')
+      .then(response => response.json())
       .then(
         (api_result) => {
-          this.setState({
-            data: api_result,
-            isLoaded: true
-          })
+          this.setState({ data: api_result, isLoaded: true })
         },
         (error) => {
-          this.setState({
-            error
-          });
+          this.setState({ error });
         }
       )
   }
@@ -60,7 +55,7 @@ class App extends React.Component {
   showLogin() {
     var { showLogin } = this.state;
 
-    this.setState({showLogin: !showLogin})
+    this.setState({ showLogin: !showLogin })
   }
 
   renderHeader() {

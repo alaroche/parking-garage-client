@@ -18,47 +18,47 @@ class Login extends React.Component {
   }
 
   openModal() {
-    this.setState({
-      showModal: true
-    });
+    this.setState({ showModal: true });
   }
 
   closeModal() {
-    this.setState({
-      showModal: false,
-      error: null
-    });
-  }
-
-  onLoginSuccess(method, response) {
-    console.log('logged successfully with ' + method);
-  }
-
-  onLoginFail(method, response) {
-    console.log('logging failed with ' + method);
-    this.setState({
-      error: response
-    });
+    this.setState({ showModal: false, error: null });
   }
 
   handleLoginForm() {
     const username = this.usernameInputRef.current.value
     const password = this.passInputRef.current.value
 
-    fetch('https://127.0.0.1:8080/auth', {
+    fetch(`http://aaronhost:8000/auth?username=${username}&given_pswd=${password}`, {
       method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        username: username,
-        password: password, // TODO: SSL cert for front and back ends.
-      }),
     })
+    .then(response => response.json())
+    .then(response => this.handleAuthResponse(response))
+  }
+
+  handleAuthResponse(response) {
+    if (response.isError) {
+      this.setState({ error: response.result })
+    } else {
+      var json_web_token = response.result
+      var request = {
+        method: 'POST',
+        headers: new Headers({
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + json_web_token
+        }),
+      }
+
+      fetch('http://aaronhost:8000/auth_validate', request)
+        .then(response => response.json())
+        .then(response => localStorage.setItem('username', response['username']))
+
+      this.setState({ error: null })
+    }
   }
 
   render() {
+    var { error } = this.state;
     var { currentTheme, onClose } = this.props;
 
     return (
@@ -66,6 +66,7 @@ class Login extends React.Component {
         <button onClick={onClose} className='Close'>&times;</button>
         <h1>{i18n.t('Sign in')}</h1>
         <form action='#'>
+          <span className='error-msg'>{error}</span>
           <input type='text' autoFocus={true} ref={this.usernameInputRef} placeholder={i18n.t('Username')} required />
           <input type='password' ref={this.passInputRef} placeholder={i18n.t('Password')} required />
           <button type='submit' onClick={() => this.handleLoginForm()}>{i18n.t('Sign in')}</button>

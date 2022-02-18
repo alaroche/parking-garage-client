@@ -9,7 +9,7 @@
     padding: 2rem;
     background-color: $header-background-default;
     width: 12rem;
-    height: 7rem;
+    height: auto;
   }
 
   .Modal--dark-mode {
@@ -71,4 +71,9 @@
     color: #fefefe;
     cursor: pointer;
     text-decoration: none;
+  }
+
+  .error-msg {
+    color: red;
+    padding-bottom: 1rem;
   }
