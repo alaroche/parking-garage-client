@@ -12,17 +12,7 @@ class Login extends React.Component {
 
     this.state = {
       error: null,
-      isLoaded: false,
-      showModal: false,
     };
-  }
-
-  openModal() {
-    this.setState({ showModal: true });
-  }
-
-  closeModal() {
-    this.setState({ showModal: false, error: null });
   }
 
   handleLoginForm() {

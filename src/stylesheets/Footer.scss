@@ -1,0 +1,65 @@
+@import 'colors.module';
+
+footer {
+  display: flex;
+  flex-direction: column;
+}
+
+.lang-select {
+  padding: 7rem 0 0 0;
+  text-align: center;
+}
+
+.lang-select button {
+  margin: 0 0.5rem;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid $pie-chart-secondary-default;
+  border-radius: 2rem;
+  background-color: $header-background-default;
+  font-weight: bold;
+  color: $font-default;
+}
+
+.lang-select button:hover {
+  border-color: $pie-chart-primary-default;
+  cursor: pointer;
+}
+
+.lang-select hr {
+  width: 15%;
+  border-top: 1px dashed $pie-chart-secondary-default;
+}
+
+.profile-link {
+  float: none;
+  margin: 1rem auto;
+}
+
+.profile-link button {
+  border: none;
+  background: none;
+  color: $pie-chart-primary-default;
+  text-decoration: underline;
+}
+
+.profile-link button:hover {
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   Dark Mode
+   ========================================================================== */
+
+.lang-select--dark-mode button {
+  border: 1px solid $pie-chart-secondary-dark-mode;
+  background-color: $header-background-dark-mode;
+  color: $font-dark-mode;
+}
+
+.lang-select button:hover {
+  border-color: $pie-chart-primary-dark-mode;
+}
+
+.lang-select--dark-mode hr {
+  border-top: 1px solid $pie-chart-secondary-dark-mode;
+}
