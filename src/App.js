@@ -27,11 +27,21 @@ class App extends React.Component {
 
     this.handleThemeToggle = this.handleThemeToggle.bind(this)
 
-    var themeFromCookie = (this.props.cookies.get('pg-theme') !== 'dark-mode' ? defaultTheme : darkTheme);
-    document.body.classList.add(themeFromCookie.className);
+    var theme
+    var themeFromCookie = this.props.cookies.get('pg-theme')
+
+    if (themeFromCookie) {
+      theme = themeFromCookie !== 'dark-mode' ? defaultTheme : darkTheme;
+    } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      theme = darkTheme;
+    } else {
+      theme = defaultTheme;
+    }
+
+    document.body.classList.add(theme.className);
 
     this.state = {
-      currentTheme: themeFromCookie,
+      currentTheme: theme,
       showLogin: false
     }
   }
