@@ -6,7 +6,6 @@ footer {
 }
 
 .lang-select {
-  padding: 7rem 0 0 0;
   text-align: center;
 }
 
@@ -30,19 +29,20 @@ footer {
   border-top: 1px dashed $pie-chart-secondary-default;
 }
 
-.profile-link {
+.user-menu {
   float: none;
   margin: 1rem auto;
+  padding: 7rem 0 0 0;
 }
 
-.profile-link button {
+.user-menu button {
   border: none;
   background: none;
   color: $pie-chart-primary-default;
   text-decoration: underline;
 }
 
-.profile-link button:hover {
+.user-menu button:hover {
   cursor: pointer;
 }
 

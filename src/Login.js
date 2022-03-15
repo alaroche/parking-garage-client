@@ -22,14 +22,14 @@ class Login extends React.Component {
     fetch(`http://aaronhost:8000/auth?username=${username}&given_pswd=${password}`, {
       method: 'POST',
     })
-    .then(response => response.json())
-    .then(response => this.handleAuthResponse(response))
+      .then(response => response.json())
+      .then(response => this.handleAuthResponse(response))
   }
 
   handleAuthResponse(response) {
-    if (response.isError) {
-      this.setState({ error: response.result })
-    } else {
+    var { handleSuccessfulAuth } = this.props;
+
+    if (response.success) {
       var json_web_token = response.result
       var request = {
         method: 'POST',
@@ -41,9 +41,17 @@ class Login extends React.Component {
 
       fetch('http://aaronhost:8000/auth_validate', request)
         .then(response => response.json())
-        .then(response => localStorage.setItem('username', response['username']))
+        .then(response => handleSuccessfulAuth(json_web_token, response['result']))
+    } else {
+      this.setState({ error: response.result })
+    }
+  }
 
-      this.setState({ error: null })
+  handleEscPress(e) {
+    var { onClose } = this.props;
+
+    if (e.key === 'Escape') {
+      onClose()
     }
   }
 
@@ -52,7 +60,10 @@ class Login extends React.Component {
     var { currentTheme, onClose } = this.props;
 
     return (
-      <div className={themeableClassName('Modal', currentTheme)}>
+      <div
+        className={themeableClassName('Modal', currentTheme)}
+        onKeyDown={(e) => this.handleEscPress(e)}
+      >
         <button onClick={onClose} className='Close'>&times;</button>
         <h1>{i18n.t('Sign in')}</h1>
         <form action='#'>

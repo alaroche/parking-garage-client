@@ -11,8 +11,8 @@ import { withTranslation } from 'react-i18next';
 // PACKAGES
 import { ThemeProvider } from '@mui/material/styles';
 // LAYOUT
-import Header from './layout/Header';
 import Footer from './layout/Footer';
+import Header from './layout/Header';
 // COMPONENTS
 import Charts from './Charts';
 import EditProfile from './EditProfile';
@@ -42,6 +42,7 @@ class App extends React.Component {
 
     this.state = {
       currentTheme: theme,
+      loginError: null,
       showLogin: false
     }
   }
@@ -62,6 +63,13 @@ class App extends React.Component {
     cookies.set('pg-theme', darkTheme.className, { path: '/' });
 
     this.setState({ currentTheme: darkTheme })
+  }
+
+  handleSuccessfulAuth = (json_web_token, username) => {
+    localStorage.setItem('jwt', json_web_token)
+    localStorage.setItem('username', username)
+
+    window.location.pathname = '/user-profile'
   }
 
   handleThemeToggle = () => {
@@ -85,6 +93,7 @@ class App extends React.Component {
         <div className='background-overlay' />
         <Login
           currentTheme={currentTheme}
+          handleSuccessfulAuth={this.handleSuccessfulAuth}
           onClose={() => this.toggleShowLogin()}
         />
       </div>
@@ -103,7 +112,7 @@ class App extends React.Component {
             <Route path="/" element={<Charts currentTheme={currentTheme} />} />
             <Route path="/user-profile" element={<EditProfile />} />
           </Routes>
-          <Footer toggleShowLogin={() => this.toggleShowLogin(this)} />
+          <Footer toggleShowLogin={this.toggleShowLogin} />
         </BrowserRouter>
       </ThemeProvider>
     )
