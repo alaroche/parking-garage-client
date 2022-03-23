@@ -31,8 +31,8 @@ export default function Footer(props) {
     var jwt = localStorage.getItem('jwt')
 
     return (
-      <footer className={themeableClassName('footer-nav', currentTheme)}>
-        <div className='user-menu'>
+      <footer>
+        <div className='nav-bar'>
           {username && jwt ?
             <div>
               <button onClick={() => goToCharts()}>{i18n.t('View Charts')}</button> |

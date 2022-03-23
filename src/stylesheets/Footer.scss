@@ -29,20 +29,19 @@ footer {
   border-top: 1px dashed $pie-chart-secondary-default;
 }
 
-.user-menu {
+.nav-bar {
   float: none;
   margin: 1rem auto;
-  padding: 7rem 0 0 0;
 }
 
-.user-menu button {
+.nav-bar button {
   border: none;
   background: none;
   color: $pie-chart-primary-default;
   text-decoration: underline;
 }
 
-.user-menu button:hover {
+.nav-bar button:hover {
   cursor: pointer;
 }
 
@@ -56,7 +55,7 @@ footer {
   color: $font-dark-mode;
 }
 
-.lang-select button:hover {
+.lang-select--dark-mode button:hover {
   border-color: $pie-chart-primary-dark-mode;
 }
 

@@ -67,7 +67,7 @@ class Login extends React.Component {
         <button onClick={onClose} className='Close'>&times;</button>
         <h1>{i18n.t('Sign in')}</h1>
         <form action='#'>
-          <span className='error-msg'>{error}</span>
+          <span className='error-msg'>{i18n.t(error)}</span>
           <input type='text' autoFocus={true} ref={this.usernameInputRef} placeholder={i18n.t('Username')} required />
           <input type='password' ref={this.passInputRef} placeholder={i18n.t('Password')} required />
           <button type='submit' onClick={() => this.handleLoginForm()}>{i18n.t('Sign in')}</button>

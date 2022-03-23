@@ -18,6 +18,7 @@ class Charts extends React.Component {
     this.state = {
       data: [],
       error: null,
+      info: {},
       isLoaded: false,
     }
 
@@ -25,6 +26,8 @@ class Charts extends React.Component {
   }
 
   componentDidMount() {
+    this.getInfo();
+
     setInterval(this.getData(), 30000);
   }
 
@@ -41,8 +44,22 @@ class Charts extends React.Component {
       )
   }
 
+  getInfo = () => {
+    fetch(`http://aaronhost:8000/profile`, {
+      method: 'GET'
+    })
+      .then(response => response.json())
+      .then(
+        (response) => {
+          this.setState({
+            info: response.result,
+          })
+        },
+      )
+  }
+
   render() {
-    var { data, error, isLoaded } = this.state;
+    var { data, error, info, isLoaded } = this.state;
     var { currentTheme } = this.props;
 
     var { total_spots, total_spots_free, parking_levels } = data;
@@ -69,6 +86,21 @@ class Charts extends React.Component {
               </div>
             )}
           </div>
+          {info ?
+            <address>
+              <strong>{info['name']}</strong>
+              <br />{info['address1']}
+              {info['address2'] ?
+                <span>
+                  <br />{info['address2']}
+                </span>
+                :
+                ''
+              }
+              <br />{info['city'] +', ' + info['state'] + ' ' + info['zip']}
+            </address>
+            :
+            ''}
         </div>
       );
     } else {

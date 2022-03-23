@@ -110,7 +110,7 @@ class App extends React.Component {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Charts currentTheme={currentTheme} />} />
-            <Route path="/user-profile" element={<EditProfile />} />
+            <Route path="/user-profile" element={<EditProfile currentTheme={currentTheme} />} />
           </Routes>
           <Footer toggleShowLogin={this.toggleShowLogin} />
         </BrowserRouter>

@@ -18,7 +18,9 @@ export default function Header(props) {
     return (
         <header className={themeableClassName('header', currentTheme)}>
             <div className='header__contents'>
-                <img src={logo} className={themeableClassName('header__logo', currentTheme)} alt='logo' />
+                <a href='/' className={themeableClassName('header__logo', currentTheme)}>
+                    <img src={logo} alt='logo' />
+                </a>
                 <div className='header__title'>{i18n.t('Available Parking')}</div>
             </div>
             <IconButton

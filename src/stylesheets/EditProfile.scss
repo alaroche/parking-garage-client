@@ -1,0 +1,71 @@
+@import 'colors.module';
+
+.success-msg {
+  padding: 0 0 1rem 0;
+  color: green;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem auto;
+  width: 30rem;
+}
+
+.profile-form label {
+  margin: 0 0 0.5rem 0;
+  font-weight: bold;
+  color: $pie-chart-primary-default;
+}
+
+.profile-form input, .profile-form select {
+  margin: 0 0 1rem 0;
+  height: 1.5rem;
+  border: solid 1px $font-default;
+  background-color: #fff;
+  font-size: 1rem;
+}
+
+.profile-form input[type='submit'] {
+  margin: 0 auto;
+  height: 2rem;
+  padding: 0 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: $font-default;
+}
+
+.profile-form input[type='submit']:hover {
+  border-color: solid 1px $pie-chart-primary-dark-mode;
+  cursor: pointer;
+}
+
+.profile-form input[type='submit']:disabled {
+  opacity: 40%;
+}
+
+/* ==========================================================================
+   Dark Mode
+   ========================================================================== */
+
+.profile-form--dark-mode label {
+  color: $font-dark-mode;
+}
+
+.profile-form--dark-mode input, .profile-form--dark-mode select {
+  background-color: $font-dark-mode;
+}
+
+.profile-form--dark-mode input[type='submit'] {
+  border: none;
+  font-weight: bold;
+  color: $body-background-dark-mode;
+}
+
+.profile-form--dark-mode input[type='submit']:hover {
+  border: solid 1px $pie-chart-primary-default;
+}
+
+.profile-form--dark-mode p {
+  color: $font-dark-mode;
+}
