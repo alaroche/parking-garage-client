@@ -32,7 +32,7 @@ class Charts extends React.Component {
   }
 
   getData = () => {
-    fetch('http://aaronhost:8000/availability')
+    fetch('http://aaronhost:8000/garage/availability')
       .then(response => response.json())
       .then(
         (api_result) => {
@@ -45,7 +45,7 @@ class Charts extends React.Component {
   }
 
   getInfo = () => {
-    fetch(`http://aaronhost:8000/profile`, {
+    fetch(`http://aaronhost:8000/user/profile`, {
       method: 'GET'
     })
       .then(response => response.json())

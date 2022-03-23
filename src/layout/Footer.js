@@ -20,7 +20,7 @@ function logout() {
   localStorage.removeItem('jwt')
   localStorage.removeItem('username')
 
-  goToCharts()
+  window.location.reload();
 }
 
 export default function Footer(props) {

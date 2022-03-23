@@ -13,6 +13,10 @@ class EditProfile extends React.Component {
   constructor(props) {
     super(props);
 
+    if (!localStorage.getItem('jwt')) {
+      window.location.pathname = '/'
+    }
+
     this.state = {
       emailIsValid: false,
       error: null,
@@ -22,7 +26,7 @@ class EditProfile extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`http://aaronhost:8000/profile`, {
+    fetch(`http://aaronhost:8000/user/profile`, {
       method: 'GET'
     })
       .then(response => response.json())
@@ -61,7 +65,7 @@ class EditProfile extends React.Component {
 
     inputParams = new URLSearchParams(inputs).toString()
 
-    fetch(`http://aaronhost:8000/profile?${inputParams}`, {
+    fetch(`http://aaronhost:8000/user/profile?${inputParams}`, {
       method: 'PUT',
       headers: new Headers({
         'Content-Type': 'application/json',
