@@ -64,10 +64,10 @@ class App extends React.Component {
     this.setState({ currentTheme: darkTheme })
   }
 
-  handleSuccessfulAuth = (json_web_token, username, garage_id) => {
-    localStorage.setItem('jwt', json_web_token)
+  handleSuccessfulAuth = (jsonWebToken, username, garageId) => {
+    localStorage.setItem('jwt', jsonWebToken)
     localStorage.setItem('username', username)
-    localStorage.setItem('garage_id', garage_id)
+    localStorage.setItem('garageId', garageId)
 
     window.location.pathname = '/profile'
   }
@@ -110,7 +110,7 @@ class App extends React.Component {
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<Charts currentTheme={currentTheme} />} />
-            <Route path='/:garage_id' element={<Charts currentTheme={currentTheme} />} />
+            <Route path='/:garageId' element={<Charts currentTheme={currentTheme} />} />
             <Route path='/profile' element={<EditProfile currentTheme={currentTheme} />} />
           </Routes>
           <Footer toggleShowLogin={this.toggleShowLogin} />

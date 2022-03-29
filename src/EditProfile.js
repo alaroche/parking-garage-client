@@ -26,9 +26,9 @@ class EditProfile extends React.Component {
   }
 
   componentDidMount() {
-    var garage_id = localStorage.getItem('garage_id')
+    var garageId = localStorage.getItem('garageId')
 
-    fetch(`http://aaronhost:8000/garage/${garage_id}/profile`, {
+    fetch(`http://aaronhost:8000/garage/${garageId}/profile`, {
       method: 'GET'
     })
       .then(response => response.json())
@@ -56,7 +56,7 @@ class EditProfile extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    var json_web_token = localStorage.getItem('jwt')
+    var jsonWebToken = localStorage.getItem('jwt')
 
     var inputs = {}
     var inputParams;
@@ -71,7 +71,7 @@ class EditProfile extends React.Component {
       method: 'PUT',
       headers: new Headers({
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + json_web_token
+        'Authorization': 'Bearer ' + jsonWebToken
       }),
     })
       .then(response => response.json())
@@ -91,7 +91,7 @@ class EditProfile extends React.Component {
           onSubmit={this.handleSubmit}
         >
           <label>{i18n.t('Name of Garage')}</label>
-          <input name='garageName' defaultValue={inputs['name']} />
+          <input name='garage_name' defaultValue={inputs['name']} />
           <label>{i18n.t('Address 1')}</label>
           <input name='address1' defaultValue={inputs['address1']} required />
           <label>{i18n.t('Address 2')}</label>

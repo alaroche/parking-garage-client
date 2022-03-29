@@ -30,19 +30,19 @@ class Login extends React.Component {
     var { handleSuccessfulAuth } = this.props;
 
     if (response.success) {
-      var json_web_token = response.result
+      var jsonWebToken = response.result
       var request = {
         method: 'POST',
         headers: new Headers({
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + json_web_token
+          'Authorization': 'Bearer ' + jsonWebToken
         }),
       }
 
       fetch('http://aaronhost:8000/auth/authorize', request)
         .then(response => response.json())
         .then(response => handleSuccessfulAuth(
-          json_web_token,
+          jsonWebToken,
           response['result']['username'],
           response['result']['garageId'])
         )

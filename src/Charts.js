@@ -11,13 +11,13 @@ import { MainPieChart, MinorPieChart } from './charts-lib';
 // STYLES
 import './stylesheets/Charts.scss';
 
-var DEFAULT_GARAGE_ID = 1
+const DEFAULT_GARAGE_ID = 1
 
 class Charts extends React.Component {
   constructor(props) {
     super(props);
     
-    var garageId = localStorage.getItem('garage_id') || DEFAULT_GARAGE_ID
+    var garageId = localStorage.getItem('garageId') || DEFAULT_GARAGE_ID
     let garageIdFromParam = window.location.pathname.substring(1)
 
     if (garageIdFromParam) {
@@ -52,7 +52,7 @@ class Charts extends React.Component {
           this.setState({ data: api_result })
         })
       .catch(
-        (e) => {
+        () => {
           this.setState({ networkError: true });
         })
   }
@@ -90,7 +90,7 @@ class Charts extends React.Component {
 
     var { total_spots, total_spots_free, parking_levels } = data;
 
-    if (!networkError && data.success) {
+    if (!networkError && data.parking_levels) {
       return (
         <div>
           <div className={themeableClassName('main-chart', currentTheme)}>
