@@ -11,42 +11,59 @@ import { MainPieChart, MinorPieChart } from './charts-lib';
 // STYLES
 import './stylesheets/Charts.scss';
 
+var DEFAULT_GARAGE_ID = 1
+
 class Charts extends React.Component {
   constructor(props) {
     super(props);
+    
+    var garageId
+    let garageIdFromParam = window.location.pathname.substring(1)
+
+    if (garageIdFromParam) {
+      let re = new RegExp(/\d+/g)
+
+      garageId = garageIdFromParam.match(re)[0]
+    } else if (localStorage.getItem('jwt')) {
+      garageId = localStorage.getItem('garage_id')
+    } else {
+      garageId = DEFAULT_GARAGE_ID
+    }
 
     this.state = {
       data: [],
-      error: null,
+      garageId: garageId,
       info: {},
-      isLoaded: false,
+      networkError: false,
     }
 
     defaults.transitions = true;
   }
 
   componentDidMount() {
-    this.getInfo();
+    var { garageId } = this.state
 
-    setInterval(this.getData(), 30000);
+    this.getInfo(garageId);
+
+    setInterval(this.getData(garageId), 30000);
   }
 
-  getData = () => {
-    fetch('http://aaronhost:8000/garage/availability')
+  getData = (garageId) => {
+    fetch(`http://aaronhost:8000/garage/${garageId}/availability`)
       .then(response => response.json())
       .then(
         (api_result) => {
-          this.setState({ data: api_result, isLoaded: true })
-        },
-        (error) => {
-          this.setState({ error });
-        }
-      )
+          this.setState({ data: api_result })
+        })
+      .catch(
+        (e) => {
+          this.setState({ networkError: true });
+        })
   }
 
-  getInfo = () => {
-    fetch(`http://aaronhost:8000/user/profile`, {
-      method: 'GET'
+  getInfo = (garageId) => {
+    fetch(`http://aaronhost:8000/garage/${garageId}/profile`, {
+      method: 'GET',
     })
       .then(response => response.json())
       .then(
@@ -54,17 +71,30 @@ class Charts extends React.Component {
           this.setState({
             info: response.result,
           })
-        },
-      )
+        }
+    )
+  }
+
+  renderLoadingMsg() {
+    var { data, networkError } = this.state;
+    var msg = '(' + i18n.t('Loading...') + ')'
+
+    if (networkError) {
+      msg = '(' + i18n.t('Service unavailable') + ')'
+    } else if (data.detail === 'Not Found') {
+      msg = i18n.t('Not Found')
+    }
+
+    return msg
   }
 
   render() {
-    var { data, error, info, isLoaded } = this.state;
+    var { data, info, networkError } = this.state;
     var { currentTheme } = this.props;
 
     var { total_spots, total_spots_free, parking_levels } = data;
 
-    if (!error && isLoaded) {
+    if (!networkError && data.success) {
       return (
         <div>
           <div className={themeableClassName('main-chart', currentTheme)}>
@@ -97,7 +127,7 @@ class Charts extends React.Component {
                 :
                 ''
               }
-              <br />{info['city'] +', ' + info['state'] + ' ' + info['zip']}
+              <br />{info['city'] + ', ' + info['state'] + ' ' + info['zip']}
             </address>
             :
             ''}
@@ -107,9 +137,9 @@ class Charts extends React.Component {
       return (
         <div>
           <div className='rendering-msg'>
-            ({error && error.message ? i18n.t('Service unavailable') : i18n.t('Loading...')})
+            {this.renderLoadingMsg()}
           </div>
-          <hr className={themeableClassName('main-divider', currentTheme)}/>
+          <hr className={themeableClassName('main-divider', currentTheme)} />
         </div>
       );
     }

@@ -13,12 +13,11 @@ function goToCharts() {
 }
 
 function goToEditProfile() {
-  window.location.pathname = '/user-profile'
+  window.location.pathname = '/profile'
 }
 
 function logout() {
-  localStorage.removeItem('jwt')
-  localStorage.removeItem('username')
+  localStorage.clear()
 
   window.location.reload();
 }
@@ -27,13 +26,10 @@ export default function Footer(props) {
     const currentTheme = useTheme();
     var { toggleShowLogin } = props;
 
-    var username = localStorage.getItem('username')
-    var jwt = localStorage.getItem('jwt')
-
     return (
       <footer>
         <div className='nav-bar'>
-          {username && jwt ?
+          {localStorage.getItem('jwt') ?
             <div>
               <button onClick={() => goToCharts()}>{i18n.t('View Charts')}</button> |
               <button onClick={() => goToEditProfile()}>{i18n.t('Edit Profile')}</button> |

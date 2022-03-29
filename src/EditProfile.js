@@ -26,7 +26,9 @@ class EditProfile extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`http://aaronhost:8000/user/profile`, {
+    var garage_id = localStorage.getItem('garage_id')
+
+    fetch(`http://aaronhost:8000/garage/${garage_id}/profile`, {
       method: 'GET'
     })
       .then(response => response.json())
@@ -65,7 +67,7 @@ class EditProfile extends React.Component {
 
     inputParams = new URLSearchParams(inputs).toString()
 
-    fetch(`http://aaronhost:8000/user/profile?${inputParams}`, {
+    fetch(`http://aaronhost:8000/garage/profile?${inputParams}`, {
       method: 'PUT',
       headers: new Headers({
         'Content-Type': 'application/json',
@@ -111,7 +113,6 @@ class EditProfile extends React.Component {
           <input name='zip' defaultValue={inputs['zip']} />
           <label>{i18n.t('Email Address')}</label>
           <input name='email' defaultValue={inputs['email']} onChange={this.handleEmailValidation} />
-          <input name='garageId' defaultValue={inputs['id']} hidden={true} />
 
           <input type='submit' disabled={!emailIsValid} />
         </form>

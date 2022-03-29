@@ -5,7 +5,7 @@ import {
   BrowserRouter,
   Route,
   Routes,
-} from "react-router-dom";
+} from 'react-router-dom';
 import { withCookies } from 'react-cookie';
 import { withTranslation } from 'react-i18next';
 // PACKAGES
@@ -32,7 +32,7 @@ class App extends React.Component {
 
     if (themeFromCookie) {
       theme = themeFromCookie !== 'dark-mode' ? defaultTheme : darkTheme;
-    } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       theme = darkTheme;
     } else {
       theme = defaultTheme;
@@ -42,7 +42,6 @@ class App extends React.Component {
 
     this.state = {
       currentTheme: theme,
-      loginError: null,
       showLogin: false
     }
   }
@@ -65,11 +64,12 @@ class App extends React.Component {
     this.setState({ currentTheme: darkTheme })
   }
 
-  handleSuccessfulAuth = (json_web_token, username) => {
+  handleSuccessfulAuth = (json_web_token, username, garage_id) => {
     localStorage.setItem('jwt', json_web_token)
     localStorage.setItem('username', username)
+    localStorage.setItem('garage_id', garage_id)
 
-    window.location.pathname = '/user-profile'
+    window.location.pathname = '/profile'
   }
 
   handleThemeToggle = () => {
@@ -109,8 +109,9 @@ class App extends React.Component {
         <Header handleThemeToggle={() => this.handleThemeToggle(this)} />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Charts currentTheme={currentTheme} />} />
-            <Route path="/user-profile" element={<EditProfile currentTheme={currentTheme} />} />
+            <Route path='/' element={<Charts currentTheme={currentTheme} />} />
+            <Route path='/:garage_id' element={<Charts currentTheme={currentTheme} />} />
+            <Route path='/profile' element={<EditProfile currentTheme={currentTheme} />} />
           </Routes>
           <Footer toggleShowLogin={this.toggleShowLogin} />
         </BrowserRouter>

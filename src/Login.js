@@ -19,7 +19,7 @@ class Login extends React.Component {
     const username = this.usernameInputRef.current.value
     const password = this.passInputRef.current.value
 
-    fetch(`http://aaronhost:8000/user/auth?username=${username}&given_pswd=${password}`, {
+    fetch(`http://aaronhost:8000/auth/authenticate?username=${username}&given_pswd=${password}`, {
       method: 'POST',
     })
       .then(response => response.json())
@@ -39,9 +39,13 @@ class Login extends React.Component {
         }),
       }
 
-      fetch('http://aaronhost:8000/user/auth_validate', request)
+      fetch('http://aaronhost:8000/auth/authorize', request)
         .then(response => response.json())
-        .then(response => handleSuccessfulAuth(json_web_token, response['result']))
+        .then(response => handleSuccessfulAuth(
+          json_web_token,
+          response['result']['username'],
+          response['result']['garageId'])
+        )
     } else {
       this.setState({ error: response.result })
     }
