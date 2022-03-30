@@ -27,15 +27,13 @@ class App extends React.Component {
 
     this.handleThemeToggle = this.handleThemeToggle.bind(this)
 
-    var theme
+    var theme = defaultTheme
     var themeFromCookie = this.props.cookies.get('pg-theme')
 
     if (themeFromCookie) {
       theme = themeFromCookie !== 'dark-mode' ? defaultTheme : darkTheme
     } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       theme = darkTheme
-    } else {
-      theme = defaultTheme
     }
 
     document.body.classList.add(theme.className)
