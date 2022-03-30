@@ -1,17 +1,17 @@
 // REACT
-import React from 'react';
+import React from 'react'
 // PACKAGES
-import i18n from './i18n';
+import i18n from './i18n'
 // HELPERS
-import themeableClassName from './helpers/themeableClassName';
+import themeableClassName from './helpers/themeableClassName'
 // SNIPPETS
-import states from './snippets/usStates';
+import states from './snippets/usStates'
 // STYLES
-import './stylesheets/EditProfile.scss';
+import './stylesheets/EditProfile.scss'
 
 class EditProfile extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.validateJwt(localStorage.getItem('jwt'))
 
@@ -39,7 +39,7 @@ class EditProfile extends React.Component {
           })
         },
         (error) => {
-          this.setState({ error });
+          this.setState({ error })
         }
       )
   }
@@ -81,12 +81,12 @@ class EditProfile extends React.Component {
   }
 
   handleSubmit = (event) => {
-    event.preventDefault();
+    event.preventDefault()
 
     var jsonWebToken = localStorage.getItem('jwt')
 
     var inputs = {}
-    var inputParams;
+    var inputParams
 
     for (var input of event.target) {
       inputs[input['name']] = input['value']
@@ -107,8 +107,8 @@ class EditProfile extends React.Component {
   }
 
   render() {
-    var { emailIsValid, error, isLoaded, inputs } = this.state;
-    var { currentTheme } = this.props;
+    var { emailIsValid, error, isLoaded, inputs } = this.state
+    var { currentTheme } = this.props
 
     if (!error && isLoaded) {
       return (
@@ -143,7 +143,7 @@ class EditProfile extends React.Component {
 
           <input type='submit' disabled={!emailIsValid} />
         </form>
-      );
+      )
     } else {
       return (
         <div className='rendering-msg'>
@@ -154,4 +154,4 @@ class EditProfile extends React.Component {
   }
 }
 
-export default EditProfile;
+export default EditProfile

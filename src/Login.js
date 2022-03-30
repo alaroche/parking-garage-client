@@ -1,18 +1,18 @@
-import React from 'react';
-import i18n from './i18n';
-import themeableClassName from './helpers/themeableClassName';
-import './stylesheets/Login.scss';
+import React from 'react'
+import i18n from './i18n'
+import themeableClassName from './helpers/themeableClassName'
+import './stylesheets/Login.scss'
 
 class Login extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.usernameInputRef = React.createRef();
-    this.passInputRef = React.createRef();
+    this.usernameInputRef = React.createRef()
+    this.passInputRef = React.createRef()
 
     this.state = {
       error: null,
-    };
+    }
   }
 
   handleLoginForm() {
@@ -52,7 +52,7 @@ class Login extends React.Component {
   }
 
   handleEscPress(e) {
-    var { onClose } = this.props;
+    var { onClose } = this.props
 
     if (e.key === 'Escape') {
       onClose()
@@ -60,8 +60,8 @@ class Login extends React.Component {
   }
 
   render() {
-    var { error } = this.state;
-    var { currentTheme, onClose } = this.props;
+    var { error } = this.state
+    var { currentTheme, onClose } = this.props
 
     return (
       <div
@@ -77,8 +77,8 @@ class Login extends React.Component {
           <button type='submit' onClick={() => this.handleLoginForm()}>{i18n.t('Sign in')}</button>
         </form>
       </div>
-    );
+    )
   }
 }
 
-export default Login;
+export default Login

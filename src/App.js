@@ -1,25 +1,25 @@
 // REACT
-import React from 'react';
-import { defaults } from 'react-chartjs-2';
+import React from 'react'
+import { defaults } from 'react-chartjs-2'
 import {
   BrowserRouter,
   Route,
   Routes,
-} from 'react-router-dom';
-import { withCookies } from 'react-cookie';
-import { withTranslation } from 'react-i18next';
+} from 'react-router-dom'
+import { withCookies } from 'react-cookie'
+import { withTranslation } from 'react-i18next'
 // PACKAGES
-import { ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles'
 // LAYOUT
-import Footer from './layout/Footer';
-import Header from './layout/Header';
+import Footer from './layout/Footer'
+import Header from './layout/Header'
 // COMPONENTS
-import Charts from './Charts';
-import EditProfile from './EditProfile';
-import Login from './Login';
-import { darkTheme, defaultTheme } from './helpers/themes';
+import Charts from './Charts'
+import EditProfile from './EditProfile'
+import Login from './Login'
+import { darkTheme, defaultTheme } from './helpers/themes'
 // STYLES
-import './stylesheets/App.scss';
+import './stylesheets/App.scss'
 
 class App extends React.Component {
   constructor(props) {
@@ -31,14 +31,14 @@ class App extends React.Component {
     var themeFromCookie = this.props.cookies.get('pg-theme')
 
     if (themeFromCookie) {
-      theme = themeFromCookie !== 'dark-mode' ? defaultTheme : darkTheme;
+      theme = themeFromCookie !== 'dark-mode' ? defaultTheme : darkTheme
     } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      theme = darkTheme;
+      theme = darkTheme
     } else {
-      theme = defaultTheme;
+      theme = defaultTheme
     }
 
-    document.body.classList.add(theme.className);
+    document.body.classList.add(theme.className)
 
     this.state = {
       currentTheme: theme,
@@ -47,19 +47,19 @@ class App extends React.Component {
   }
 
   setDefaultTheme = () => {
-    const { cookies } = this.props;
+    const { cookies } = this.props
 
     document.body.classList.remove(darkTheme.className)
-    cookies.set('pg-theme', defaultTheme.className, { path: '/' });
+    cookies.set('pg-theme', defaultTheme.className, { path: '/' })
 
     this.setState({ currentTheme: defaultTheme })
   }
 
   setDarkTheme = () => {
-    const { cookies } = this.props;
+    const { cookies } = this.props
 
-    document.body.classList.add(darkTheme.className);
-    cookies.set('pg-theme', darkTheme.className, { path: '/' });
+    document.body.classList.add(darkTheme.className)
+    cookies.set('pg-theme', darkTheme.className, { path: '/' })
 
     this.setState({ currentTheme: darkTheme })
   }
@@ -73,20 +73,20 @@ class App extends React.Component {
   }
 
   handleThemeToggle = () => {
-    var { cookies } = this.props;
-    defaults.transitions = false;
+    var { cookies } = this.props
+    defaults.transitions = false
 
-    cookies.get('pg-theme') === 'dark-mode' ? this.setDefaultTheme() : this.setDarkTheme();
+    cookies.get('pg-theme') === 'dark-mode' ? this.setDefaultTheme() : this.setDarkTheme()
   }
 
   toggleShowLogin = () => {
-    var { showLogin } = this.state;
+    var { showLogin } = this.state
 
-    this.setState({ showLogin: !showLogin });
+    this.setState({ showLogin: !showLogin })
   }
 
   renderLoginModal() {
-    var { currentTheme } = this.state;
+    var { currentTheme } = this.state
 
     return (
       <div>
@@ -101,7 +101,7 @@ class App extends React.Component {
   }
 
   render() {
-    var { currentTheme, showLogin } = this.state;
+    var { currentTheme, showLogin } = this.state
 
     return (
       <ThemeProvider theme={currentTheme}>
@@ -120,4 +120,4 @@ class App extends React.Component {
   }
 }
 
-export default withTranslation()(withCookies(App));
+export default withTranslation()(withCookies(App))
