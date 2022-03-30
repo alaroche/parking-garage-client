@@ -27,9 +27,7 @@ class Login extends React.Component {
   }
 
   handleAuthResponse(response) {
-    var { handleSuccessfulAuth } = this.props;
-
-    if (response.success) {
+    if (response.detail !== 'Unauthorized') {
       var jsonWebToken = response.result
       var request = {
         method: 'POST',
@@ -41,13 +39,15 @@ class Login extends React.Component {
 
       fetch('http://aaronhost:8000/auth/authorize', request)
         .then(response => response.json())
-        .then(response => handleSuccessfulAuth(
-          jsonWebToken,
-          response['result']['username'],
-          response['result']['garageId'])
-        )
+        .then((response) => {
+          localStorage.setItem('jwt', jsonWebToken)
+          localStorage.setItem('username', response.result.username)
+          localStorage.setItem('garageId', response.result.garage_id)
+
+          window.location.pathname = '/profile'
+        })
     } else {
-      this.setState({ error: response.result })
+      this.setState({ error: 'login_failed' })
     }
   }
 

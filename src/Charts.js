@@ -16,15 +16,18 @@ const DEFAULT_GARAGE_ID = 1
 class Charts extends React.Component {
   constructor(props) {
     super(props);
-    
-    var garageId = localStorage.getItem('garageId') || DEFAULT_GARAGE_ID
-    let garageIdFromParam = window.location.pathname.substring(1)
+
+    var garageId = DEFAULT_GARAGE_ID;
+    var garageIdFromParam = window.location.pathname.substring(1)
+    var garageIdFromLs = localStorage.getItem('garageId')
 
     if (garageIdFromParam) {
       let re = new RegExp(/\d+/g)
 
       garageId = garageIdFromParam.match(re)[0]
-    } 
+    } else if (garageIdFromLs) {
+      localStorage.getItem('garageId')
+    }
 
     this.state = {
       data: [],

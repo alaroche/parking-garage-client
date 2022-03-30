@@ -13,9 +13,7 @@ class EditProfile extends React.Component {
   constructor(props) {
     super(props);
 
-    if (!localStorage.getItem('jwt')) {
-      window.location.pathname = '/'
-    }
+    this.validateJwt(localStorage.getItem('jwt'))
 
     this.state = {
       emailIsValid: false,
@@ -44,6 +42,35 @@ class EditProfile extends React.Component {
           this.setState({ error });
         }
       )
+  }
+
+  async validateJwt(jsonWebToken) {
+    let validated = false
+
+    if (jsonWebToken) {
+      var request = {
+        method: 'POST',
+        headers: new Headers({
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + jsonWebToken
+        }),
+      }
+
+      const result = fetch('http://aaronhost:8000/auth/authorize', request)
+        .then(response => response.json())
+        .then((response) => {
+          return (response.result.username === localStorage.getItem('username') &&
+            parseInt(response.result.garage_id) === parseInt(localStorage.getItem('garageId')))
+        })
+
+      validated = await result
+    }
+
+    if (!validated) {
+      localStorage.clear()
+
+      window.location.pathname = '/'
+    }
   }
 
   handleEmailValidation = (event) => {
