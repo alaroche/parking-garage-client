@@ -1,12 +1,12 @@
 // REACT
-import React from 'react';
+import React from 'react'
 // PACKAGES
-import i18n from '../i18n';
-import { useTheme } from '@mui/material/styles';
+import i18n from '../i18n'
+import { useTheme } from '@mui/material/styles'
 // HELPERS
-import themeableClassName from '../helpers/themeableClassName';
+import themeableClassName from '../helpers/themeableClassName'
 // STYLESHEETS
-import '../stylesheets/Footer.scss';
+import '../stylesheets/Footer.scss'
 
 function goToCharts() {
   window.location.pathname = '/'
@@ -17,14 +17,14 @@ function goToEditProfile() {
 }
 
 function logout() {
-  localStorage.clear()
+  localStorage.removeItem('jwt')
 
-  window.location.reload();
+  goToCharts()
 }
 
 export default function Footer(props) {
-    const currentTheme = useTheme();
-    var { toggleShowLogin } = props;
+    const currentTheme = useTheme()
+    var { toggleShowLogin } = props
 
     return (
       <footer>

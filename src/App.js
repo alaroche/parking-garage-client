@@ -62,14 +62,6 @@ class App extends React.Component {
     this.setState({ currentTheme: darkTheme })
   }
 
-  handleSuccessfulAuth = (jsonWebToken, username, garageId) => {
-    localStorage.setItem('jwt', jsonWebToken)
-    localStorage.setItem('username', username)
-    localStorage.setItem('garageId', garageId)
-
-    window.location.pathname = '/profile'
-  }
-
   handleThemeToggle = () => {
     var { cookies } = this.props
     defaults.transitions = false
@@ -91,7 +83,6 @@ class App extends React.Component {
         <div className='background-overlay' />
         <Login
           currentTheme={currentTheme}
-          handleSuccessfulAuth={this.handleSuccessfulAuth}
           onClose={() => this.toggleShowLogin()}
         />
       </div>

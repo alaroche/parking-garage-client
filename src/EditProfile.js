@@ -3,6 +3,7 @@ import React from 'react'
 // PACKAGES
 import i18n from './i18n'
 // HELPERS
+import { authWithJwt } from './helpers/auth'
 import themeableClassName from './helpers/themeableClassName'
 // SNIPPETS
 import states from './snippets/usStates'
@@ -13,8 +14,6 @@ class EditProfile extends React.Component {
   constructor(props) {
     super(props)
 
-    this.validateJwt(localStorage.getItem('jwt'))
-
     this.state = {
       emailIsValid: false,
       error: null,
@@ -23,10 +22,14 @@ class EditProfile extends React.Component {
     }
   }
 
-  componentDidMount() {
-    var garageId = localStorage.getItem('garageId')
+  async componentDidMount() {
+    let user = await authWithJwt()
 
-    fetch(`http://aaronhost:8000/garage/${garageId}/profile`, {
+    if (!user.garage_id) {
+      window.location.pathname = '/'
+    }
+
+    fetch(`http://aaronhost:8000/garage/${user.garage_id}/profile`, {
       method: 'GET'
     })
       .then(response => response.json())
@@ -38,39 +41,7 @@ class EditProfile extends React.Component {
             isLoaded: true
           })
         },
-        (error) => {
-          this.setState({ error })
-        }
       )
-  }
-
-  async validateJwt(jsonWebToken) {
-    let validated = false
-
-    if (jsonWebToken) {
-      var request = {
-        method: 'POST',
-        headers: new Headers({
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + jsonWebToken
-        }),
-      }
-
-      const result = fetch('http://aaronhost:8000/auth/authorize', request)
-        .then(response => response.json())
-        .then((response) => {
-          return (response.result.username === localStorage.getItem('username') &&
-            parseInt(response.result.garage_id) === parseInt(localStorage.getItem('garageId')))
-        })
-
-      validated = await result
-    }
-
-    if (!validated) {
-      localStorage.clear()
-
-      window.location.pathname = '/'
-    }
   }
 
   handleEmailValidation = (event) => {
@@ -114,7 +85,6 @@ class EditProfile extends React.Component {
       return (
         <form
           className={themeableClassName('profile-form', currentTheme)}
-          onChange={this.handleFormChange}
           onSubmit={this.handleSubmit}
         >
           <label>{i18n.t('Name of Garage')}</label>

@@ -11,11 +11,12 @@ class Login extends React.Component {
     this.passInputRef = React.createRef()
 
     this.state = {
-      error: null,
+      error: null
     }
   }
 
-  handleLoginForm() {
+  handleLoginForm(event) {
+    event.preventDefault()
     const username = this.usernameInputRef.current.value
     const password = this.passInputRef.current.value
 
@@ -23,32 +24,15 @@ class Login extends React.Component {
       method: 'POST',
     })
       .then(response => response.json())
-      .then(response => this.handleAuthResponse(response))
-  }
-
-  handleAuthResponse(response) {
-    if (response.detail !== 'Unauthorized') {
-      var jsonWebToken = response.result
-      var request = {
-        method: 'POST',
-        headers: new Headers({
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + jsonWebToken
-        }),
-      }
-
-      fetch('http://aaronhost:8000/auth/authorize', request)
-        .then(response => response.json())
-        .then((response) => {
-          localStorage.setItem('jwt', jsonWebToken)
-          localStorage.setItem('username', response.result.username)
-          localStorage.setItem('garageId', response.result.garage_id)
+      .then((response) => {
+        if (response.result) {
+          localStorage.setItem('jwt', response.result)
 
           window.location.pathname = '/profile'
-        })
-    } else {
-      this.setState({ error: 'login_failed' })
-    }
+        } else {
+          this.setState({ error: 'login_failed' })
+        }
+      })
   }
 
   handleEscPress(e) {
@@ -70,11 +54,11 @@ class Login extends React.Component {
       >
         <button onClick={onClose} className='Close'>&times;</button>
         <h1>{i18n.t('Sign in')}</h1>
-        <form action='#'>
+        <form>
           <span className='error-msg'>{i18n.t(error)}</span>
           <input type='text' autoFocus={true} ref={this.usernameInputRef} placeholder={i18n.t('Username')} required />
           <input type='password' ref={this.passInputRef} placeholder={i18n.t('Password')} required />
-          <button type='submit' onClick={() => this.handleLoginForm()}>{i18n.t('Sign in')}</button>
+          <button type='submit' onClick={(e) => this.handleLoginForm(e)}>{i18n.t('Sign in')}</button>
         </form>
       </div>
     )
