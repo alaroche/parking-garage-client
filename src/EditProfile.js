@@ -1,4 +1,5 @@
 // REACT
+import { PropTypes } from 'prop-types'
 import React from 'react'
 // PACKAGES
 import i18n from './i18n'
@@ -122,6 +123,10 @@ class EditProfile extends React.Component {
       )
     }
   }
+}
+
+EditProfile.propTypes = {
+  currentTheme: PropTypes.object.isRequired
 }
 
 export default EditProfile

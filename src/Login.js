@@ -1,6 +1,11 @@
+// REACT
+import { PropTypes } from 'prop-types'
 import React from 'react'
+// PACKAGES
 import i18n from './i18n'
+// HELPERS
 import themeableClassName from './helpers/themeableClassName'
+// STYLES
 import './stylesheets/Login.scss'
 
 class Login extends React.Component {
@@ -63,6 +68,11 @@ class Login extends React.Component {
       </div>
     )
   }
+}
+
+Login.propTypes = {
+  currentTheme: PropTypes.object.isRequired,
+  onClose: PropTypes.func.isRequired
 }
 
 export default Login
