@@ -6,7 +6,6 @@ import {
   Route,
   Routes,
 } from 'react-router-dom'
-import { withCookies } from 'react-cookie'
 import { withTranslation } from 'react-i18next'
 // PACKAGES
 import { ThemeProvider } from '@mui/material/styles'
@@ -28,10 +27,10 @@ class App extends React.Component {
     this.handleThemeToggle = this.handleThemeToggle.bind(this)
 
     var theme = defaultTheme
-    var themeFromCookie = this.props.cookies.get('pg-theme')
+    var themeFromMemory = localStorage.getItem('site-theme')
 
-    if (themeFromCookie) {
-      theme = themeFromCookie !== 'dark-mode' ? defaultTheme : darkTheme
+    if (themeFromMemory) {
+      theme = themeFromMemory !== 'dark-mode' ? defaultTheme : darkTheme
     } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       theme = darkTheme
     }
@@ -44,29 +43,17 @@ class App extends React.Component {
     }
   }
 
-  setDefaultTheme = () => {
-    const { cookies } = this.props
-
-    document.body.classList.remove(darkTheme.className)
-    cookies.set('pg-theme', defaultTheme.className, { path: '/' })
-
-    this.setState({ currentTheme: defaultTheme })
-  }
-
-  setDarkTheme = () => {
-    const { cookies } = this.props
-
-    document.body.classList.add(darkTheme.className)
-    cookies.set('pg-theme', darkTheme.className, { path: '/' })
-
-    this.setState({ currentTheme: darkTheme })
-  }
-
   handleThemeToggle = () => {
-    var { cookies } = this.props
     defaults.transitions = false
+    var { currentTheme } = this.state;
 
-    cookies.get('pg-theme') === 'dark-mode' ? this.setDefaultTheme() : this.setDarkTheme()
+    var newTheme = currentTheme === defaultTheme ? darkTheme : defaultTheme
+
+    document.body.classList.remove(currentTheme.className)
+    document.body.classList.add(newTheme.className)
+    localStorage.setItem('site-theme', newTheme.className)
+
+    this.setState({ currentTheme: newTheme })
   }
 
   toggleShowLogin = () => {
@@ -75,26 +62,21 @@ class App extends React.Component {
     this.setState({ showLogin: !showLogin })
   }
 
-  renderLoginModal() {
-    var { currentTheme } = this.state
-
-    return (
-      <div>
-        <div className='background-overlay' />
-        <Login
-          currentTheme={currentTheme}
-          onClose={() => this.toggleShowLogin()}
-        />
-      </div>
-    )
-  }
-
   render() {
     var { currentTheme, showLogin } = this.state
 
     return (
       <ThemeProvider theme={currentTheme}>
-        {showLogin ? this.renderLoginModal() : ''}
+        {showLogin ?
+          <div>
+            <div className='background-overlay' />
+            <Login
+              currentTheme={currentTheme}
+              onClose={() => this.toggleShowLogin()}
+            />
+          </div>
+          :
+          ''}
         <Header handleThemeToggle={() => this.handleThemeToggle(this)} />
         <BrowserRouter>
           <Routes>
@@ -109,4 +91,4 @@ class App extends React.Component {
   }
 }
 
-export default withTranslation()(withCookies(App))
+export default withTranslation()(App)
