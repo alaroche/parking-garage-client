@@ -22,15 +22,15 @@
   font-weight: bolder;
 }
 
-.header__logo img {
-  width: 4rem;
-  height: 4rem;
-}
-
 .header__logo {
   margin: 0 auto;
   border: 1px solid $header-background-default;
   border-radius: 5px;
+}
+
+.header__logo img {
+  width: 4rem;
+  height: 4rem;
 }
 
 /* ==========================================================================

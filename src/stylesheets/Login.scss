@@ -1,79 +1,79 @@
 @import 'colors.module';
 
 .Modal {
-    position: fixed;
-    z-index: 2;
-    top: 39%;
-    left: 41%;
-    border: 2px solid $pie-chart-primary-default;
-    padding: 2rem;
-    background-color: $header-background-default;
-    width: 12rem;
-    height: auto;
-  }
+  position: fixed;
+  z-index: 2;
+  top: 39%;
+  left: 41%;
+  border: 2px solid $pie-chart-primary-default;
+  padding: 2rem;
+  background-color: $header-background-default;
+  width: 12rem;
+  height: auto;
+}
 
-  .Modal--dark-mode {
-    border: 2px solid $pie-chart-primary-dark-mode;
-    background-color: $header-background-dark-mode;
-  }
+.Modal--dark-mode {
+  border: 2px solid $pie-chart-primary-dark-mode;
+  background-color: $header-background-dark-mode;
+}
 
-  .Modal h1 {
-    margin: -1rem 0 1rem 0;
-    font-size: 1.75rem;
-  }
+.Modal h1 {
+  margin: -1rem 0 1rem 0;
+  font-size: 1.75rem;
+}
 
-  .Modal--active h1 {
-    color: $font-dark-mode;
-  }
+.Modal--active h1 {
+  color: $font-dark-mode;
+}
 
-  .Modal form {
-    display: flex;
-    flex-direction: column;
-  }
+.Modal form {
+  display: flex;
+  flex-direction: column;
+}
 
-  .Modal form input {
-    margin: 0 0 0.25rem 0;
-  }
+.Modal form input {
+  margin: 0 0 0.25rem 0;
+}
 
-  .Modal form button {
-    margin: 1rem 0 0 0;
-    width: 8rem;
-    font-weight: bolder;
-  }
+.Modal form button {
+  margin: 1rem 0 0 0;
+  width: 8rem;
+  font-weight: bolder;
+}
 
-  .Modal form button:hover {
-    background-color: green;
-    cursor: pointer;
-    color: #fefefe;
-  }
-  
-  .Modal-content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border-radius: 4px;
-    max-width: 300px;
-    height: 450px;
-  }
+.Modal form button:hover {
+  background-color: green;
+  cursor: pointer;
+  color: #fefefe;
+}
 
-  .Close {
-    position: absolute;
-    top: 0.25rem;
-    right: 0.25rem;
-    border: 1px solid $font-default;
-    border-radius: 0.25rem;
-    font-size: 1rem;
-    color: $font-default;
-  }
-  
-  .Close:hover, .Close:focus {
-    background-color: orange;
-    cursor: pointer;
-    color: #fefefe;
-    text-decoration: none;
-  }
+.Modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border-radius: 4px;
+  max-width: 300px;
+  height: 450px;
+}
 
-  .error-msg {
-    color: red;
-    padding-bottom: 1rem;
-  }
+.Close {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  border: 1px solid $font-default;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  color: $font-default;
+}
+
+.Close:hover, .Close:focus {
+  background-color: orange;
+  cursor: pointer;
+  color: #fefefe;
+  text-decoration: none;
+}
+
+.error-msg {
+  color: red;
+  padding-bottom: 1rem;
+}

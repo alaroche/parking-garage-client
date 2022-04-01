@@ -5,6 +5,27 @@ footer {
   flex-direction: column;
 }
 
+.nav-bar {
+  float: none;
+  margin: 1rem auto;
+}
+
+.nav-bar button {
+  border: none;
+  background: none;
+  color: $pie-chart-primary-default;
+  text-decoration: underline;
+}
+
+.nav-bar button:hover {
+  cursor: pointer;
+}
+
+.lang-select hr {
+  width: 15%;
+  border-top: 1px dashed $pie-chart-secondary-default;
+}
+
 .lang-select {
   text-align: center;
 }
@@ -24,30 +45,13 @@ footer {
   cursor: pointer;
 }
 
-.lang-select hr {
-  width: 15%;
-  border-top: 1px dashed $pie-chart-secondary-default;
-}
-
-.nav-bar {
-  float: none;
-  margin: 1rem auto;
-}
-
-.nav-bar button {
-  border: none;
-  background: none;
-  color: $pie-chart-primary-default;
-  text-decoration: underline;
-}
-
-.nav-bar button:hover {
-  cursor: pointer;
-}
-
 /* ==========================================================================
    Dark Mode
    ========================================================================== */
+
+.lang-select--dark-mode hr {
+  border-top: 1px solid $pie-chart-secondary-dark-mode;
+}
 
 .lang-select--dark-mode button {
   border: 1px solid $pie-chart-secondary-dark-mode;
@@ -57,8 +61,4 @@ footer {
 
 .lang-select--dark-mode button:hover {
   border-color: $pie-chart-primary-dark-mode;
-}
-
-.lang-select--dark-mode hr {
-  border-top: 1px solid $pie-chart-secondary-dark-mode;
 }
