@@ -23,8 +23,8 @@ function logout() {
 }
 
 export default function Footer(props) {
-    const currentTheme = useTheme()
     var { toggleShowLogin } = props
+    const currentTheme = useTheme()
 
     return (
       <footer>

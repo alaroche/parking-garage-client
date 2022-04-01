@@ -13,12 +13,12 @@ import { ThemeProvider } from '@mui/material/styles'
 // LAYOUT
 import Footer from './layout/Footer'
 import Header from './layout/Header'
-// COMPONENTS
+// PAGES
 import Charts from './Charts'
 import EditProfile from './EditProfile'
 import Login from './Login'
-import { darkTheme, defaultTheme } from './helpers/themes'
 // STYLES
+import { darkTheme, defaultTheme } from './helpers/themes'
 import './stylesheets/App.scss'
 
 class App extends React.Component {

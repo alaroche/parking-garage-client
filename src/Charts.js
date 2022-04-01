@@ -1,15 +1,15 @@
 // REACT
-import React from 'react';
+import React from 'react'
 // PACKAGES
-import { defaults } from 'react-chartjs-2';
-import i18n from './i18n';
+import { defaults } from 'react-chartjs-2'
+import i18n from './i18n'
 // HELPERS
-import { currentTimeToLocale } from './helpers/currentTime';
-import themeableClassName from './helpers/themeableClassName';
+import { currentTimeToLocale } from './helpers/currentTime'
+import themeableClassName from './helpers/themeableClassName'
 // COMPONENTS
-import { MainPieChart, MinorPieChart } from './charts-lib';
+import { MainPieChart, MinorPieChart } from './charts-lib'
 // STYLES
-import './stylesheets/Charts.scss';
+import './stylesheets/Charts.scss'
 
 const DEFAULT_GARAGE_ID = 1
 
@@ -33,15 +33,15 @@ class Charts extends React.Component {
       networkError: false,
     }
 
-    defaults.transitions = true;
+    defaults.transitions = true
   }
 
   componentDidMount() {
     var { garageId } = this.state
 
-    this.getInfo(garageId);
+    this.getInfo(garageId)
 
-    setInterval(this.getData(garageId), 30000);
+    setInterval(this.getData(garageId), 30000)
   }
 
   getData = (garageId) => {
@@ -53,7 +53,7 @@ class Charts extends React.Component {
         })
       .catch(
         () => {
-          this.setState({ networkError: true });
+          this.setState({ networkError: true })
         })
   }
 
@@ -62,17 +62,11 @@ class Charts extends React.Component {
       method: 'GET',
     })
       .then(response => response.json())
-      .then(
-        (response) => {
-          this.setState({
-            info: response.result,
-          })
-        }
-    )
+      .then(response => { this.setState({ info: response }) })
   }
 
   renderLoadingMsg() {
-    var { data, networkError } = this.state;
+    var { data, networkError } = this.state
     var msg = '(' + i18n.t('Loading...') + ')'
 
     if (networkError) {
@@ -85,10 +79,10 @@ class Charts extends React.Component {
   }
 
   render() {
-    var { data, info, networkError } = this.state;
-    var { currentTheme } = this.props;
+    var { data, info, networkError } = this.state
+    var { currentTheme } = this.props
 
-    var { total_spots, total_spots_free, parking_levels } = data;
+    var { total_spots, total_spots_free, parking_levels } = data
 
     if (!networkError && data.parking_levels) {
       return (
@@ -128,7 +122,7 @@ class Charts extends React.Component {
             :
             ''}
         </div>
-      );
+      )
     } else {
       return (
         <div>
@@ -137,9 +131,9 @@ class Charts extends React.Component {
           </div>
           <hr className={themeableClassName('main-divider', currentTheme)} />
         </div>
-      );
+      )
     }
   }
 }
 
-export default Charts;
+export default Charts

@@ -6,5 +6,5 @@ export function currentTimeToLocale(lng) {
         day: 'numeric',
         hour: 'numeric',
         minute: 'numeric'
-    });
+    })
 }
