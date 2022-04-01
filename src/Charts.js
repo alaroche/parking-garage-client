@@ -37,15 +37,12 @@ class Charts extends React.Component {
   }
 
   componentDidMount() {
-    var { garageId } = this.state
-
-    this.getInfo(garageId)
-
-    setInterval(this.getData(garageId), 30000)
+    this.getInfo()
+    setInterval(this.getData(), 30000)
   }
 
-  getData = (garageId) => {
-    fetch(`http://aaronhost:8000/garage/${garageId}/availability`)
+  getData = () => {
+    fetch(`http://aaronhost:8000/garage/${this.state.garageId}/availability`)
       .then(response => response.json())
       .then(
         (api_result) => {
@@ -57,8 +54,8 @@ class Charts extends React.Component {
         })
   }
 
-  getInfo = (garageId) => {
-    fetch(`http://aaronhost:8000/garage/${garageId}/profile`, {
+  getInfo = () => {
+    fetch(`http://aaronhost:8000/garage/${this.state.garageId}/profile`, {
       method: 'GET',
     })
       .then(response => response.json())
