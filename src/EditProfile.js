@@ -37,7 +37,7 @@ class EditProfile extends React.Component {
         (response) => {
           this.setState({
             emailIsValid: true,
-            inputs: response.result,
+            inputs: response,
             isLoaded: true
           })
         },
