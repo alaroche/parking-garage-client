@@ -3,13 +3,12 @@
 .Modal {
   position: fixed;
   z-index: 2;
-  top: 39%;
-  left: 41%;
+  top: 36%;
+  left: 44%;
   border: 2px solid $pie-chart-primary-default;
   padding: 2rem;
   background-color: $header-background-default;
   width: 12rem;
-  height: auto;
 }
 
 .Modal--dark-mode {
