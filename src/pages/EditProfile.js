@@ -66,7 +66,6 @@ class EditProfile extends React.Component {
 
     inputParams = new URLSearchParams(inputs).toString()
 
-    // TODO: garage/{id}/profile ?
     fetch(`http://aaronhost:8000/garage/profile?${inputParams}`, {
       method: 'PUT',
       headers: new Headers({
