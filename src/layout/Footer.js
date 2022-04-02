@@ -1,7 +1,7 @@
 // REACT
 import React from 'react'
 // PACKAGES
-import i18n from '../i18n'
+import i18n from '../plugins/i18n'
 import { useTheme } from '@mui/material/styles'
 // HELPERS
 import themeableClassName from '../helpers/themeableClassName'

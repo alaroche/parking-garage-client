@@ -2,11 +2,11 @@
 import { PropTypes } from 'prop-types'
 import React from 'react'
 // PACKAGES
-import i18n from './i18n'
+import i18n from '../plugins/i18n'
 // HELPERS
-import themeableClassName from './helpers/themeableClassName'
+import themeableClassName from '../helpers/themeableClassName'
 // STYLES
-import './stylesheets/Login.scss'
+import '../stylesheets/Login.scss'
 
 class Login extends React.Component {
   constructor(props) {

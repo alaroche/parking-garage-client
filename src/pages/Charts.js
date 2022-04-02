@@ -2,14 +2,14 @@
 import React from 'react'
 // PACKAGES
 import { defaults } from 'react-chartjs-2'
-import i18n from './i18n'
+import i18n from '../plugins/i18n'
 // HELPERS
-import { currentTimeToLocale } from './helpers/currentTime'
-import themeableClassName from './helpers/themeableClassName'
+import { currentTimeToLocale } from '../helpers/currentTime'
+import themeableClassName from '../helpers/themeableClassName'
 // COMPONENTS
-import { MainPieChart, MinorPieChart } from './charts-lib'
+import { MainPieChart, MinorPieChart } from '../components/charts-lib'
 // STYLES
-import './stylesheets/Charts.scss'
+import '../stylesheets/Charts.scss'
 
 const DEFAULT_GARAGE_ID = 1
 

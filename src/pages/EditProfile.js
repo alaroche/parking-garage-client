@@ -2,14 +2,14 @@
 import { PropTypes } from 'prop-types'
 import React from 'react'
 // PACKAGES
-import i18n from './i18n'
+import i18n from '../plugins/i18n'
 // HELPERS
-import { authWithJwt } from './helpers/auth'
-import themeableClassName from './helpers/themeableClassName'
+import { authWithJwt } from '../helpers/auth'
+import themeableClassName from '../helpers/themeableClassName'
 // SNIPPETS
-import states from './snippets/usStates'
+import states from '../snippets/usStates'
 // STYLES
-import './stylesheets/EditProfile.scss'
+import '../stylesheets/EditProfile.scss'
 
 class EditProfile extends React.Component {
   constructor(props) {
@@ -66,6 +66,7 @@ class EditProfile extends React.Component {
 
     inputParams = new URLSearchParams(inputs).toString()
 
+    // TODO: garage/{id}/profile ?
     fetch(`http://aaronhost:8000/garage/profile?${inputParams}`, {
       method: 'PUT',
       headers: new Headers({

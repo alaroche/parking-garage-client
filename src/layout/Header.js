@@ -3,7 +3,7 @@ import React from 'react'
 // PACKAGES
 import { useTheme } from '@mui/material/styles'
 import IconButton from '@mui/material/IconButton'
-import i18n from '../i18n'
+import i18n from '../plugins/i18n'
 // HELPERS
 import themeableClassName from '../helpers/themeableClassName'
 // ASSETS

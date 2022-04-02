@@ -13,9 +13,10 @@ import { ThemeProvider } from '@mui/material/styles'
 import Footer from './layout/Footer'
 import Header from './layout/Header'
 // PAGES
-import Charts from './Charts'
-import EditProfile from './EditProfile'
-import Login from './Login'
+import Charts from './pages/Charts'
+import EditProfile from './pages/EditProfile'
+// COMPONENTS
+import Login from './components/Login'
 // STYLES
 import { darkTheme, defaultTheme } from './helpers/themes'
 import './stylesheets/App.scss'
