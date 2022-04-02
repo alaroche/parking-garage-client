@@ -6,7 +6,7 @@ import { fireEvent, render, screen } from '@testing-library/react'
 // COMPONENTS
 import App from '../App'
 // ASSETS
-import { resources } from '../i18n'
+import { resources } from '../plugins/i18n'
 
 beforeEach(() => {
   render(<App />)
