@@ -7,7 +7,8 @@ import i18n from '../plugins/i18n'
 import { currentTimeToLocale } from '../helpers/currentTime'
 import themeableClassName from '../helpers/themeableClassName'
 // COMPONENTS
-import { MainPieChart, MinorPieChart } from '../components/charts-lib'
+import MainPieChart from '../components/MainPieChart'
+import MinorPieChart from '../components/MinorPieChart'
 // STYLES
 import '../stylesheets/Charts.scss'
 

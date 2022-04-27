@@ -7,7 +7,6 @@ export function getColorsFromMode(theme) {
     [chartColors, chartTextAndOutlineColors] = [[colors.pieChartPrimaryDarkMode, colors.pieChartSecondaryDarkMode], colors.fontDarkMode]
   }
   else {
-    // default
     [chartColors, chartTextAndOutlineColors] = [[colors.pieChartPrimaryDefault, colors.pieChartSecondaryDefault], colors.fontDefault]
   }
 
