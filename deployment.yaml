@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: parking-garage-react
+spec:
+  #the Number of Pods
+  replicas: 2
+  selector:
+    matchLabels:
+      app: parking-garage-react
+  template:
+    metadata:
+      labels:
+        app: parking-garage-react
+    spec:
+      # Container Details
+      containers:
+      - name: parking-garage-react
+        # Docker Image
+        image: alaroche/parking-garage-react:v1
+        resources:
+         #cpu and memory limit
+          limits:
+            memory: "550Mi"
+            cpu: "500m"
+        ports:
+        #the port on which the app can be reached out inside the container
+        - containerPort: 80
+
+---
+#service 
+apiVersion: v1
+kind: Service
+metadata:
+   #the Serivce Name- it should match with the lable name of the deployment 
+  name: parking-garage-react
+spec:
+  #type of the service
+  type: NodePort
+  selector:
+    app: parking-garage-react
+  ports:
+  - port: 3050
+    targetPort: 3000
+    protocol: TCP
+    nodePort: 31000
