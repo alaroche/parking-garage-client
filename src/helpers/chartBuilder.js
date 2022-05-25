@@ -1,23 +1,24 @@
 import * as colors from '../stylesheets/colors.module.scss'
 
-export function getColorsFromMode(theme) {
-  var chartColors, chartTextAndOutlineColors
+export const generateChartConfig = (theme, props) => {
+  const { chartTitle, numSpotsFree, numSpotsTotal } = props
 
-  if (theme.className === 'dark-mode') {
-    [chartColors, chartTextAndOutlineColors] = [[colors.pieChartPrimaryDarkMode, colors.pieChartSecondaryDarkMode], colors.fontDarkMode]
+  const getColorsFromMode = (theme) => {
+    let chartColors, chartTextAndOutlineColors
+
+    if (theme.className === 'dark-mode') {
+      [chartColors, chartTextAndOutlineColors] = [[colors.default.pieChartPrimaryDarkMode, colors.default.pieChartSecondaryDarkMode], colors.default.fontDarkMode]
+    }
+    else {
+      [chartColors, chartTextAndOutlineColors] = [[colors.default.pieChartPrimaryDefault, colors.default.pieChartSecondaryDefault], colors.default.fontDefault]
+    }
+
+    return [chartColors, chartTextAndOutlineColors]
   }
-  else {
-    [chartColors, chartTextAndOutlineColors] = [[colors.pieChartPrimaryDefault, colors.pieChartSecondaryDefault], colors.fontDefault]
-  }
 
-  return [chartColors, chartTextAndOutlineColors]
-}
+  const [chartColors, chartTextAndOutlineColors] = getColorsFromMode(theme)
 
-export function generateChartConfig(theme, props) {
-  var { chartTitle, numSpotsFree, numSpotsTotal } = props
-  var [chartColors, chartTextAndOutlineColors] = getColorsFromMode(theme)
-
-  var chartDataAndDisplayOptions = {
+  const chartDataAndDisplayOptions = {
     maintainAspectRatio: false,
     responsive: false,
     datasets: [
@@ -29,7 +30,7 @@ export function generateChartConfig(theme, props) {
     ]
   }
 
-  var chartDesignOptions = {
+  const chartDesignOptions = {
     plugins: {
       legend: {
         color: chartTextAndOutlineColors,

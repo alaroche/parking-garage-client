@@ -7,7 +7,7 @@ import i18n from '../plugins/i18n'
 // HELPERS
 import themeableClassName from '../helpers/themeableClassName'
 // ASSETS
-import logo from '../logo.svg'
+import SvgLogo from '../Logo'
 // STYLES
 import '../stylesheets/Header.scss'
 
@@ -19,7 +19,7 @@ export default function Header(props) {
         <header className={themeableClassName('header', currentTheme)}>
             <div className='header__contents'>
                 <a href='/' className={themeableClassName('header__logo', currentTheme)}>
-                    <img alt='logo' src={logo} />
+                    <img alt='logo' src={SvgLogo} />
                 </a>
                 <div className='header__title'>{i18n.t('Available Parking')}</div>
             </div>

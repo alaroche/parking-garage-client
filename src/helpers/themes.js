@@ -5,10 +5,10 @@ import * as colors from '../stylesheets/colors.module.scss'
 
 export const darkTheme = createTheme({
   className: 'dark-mode',
-  themeToggleIcon: <Brightness7Icon htmlColor={colors.fontDarkMode} />,
+  themeToggleIcon: <Brightness7Icon htmlColor={colors.default.fontDarkMode} />,
 })
 
 export const defaultTheme = createTheme({
   className: 'default',
-  themeToggleIcon: <Brightness3Icon htmlColor={colors.fontDefault} />,
+  themeToggleIcon: <Brightness3Icon htmlColor={colors.default.fontDefault} />,
 })
