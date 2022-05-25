@@ -1,6 +1,8 @@
 // REACT
 import { PropTypes } from 'prop-types'
 import React from 'react'
+// PLUGINS
+import axios from 'axios'
 // PACKAGES
 import i18n from '../plugins/i18n'
 // HELPERS
@@ -25,13 +27,10 @@ class Login extends React.Component {
     const username = this.usernameInputRef.current.value
     const password = this.passInputRef.current.value
 
-    fetch(`http://aaronhost:8000/auth/authenticate?username=${username}&given_pswd=${password}`, {
-      method: 'POST',
-    })
-      .then(response => response.json())
+    axios.post(`http://aaronhost:8000/auth/authenticate?username=${username}&given_pswd=${password}`)
       .then((response) => {
-        if (response.result) {
-          localStorage.setItem('jwt', response.result)
+        if (response.data && response.data.result) {
+          localStorage.setItem('jwt', response.data.result)
 
           window.location.pathname = '/profile'
         } else {
