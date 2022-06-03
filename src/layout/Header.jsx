@@ -6,7 +6,7 @@ import i18n from '../plugins/i18n'
 // HELPERS
 import { ThemeContext } from '../helpers/ThemeContext'
 // ASSETS
-import logo from '../logo.svg'
+import { Logo } from '../logo'
 // STYLES
 import '../stylesheets/Header.scss'
 
@@ -22,7 +22,7 @@ export const Header = (props) => {
       }}>
       <div className='header__contents'>
         <a href='/' className='header__logo'>
-          <img alt='logo' src={logo} />
+          <Logo />
         </a>
         <div className='header__title'>{i18n.t('Available Parking')}</div>
       </div>
