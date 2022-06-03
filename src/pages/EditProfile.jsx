@@ -53,16 +53,6 @@ export const EditProfile = (props) => {
   const submitHandler = (e) => {
     e.preventDefault()
 
-    console.log('submitHandler', new Date().toLocaleDateString('en-US', {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',
-      second: 'numeric'
-    }))
-
     let inputParams = new URLSearchParams(inputs).toString()
 
     authUser()

@@ -28,7 +28,6 @@ export const Login = (props) => {
 
     axios.post(`http://aaronhost:8000/auth/authenticate?username=${data.username}&given_pswd=${data.password}`)
       .then((response) => {
-        console.log('POST authenticate response', response)
         if (response.statusText === 'OK') {
           localStorage.setItem('jwt', response.data.json_web_token)
 
@@ -37,6 +36,7 @@ export const Login = (props) => {
           setError('login_failed')
         }
       })
+      .catch(setError('login_failed'))
   }
 
   const escPressHandler = (e) => {
