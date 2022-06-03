@@ -1,23 +1,8 @@
-import * as colors from '../stylesheets/colors.module.scss'
+export const generateChartConfig = (colors, props) => {
+  const { chartTitle, numSpotsFree, numSpotsTotal } = props
+  const [chartColors, chartTextAndOutlineColors] = [[colors.chartPrimary, colors.chartSecondary], colors.font]
 
-export function getColorsFromMode(theme) {
-  var chartColors, chartTextAndOutlineColors
-
-  if (theme.className === 'dark-mode') {
-    [chartColors, chartTextAndOutlineColors] = [[colors.pieChartPrimaryDarkMode, colors.pieChartSecondaryDarkMode], colors.fontDarkMode]
-  }
-  else {
-    [chartColors, chartTextAndOutlineColors] = [[colors.pieChartPrimaryDefault, colors.pieChartSecondaryDefault], colors.fontDefault]
-  }
-
-  return [chartColors, chartTextAndOutlineColors]
-}
-
-export function generateChartConfig(theme, props) {
-  var { chartTitle, numSpotsFree, numSpotsTotal } = props
-  var [chartColors, chartTextAndOutlineColors] = getColorsFromMode(theme)
-
-  var chartDataAndDisplayOptions = {
+  const chartDataAndDisplayOptions = {
     maintainAspectRatio: false,
     responsive: false,
     datasets: [
@@ -29,7 +14,7 @@ export function generateChartConfig(theme, props) {
     ]
   }
 
-  var chartDesignOptions = {
+  const chartDesignOptions = {
     plugins: {
       legend: {
         color: chartTextAndOutlineColors,

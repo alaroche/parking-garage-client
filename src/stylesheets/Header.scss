@@ -1,12 +1,9 @@
-@import 'colors.module';
-
 .header {
   display: flex;
   padding: 0.5rem;
-  border-bottom: 2px solid $font-default;
-  background-color: $header-background-default;
+  border-width: 2px;
+  border-style: solid;
   font-size: 2.25rem;
-  color: $font-default;
 }
 
 .header__contents {
@@ -24,25 +21,12 @@
 
 .header__logo {
   margin: 0 auto;
-  border: 1px solid $header-background-default;
+  border-width: 1px;
+  border-style: solid;
   border-radius: 5px;
 }
 
 .header__logo img {
   width: 4rem;
   height: 4rem;
-}
-
-/* ==========================================================================
-   Dark Mode
-   ========================================================================== */
-
-.header--dark-mode {
-  border-bottom-color: $font-dark-mode;
-  background-color: $header-background-dark-mode;
-  color: $font-dark-mode;
-}
-
-.header__logo--dark-mode {
-  border: none;
 }

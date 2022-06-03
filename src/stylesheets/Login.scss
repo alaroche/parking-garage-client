@@ -1,28 +1,17 @@
-@import 'colors.module';
-
 .Modal {
   position: fixed;
   z-index: 2;
   top: 36%;
   left: 44%;
-  border: 2px solid $pie-chart-primary-default;
+  border-width: 2px;
+  border-style: solid;
   padding: 2rem;
-  background-color: $header-background-default;
   width: 12rem;
-}
-
-.Modal--dark-mode {
-  border: 2px solid $pie-chart-primary-dark-mode;
-  background-color: $header-background-dark-mode;
 }
 
 .Modal h1 {
   margin: -1rem 0 1rem 0;
   font-size: 1.75rem;
-}
-
-.Modal--active h1 {
-  color: $font-dark-mode;
 }
 
 .Modal form {
@@ -59,10 +48,10 @@
   position: absolute;
   top: 0.25rem;
   right: 0.25rem;
-  border: 1px solid $font-default;
+  border: 1px solid #233e94;
   border-radius: 0.25rem;
   font-size: 1rem;
-  color: $font-default;
+  color: #233e94;
 }
 
 .Close:hover, .Close:focus {

@@ -1,5 +1,3 @@
-@import 'colors.module';
-
 address {
   margin: 0 auto;
   padding: 1rem 0 0 0;
@@ -7,8 +5,8 @@ address {
   text-align: center;
 }
 
-.rendering-msg {
-  margin: 1rem;
+.error-msg-charts {
+  margin: 1rem auto;
   text-align: center;
 }
 
@@ -19,7 +17,8 @@ address {
 }
 
 hr.main-divider {
-  border-top: 1px dashed $pie-chart-secondary-default;
+  border-width: 1px;
+  border-style: dashed;
   width: 75%;
 }
 

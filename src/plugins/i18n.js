@@ -2,7 +2,7 @@ import i18n from 'i18next'
 import detector from 'i18next-browser-languagedetector'
 import { initReactI18next } from 'react-i18next'
 
-export const resources = {
+const resources = {
   'en-US': {
     translation: {
       'Address 1': 'Address 1',
@@ -16,7 +16,7 @@ export const resources = {
       'login_failed': 'Login failed',
       'Name of Garage': 'Name of Garage',
       'Password': 'Password',
-      'Service unavailable': 'Service unavailable',
+      'ERR_NETWORK': 'Service unavailable',
       'Sign in': 'Sign in',
       'Sign out': 'Sign out',
       'State': 'State',
@@ -39,7 +39,7 @@ export const resources = {
       'login_failed': 'Échec de la connexion',
       'Name of Garage': 'Nom du garage',
       'Password': 'Mot de passe',
-      'Service unavailable': 'Service indisponible',
+      'ERR_NETWORK': 'Service indisponible',
       'Sign in': 'S\'identifier',
       'Sign out': 'Se déconnecter',
       'State': 'État',
@@ -62,7 +62,7 @@ export const resources = {
       'login_failed': 'error de inicio de sesion',
       'Name of Garage': 'Nombre del garaje',
       'Password': 'Clave',
-      'Service unavailable': 'Servicio no disponible',
+      'ERR_NETWORK': 'Servicio no disponible',
       'Sign in': 'Registrarse',
       'Sign out': 'Desconectar',
       'State': 'Estado',

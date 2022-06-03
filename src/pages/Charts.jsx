@@ -1,94 +1,66 @@
 // REACT
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 // PLUGINS
 import axios from 'axios'
 // PACKAGES
-import { defaults } from 'react-chartjs-2'
 import i18n from '../plugins/i18n'
-// HELPERS
-import { currentTimeToLocale } from '../helpers/currentTime'
-import themeableClassName from '../helpers/themeableClassName'
 // COMPONENTS
-import MainPieChart from '../components/MainPieChart'
-import MinorPieChart from '../components/MinorPieChart'
+import { MainPieChart, MinorPieChart } from '../components/pie-charts'
 // STYLES
 import '../stylesheets/Charts.scss'
 
-const DEFAULT_GARAGE_ID = 1
+export const Charts = (props) => {
+  const initData = { total_spots: 0, total_spots_free: 0, parking_levels: 0 }
+  const [data, setData] = useState(initData)
+  const { total_spots, total_spots_free, parking_levels } = data
 
-class Charts extends React.Component {
-  constructor(props) {
-    super(props)
-    
-    var garageId = DEFAULT_GARAGE_ID
-    let garageIdFromParam = window.location.pathname.substring(1)
+  const [error, setError] = useState('')
 
-    if (garageIdFromParam) {
-      let re = new RegExp(/\d+/g)
+  const [profile, setProfile] = useState()
 
-      garageId = garageIdFromParam.match(re)[0]
-    } 
+  const garageId = 1 // Default
 
-    this.state = {
-      data: [],
-      garageId: garageId,
-      info: {},
-      networkError: false,
+  useEffect(() => {
+    const getProfile = async () => {
+      await axios.get(`http://aaronhost:8000/garage/${garageId}/profile`)
+        .then(response => setProfile(response.data))
     }
 
-    defaults.transitions = true
-  }
-
-  componentDidMount() {
-    this.getInfo()
-    setInterval(this.getData(), 30000)
-  }
-
-  getData = async () => {
-    await axios.get(`http://aaronhost:8000/garage/${this.state.garageId}/availability`)
-      .then((response) => this.setState({ data: response.data }))
-      .catch((error) => {
-        if (error.response) {
-          this.setState({ networkError: true })
-        }
-      })
-  }
-
-  getInfo = async () => {
-    await axios.get(`http://aaronhost:8000/garage/${this.state.garageId}/profile`)
-      .then((response) => this.setState({ info: response.data }))
-  }
-
-  renderLoadingMsg() {
-    var { data, networkError } = this.state
-    var msg = '(' + i18n.t('Loading...') + ')'
-
-    if (networkError) {
-      msg = '(' + i18n.t('Service unavailable') + ')'
-    } else if (data.detail === 'Not Found') {
-      msg = i18n.t('Not Found')
+    const getData = async () => {
+      await axios.get(`http://aaronhost:8000/garage/${garageId}/availability`)
+        .then(response => { setData(response.data) })
+        .catch(response => setError(response.code))
     }
 
-    return msg
+    getData()
+    getProfile()
+
+    setInterval(async () => { await getData() }, 30000)
+  }, [garageId])
+
+  const currentTimeToLocale = (lng) => {
+    return new Date().toLocaleDateString(lng, {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric'
+    })
   }
 
-  render() {
-    var { data, info, networkError } = this.state
-    var { currentTheme } = this.props
-
-    var { total_spots, total_spots_free, parking_levels } = data
-
-    if (!networkError && data.parking_levels) {
-      return (
+  return (
+    <div>
+      {data.total_spots > 0 ?
         <div>
-          <div className={themeableClassName('main-chart', currentTheme)}>
+          <div className='main-chart'>
             <MainPieChart
               chartTitle={currentTimeToLocale(i18n.language)}
               numSpotsFree={total_spots_free}
               numSpotsTotal={total_spots}
             />
           </div>
-          <hr className={themeableClassName('main-divider', currentTheme)} />
+          <hr className='main-divider' />
           <div className='minor-charts'>
             {Object.keys(parking_levels).map((i) =>
               <div className='minor-charts__chart' key={i}>
@@ -100,34 +72,23 @@ class Charts extends React.Component {
               </div>
             )}
           </div>
-          {info ?
-            <address>
-              <strong>{info['name']}</strong>
-              <br />{info['address1']}
-              {info['address2'] ?
-                <span>
-                  <br />{info['address2']}
-                </span>
-                :
-                ''
-              }
-              <br />{info['city'] + ', ' + info['state'] + ' ' + info['zip']}
-            </address>
+        </div>
+        : <div className='error-msg-charts'>{i18n.t(error)}</div>
+      }
+      {profile ?
+        <address>
+          <strong>{profile['name']}</strong>
+          <br />{profile['address1']}
+          {profile['address2'] ?
+            <span>
+              <br />{profile['address2']}
+            </span>
             :
-            ''}
-        </div>
-      )
-    } else {
-      return (
-        <div>
-          <div className='rendering-msg'>
-            {this.renderLoadingMsg()}
-          </div>
-          <hr className={themeableClassName('main-divider', currentTheme)} />
-        </div>
-      )
-    }
-  }
+            ''
+          }
+          <br />{profile['city'] + ', ' + profile['state'] + ' ' + profile['zip']}
+        </address>
+        : ''}
+    </div>
+  )
 }
-
-export default Charts

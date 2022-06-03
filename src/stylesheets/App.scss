@@ -1,14 +1,3 @@
-@import 'colors.module';
-
-body {
-  background-color: $body-background-default;
-  color: $font-default;
-}
-
-body a {
-  color: $pie-chart-primary-default;
-}
-
 hr {
   border: none;
 }
@@ -20,21 +9,4 @@ div.background-overlay {
   width: 100%;
   height: 100%;
   background-color: rgba(0,0,0,0.7);
-}
-
-/* ==========================================================================
-   Dark Mode
-   ========================================================================== */
-
-body.dark-mode {
-  background-color: $body-background-dark-mode;
-  color: $font-dark-mode;
-}
-
-body.dark-mode a {
-  color: $pie-chart-secondary-default;
-}
-
-hr.main-divider--dark-mode {
-  border-top: dashed 1px $pie-chart-secondary-dark-mode;
 }

@@ -18,7 +18,7 @@ describe('using theme button', () => {
 
     fireEvent.click(themeToggleButton)
 
-    expect(document.body.className).toContain('dark-mode')
+    expect(document.body.className).toContain('dark')
   })
 
   test('switches back to default mode', () => {
@@ -26,7 +26,7 @@ describe('using theme button', () => {
 
     fireEvent.click(themeToggleButton)
 
-    expect(document.body.className).not.toContain('dark-mode')
+    expect(document.body.className).not.toContain('dark')
   })
 })
 
