@@ -12,7 +12,6 @@ import { Footer } from './layout/Footer'
 import { Header } from './layout/Header'
 // HELPERS
 import { ThemeProvider } from './helpers/ThemeContext'
-import { darkTheme, defaultTheme } from './helpers/themes'
 // PAGES
 import { Charts } from './pages/Charts'
 import { EditProfile } from './pages/EditProfile'
@@ -26,37 +25,25 @@ const App = () => {
 
   useTranslation()
 
-  let theme = defaultTheme
-  const themeFromMemory = localStorage.getItem('site-theme')
-  if (themeFromMemory) {
-    if (themeFromMemory === 'dark') theme = darkTheme
-  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    theme = darkTheme
-  }
-
   return (
-    <ThemeProvider theme={theme}>
-      <div style={{ backgroundColor: theme.colors.backgroundColor }}>
+    <ThemeProvider>
+      <BrowserRouter>
         {showLogin ?
-          <div>
+          <>
             <div className='background-overlay' />
-            <Login
-              closeWindow={() => setShowLogin(false)}
-            />
-          </div>
+            <Login closeWindow={() => setShowLogin(false)} />
+          </>
           :
           ''}
         <Header />
-        <BrowserRouter>
-          <Routes>
-            <Route path='/' element={<Charts />} />
-            <Route path='/:garageId' element={<Charts />} />
-            <Route path='/profile' element={<EditProfile />} />
-          </Routes>
-          <Footer toggleShowLogin={() => setShowLogin(true)} />
-        </BrowserRouter>
-      </div>
-    </ThemeProvider>
+        <Routes>
+          <Route path='/' element={<Charts />} />
+          <Route path='/:garageId' element={<Charts />} />
+          <Route path='/profile' element={<EditProfile />} />
+        </Routes>
+        <Footer toggleShowLogin={() => setShowLogin(true)} />
+      </BrowserRouter>
+    </ThemeProvider >
   )
 }
 
