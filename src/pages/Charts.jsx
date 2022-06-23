@@ -8,6 +8,9 @@ import i18n from '../plugins/i18n'
 import { MainPieChart, MinorPieChart } from '../components/pie-charts'
 // STYLES
 import '../stylesheets/Charts.scss'
+import { ProfileInfo } from '../components/ProfileInfo'
+
+const garageId = 1 // Default
 
 export const Charts = (props) => {
   const initData = { total_spots: 0, total_spots_free: 0, parking_levels: 0 }
@@ -16,27 +19,23 @@ export const Charts = (props) => {
 
   const [error, setError] = useState('')
 
-  const [profile, setProfile] = useState()
-
-  const garageId = 1 // Default
+  const getData = () => {
+    axios.get(`http://aaronhost:8000/garage/${garageId}/availability`)
+      .then(response => setData(response.data))
+      .catch(error => setError(error.code))
+  }
 
   useEffect(() => {
-    const getProfile = async () => {
-      await axios.get(`http://aaronhost:8000/garage/${garageId}/profile`)
-        .then(response => setProfile(response.data))
-    }
+    const interval = setInterval(() => {
+      getData()
+    }, 30000)
 
-    const getData = async () => {
-      await axios.get(`http://aaronhost:8000/garage/${garageId}/availability`)
-        .then(response => { setData(response.data) })
-        .catch(response => setError(response.code))
-    }
+    return () => clearInterval(interval)
+  }, [])
 
+  if (data.total_spots === initData.total_spots) {
     getData()
-    getProfile()
-
-    setInterval(async () => { await getData() }, 30000)
-  }, [garageId])
+  }
 
   const currentTimeToLocale = (lng) => {
     return new Date().toLocaleDateString(lng, {
@@ -50,7 +49,7 @@ export const Charts = (props) => {
   }
 
   return (
-    <div>
+    <>
       {data.total_spots > 0 ?
         <div>
           <div className='main-chart'>
@@ -75,20 +74,7 @@ export const Charts = (props) => {
         </div>
         : <div className='error-msg-charts'>{i18n.t(error)}</div>
       }
-      {profile ?
-        <address>
-          <strong>{profile['name']}</strong>
-          <br />{profile['address1']}
-          {profile['address2'] ?
-            <span>
-              <br />{profile['address2']}
-            </span>
-            :
-            ''
-          }
-          <br />{profile['city'] + ', ' + profile['state'] + ' ' + profile['zip']}
-        </address>
-        : ''}
-    </div>
+      <ProfileInfo garageId={1} />
+    </>
   )
 }
