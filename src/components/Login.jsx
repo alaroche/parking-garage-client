@@ -12,7 +12,7 @@ import '../stylesheets/Login.scss'
 export const Login = (props) => {
   const { closeWindow } = props
 
-  const [data, setData] = useState({username: '', password: ''})
+  const [data, setData] = useState({ username: '', password: '' })
   const [error, setError] = useState()
 
   const { colors } = useContext(ThemeContext)
@@ -47,10 +47,10 @@ export const Login = (props) => {
     <div
       className='Modal'
       onKeyDown={escPressHandler}
-      style={{ 
+      style={{
         borderColor: colors.chartPrimary,
         backgroundColor: colors.headerBackground
-       }}
+      }}
     >
       <button onClick={closeWindow} className='Close'>
         &times;

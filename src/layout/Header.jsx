@@ -11,7 +11,7 @@ import { Logo } from '../logo'
 import '../stylesheets/Header.scss'
 
 export const Header = (props) => {
-  const { colors, dispatch, themeToggleIcon } = useContext(ThemeContext)
+  const { colors, toggleTheme, themeToggleIcon } = useContext(ThemeContext)
 
   return (
     <header className='header'
@@ -28,7 +28,7 @@ export const Header = (props) => {
       </div>
       <IconButton
         data-testid='theming-button'
-        onClick={() => dispatch()}
+        onClick={() => toggleTheme()}
       >
         {themeToggleIcon}
       </IconButton>

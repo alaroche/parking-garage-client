@@ -26,37 +26,39 @@ const App = () => {
 
   useTranslation()
 
+  let theme = defaultTheme
+  const themeFromMemory = localStorage.getItem('site-theme')
+  if (themeFromMemory) {
+    if (themeFromMemory === 'dark') theme = darkTheme
+  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    theme = darkTheme
+  }
+
   return (
-    <div style={{ backgroundColor: theme.colors.backgroundColor }}>
-      {showLogin ?
-        <div>
-          <div className='background-overlay' />
-          <Login
-            closeWindow={() => setShowLogin(false)}
-          />
-        </div>
-        :
-        ''}
-      <Header />
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<Charts />} />
-          <Route path='/:garageId' element={<Charts />} />
-          <Route path='/profile' element={<EditProfile />} />
-        </Routes>
-        <Footer toggleShowLogin={() => setShowLogin(true)} />
-      </BrowserRouter>
-    </div>
+    <ThemeProvider theme={theme}>
+      <div style={{ backgroundColor: theme.colors.backgroundColor }}>
+        {showLogin ?
+          <div>
+            <div className='background-overlay' />
+            <Login
+              closeWindow={() => setShowLogin(false)}
+            />
+          </div>
+          :
+          ''}
+        <Header />
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<Charts />} />
+            <Route path='/:garageId' element={<Charts />} />
+            <Route path='/profile' element={<EditProfile />} />
+          </Routes>
+          <Footer toggleShowLogin={() => setShowLogin(true)} />
+        </BrowserRouter>
+      </div>
+    </ThemeProvider>
   )
 }
 
-let theme = defaultTheme
-const themeFromMemory = localStorage.getItem('site-theme')
-if (themeFromMemory) {
-  if (themeFromMemory === 'dark') theme = darkTheme
-} else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-  theme = darkTheme
-}
-
 const root = ReactDOM.createRoot(document.getElementById('root'))
-root.render(<ThemeProvider value={theme}><App /></ThemeProvider>)
+root.render(<App />)
