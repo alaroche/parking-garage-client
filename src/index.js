@@ -2,11 +2,7 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import ReactDOM from 'react-dom/client'
-import {
-  BrowserRouter,
-  Route,
-  Routes,
-} from 'react-router-dom'
+import { BrowserRouter, useRoutes, } from 'react-router-dom'
 // LAYOUT
 import { Footer } from './layout/Footer'
 import { Header } from './layout/Header'
@@ -19,6 +15,14 @@ import { EditProfile } from './pages/EditProfile'
 import { Login } from './components/Login'
 // STYLES
 import './stylesheets/App.scss'
+
+const Routes = () => {
+  return useRoutes([
+    { path: '*', element: <Charts /> },
+    { path: '/:garageId', element: <Charts /> },
+    { path: '/profile', element: <EditProfile /> }
+  ])
+}
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false)
@@ -36,11 +40,7 @@ const App = () => {
           :
           ''}
         <Header />
-        <Routes>
-          <Route path='/' element={<Charts />} />
-          <Route path='/:garageId' element={<Charts />} />
-          <Route path='/profile' element={<EditProfile />} />
-        </Routes>
+        <Routes />
         <Footer toggleShowLogin={() => setShowLogin(true)} />
       </BrowserRouter>
     </ThemeProvider >
