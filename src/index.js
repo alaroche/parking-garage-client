@@ -1,5 +1,5 @@
 // REACT
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import ReactDOM from 'react-dom/client'
 import {
@@ -11,7 +11,7 @@ import {
 import { Footer } from './layout/Footer'
 import { Header } from './layout/Header'
 // HELPERS
-import { ThemeContext, ThemeProvider } from './helpers/ThemeContext'
+import { ThemeProvider } from './helpers/ThemeContext'
 import { darkTheme, defaultTheme } from './helpers/themes'
 // PAGES
 import { Charts } from './pages/Charts'
@@ -27,26 +27,26 @@ const App = () => {
   useTranslation()
 
   return (
-      <div style={{ backgroundColor: theme.colors.backgroundColor }}>
-        {showLogin ?
-          <div>
-            <div className='background-overlay' />
-            <Login
-              closeWindow={() => setShowLogin(false)}
-            />
-          </div>
-          :
-          ''}
-        <Header />
-        <BrowserRouter>
-          <Routes>
-            <Route path='/' element={<Charts />} />
-            <Route path='/:garageId' element={<Charts />} />
-            <Route path='/profile' element={<EditProfile />} />
-          </Routes>
-          <Footer toggleShowLogin={() => setShowLogin(true)} />
-        </BrowserRouter>
-      </div>
+    <div style={{ backgroundColor: theme.colors.backgroundColor }}>
+      {showLogin ?
+        <div>
+          <div className='background-overlay' />
+          <Login
+            closeWindow={() => setShowLogin(false)}
+          />
+        </div>
+        :
+        ''}
+      <Header />
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Charts />} />
+          <Route path='/:garageId' element={<Charts />} />
+          <Route path='/profile' element={<EditProfile />} />
+        </Routes>
+        <Footer toggleShowLogin={() => setShowLogin(true)} />
+      </BrowserRouter>
+    </div>
   )
 }
 
