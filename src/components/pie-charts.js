@@ -8,7 +8,6 @@ import i18n from '../plugins/i18n'
 import { generateChartConfig } from '../helpers/chartBuilder.js'
 import { ThemeContext } from '../helpers/ThemeContext'
 
-// TODO: DRY
 export const MainPieChart = (props) => {
   const { colors } = useContext(ThemeContext)
 

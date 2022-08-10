@@ -2,8 +2,9 @@ import i18n from 'i18next'
 import detector from 'i18next-browser-languagedetector'
 import { initReactI18next } from 'react-i18next'
 
-const resources = {
+export const resources = {
   'en-US': {
+    name: 'English',
     translation: {
       'Address 1': 'Address 1',
       'Address 2': 'Address 2',
@@ -27,6 +28,7 @@ const resources = {
     }
   },
   'fr-CA': {
+    name: 'Français',
     translation: {
       'Address 1': 'Adresse 1',
       'Address 2': 'Adresse 2',
@@ -50,6 +52,7 @@ const resources = {
     }
   },
   'es-MX': {
+    name: 'Español',
     translation: {
       'Address 1': 'Dirección 1',
       'Address 2': 'Dirección 2',

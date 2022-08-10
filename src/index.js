@@ -34,7 +34,7 @@ const App = () => {
       <BrowserRouter>
         {showLogin ?
           <>
-            <div className='background-overlay' />
+            <div id='background-overlay' />
             <Login closeWindow={() => setShowLogin(false)} />
           </>
           :

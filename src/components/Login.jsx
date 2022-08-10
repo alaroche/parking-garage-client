@@ -26,15 +26,14 @@ export const Login = (props) => {
 
     if (!data.username || !data.password) return
 
-    axios.post('http://aaronhost:8000/auth/authenticate', data)
+    // TODO: No query params
+    // Common context?
+    // https://axios-http.com/docs/config_defaults
+    axios.post(`http://aaronhost:8000/auth/authenticate?username=${data.username}&password=${data.password}`)
       .then((response) => {
-        if (response.statusText === 'OK') {
-          localStorage.setItem('jwt', response.data.json_web_token)
+        localStorage.setItem('jwt', response.data.json_web_token)
 
-          window.location.pathname = '/profile'
-        } else {
-          setError('login_failed')
-        }
+        window.location.pathname = '/profile'
       })
       .catch(setError('login_failed'))
   }

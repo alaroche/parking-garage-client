@@ -1,7 +1,7 @@
 // REACT
 import React, { useContext } from 'react'
 // PACKAGES
-import i18n from '../plugins/i18n'
+import i18n, { resources } from '../plugins/i18n'
 // HELPERS
 import { ThemeContext } from '../helpers/ThemeContext'
 // STYLESHEETS
@@ -35,6 +35,8 @@ export const Footer = (props) => {
     color: colors.font
   }
 
+  console.log('resources', resources['en-US'].name)
+
   return (
     <footer>
       <div className='nav-bar'>
@@ -50,9 +52,15 @@ export const Footer = (props) => {
       </div>
       <div className='lang-select'>
         <hr />
-        <button style={langSelectButtonStyle} onClick={() => i18n.changeLanguage('en-US')} data-testid='button-to-en'>English</button>|
-        <button style={langSelectButtonStyle} onClick={() => i18n.changeLanguage('fr-CA')} data-testid='button-to-fr'>Français</button>|
-        <button style={langSelectButtonStyle} onClick={() => i18n.changeLanguage('es-MX')} data-testid='button-to-es'>Español</button>
+        {Object.keys(resources).map((lang, i) => {
+          return <button lang={lang}
+            key={i}
+            style={langSelectButtonStyle}
+            onClick={() => i18n.changeLanguage(lang)}
+            data-testid={'button-to-' + lang}>
+            {resources[lang].name}
+          </button>
+        })}
       </div>
     </footer>
   )

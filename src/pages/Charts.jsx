@@ -6,9 +6,9 @@ import axios from 'axios'
 import i18n from '../plugins/i18n'
 // COMPONENTS
 import { MainPieChart, MinorPieChart } from '../components/pie-charts'
+import { ProfileInfo } from '../components/ProfileInfo'
 // STYLES
 import '../stylesheets/Charts.scss'
-import { ProfileInfo } from '../components/ProfileInfo'
 
 const garageId = 1 // Default
 
