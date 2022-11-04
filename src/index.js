@@ -16,7 +16,7 @@ import { Login } from './components/Login'
 // STYLES
 import './stylesheets/App.scss'
 
-const Routes = () => {
+const PageContents = () => {
   return useRoutes([
     { path: '*', element: <Charts /> },
     { path: '/:garageId', element: <Charts /> },
@@ -40,7 +40,7 @@ const App = () => {
           :
           ''}
         <Header />
-        <Routes />
+        <PageContents />
         <Footer toggleShowLogin={() => setShowLogin(true)} />
       </BrowserRouter>
     </ThemeProvider >
