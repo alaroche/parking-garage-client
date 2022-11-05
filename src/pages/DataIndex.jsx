@@ -1,18 +1,41 @@
-// REACT
 import React, { useEffect, useState } from 'react'
-// PLUGINS
 import axios from 'axios'
-// PACKAGES
 import i18n from '../plugins/i18n'
 // COMPONENTS
-import { MainPieChart, MinorPieChart } from '../components/pie-charts'
+import { MainPieChart, MinorPieChart } from '../components/charts'
 // STYLES
-import '../stylesheets/Charts.scss'
-import { ProfileInfo } from '../components/ProfileInfo'
+import '../stylesheets/DataIndex.scss'
 
 const garageId = 1 // Default
 
-export const Charts = (props) => {
+export const ProfileInfo = (props) => {
+  const [profile, setProfile] = useState()
+  const { garageId } = props
+
+  useEffect(() => {
+    axios.get(`http://aaronhost:8000/garage/${garageId}/profile`)
+      .then(response => setProfile(response.data))
+  }, [])
+
+  if (profile) {
+    return (
+      <address>
+        <strong>{profile['name']}</strong>
+        <br />{profile['address1']}
+        {profile['address2'] ?
+          <span>
+            <br />{profile['address2']}
+          </span>
+          :
+          ''
+        }
+        <br />{profile['city'] + ', ' + profile['state'] + ' ' + profile['zip']}
+      </address>
+    )
+  }
+}
+
+const Charts = () => {
   const initData = { total_spots: 0, total_spots_free: 0, parking_levels: 0 }
   const [data, setData] = useState(initData)
   const { total_spots, total_spots_free, parking_levels } = data
@@ -74,7 +97,15 @@ export const Charts = (props) => {
         </div>
         : <div className='error-msg-charts'>{i18n.t(error)}</div>
       }
-      <ProfileInfo garageId={1} />
+    </>
+  )
+}
+
+export const DataIndex = () => {
+  return (
+    <>
+      <Charts />
+      <ProfileInfo garageId={garageId} />
     </>
   )
 }

@@ -39,14 +39,10 @@ export const Login = (props) => {
       .catch(setError('login_failed'))
   }
 
-  const escPressHandler = (e) => {
-    if (e.key === 'Escape') closeWindow()
-  }
-
   return (
     <div
       className='Modal'
-      onKeyDown={escPressHandler}
+      onKeyDown={(e) => e.key === 'Escape' ? closeWindow() : null}
       style={{
         borderColor: colors.chartPrimary,
         backgroundColor: colors.headerBackground

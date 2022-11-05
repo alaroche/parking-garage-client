@@ -1,9 +1,9 @@
 import React, { createContext, useReducer } from 'react'
-import { darkTheme, defaultTheme } from './themes'
+import { darkTheme, defaultTheme } from '../lib/themes'
 
 export const ThemeContext = createContext()
 
-const determineTheme = () => {
+const getTheme = () => {
   let theme = defaultTheme
   const themeFromMemory = localStorage.getItem('site-theme')
 
@@ -16,7 +16,7 @@ const determineTheme = () => {
   return theme
 }
 
-const themeToggler = (theme) => {
+const toggleTheme = (theme) => {
   const newTheme = (theme.name === 'default' ? darkTheme : defaultTheme)
   localStorage.setItem('site-theme', newTheme.name)
 
@@ -24,15 +24,14 @@ const themeToggler = (theme) => {
 }
 
 export const ThemeProvider = (props) => {
-  const [state, toggleTheme] = useReducer(themeToggler, determineTheme())
+  const [theme, toggleThemeDispatch] = useReducer(toggleTheme, getTheme())
 
-  document.body.style.backgroundColor = state.colors.bodyBackground
-  document.body.style.color = state.colors.font
+  document.body.style.backgroundColor = theme.colors.bodyBackground
+  document.body.style.color = theme.colors.font
 
   return (<ThemeContext.Provider value={{
-    colors: state.colors,
-    toggleTheme: toggleTheme,
-    themeToggleIcon: state.themeToggleIcon,
+    colors: theme.colors,
+    toggleTheme: toggleThemeDispatch, themeToggleIcon: theme.themeToggleIcon,
   }}>
     {props.children}
   </ThemeContext.Provider>)

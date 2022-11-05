@@ -1,4 +1,4 @@
-export const generateChartConfig = (colors, props) => {
+export const generateChartOptions = (colors, props) => {
   const { chartTitle, numSpotsFree, numSpotsTotal } = props
   const [chartColors, chartTextAndOutlineColors] = [[colors.chartPrimary, colors.chartSecondary], colors.font]
 
