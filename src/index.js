@@ -20,93 +20,85 @@ import './stylesheets/Header.scss'
 import './stylesheets/Footer.scss'
 import './stylesheets/App.scss'
 
+const LoginFormOverlay = (props) => {
+  return (
+    <>
+      <div className='background-overlay' />
+      <Login closeWindow={() => props.hideOverlay()} />
+    </>
+  )
+}
+
+const Header = () => {
+  const { colors, toggleTheme, themeToggleIcon } = useContext(ThemeContext)
+
+  return (
+    <header className='header' style={{ borderColor: colors.font, backgroundColor: colors.headerBackground, color: colors.font }}>
+      <div className='header__contents'>
+        <a href='/' className='header__logo'><Logo /></a>
+        <div className='header__title'>{i18n.t('Available Parking')}</div>
+      </div>
+      <IconButton
+        data-testid='theming-button'
+        onClick={() => toggleTheme()}
+      >
+        {themeToggleIcon}
+      </IconButton>
+    </header>
+  )
+}
+
+const Contents = () => {
+  return useRoutes([
+    { path: '*', element: <DataIndex /> },
+    { path: '/:garageId', element: <DataIndex /> },
+    { path: '/profile', element: <EditProfile /> }
+  ])
+}
+
+const Footer = (props) => {
+  const { colors } = useContext(ThemeContext)
+
+  const langSelectButtonStyle = {
+    borderColor: colors.chartSecondary,
+    backgroundColor: colors.headerBackground,
+    color: colors.font
+  }
+
+  return (
+    <footer>
+      <div className='nav-bar'>
+        {localStorage.getItem('jwt') ?
+          <div>
+            <Link to='/'>{i18n.t('View Charts')}</Link> | 
+            <Link to='/profile'>{i18n.t('Edit Profile')}</Link>
+            <Link to='/' onClick={() => localStorage.removeItem('jwt')}>{i18n.t('Sign out')}</Link>
+          </div>
+          :
+          <button onClick={() => props.showOverlay()}>{i18n.t('Sign in')}</button>
+        }
+      </div>
+      <ul className='lang-select'>
+        <hr />
+        {Object.keys(resources).map((lang, i) => 
+          <button key={i} style={langSelectButtonStyle} onClick={() => i18n.changeLanguage(lang)} data-testid={'button-to-'+lang}>{resources[lang].displayName}</button>
+        )}
+      </ul>
+    </footer>
+  )
+}
+
 const App = () => {
   const [showLogin, setShowLogin] = useState(false)
-
-  const LoginFormOverlay = () => {
-    return (
-      <>
-        {showLogin ?
-          <>
-            <div className='background-overlay' />
-            <Login closeWindow={() => setShowLogin(false)} />
-          </>
-          :
-          ''}
-      </>
-    )
-  }
-
-  const Header = () => {
-    const { colors, toggleTheme, themeToggleIcon } = useContext(ThemeContext)
-
-    return (
-      <header className='header' style={{ borderColor: colors.font, backgroundColor: colors.headerBackground, color: colors.font }}>
-        <div className='header__contents'>
-          <a href='/' className='header__logo'><Logo /></a>
-          <div className='header__title'>{i18n.t('Available Parking')}</div>
-        </div>
-        <IconButton
-          data-testid='theming-button'
-          onClick={() => toggleTheme()}
-        >
-          {themeToggleIcon}
-        </IconButton>
-      </header>
-    )
-  }
-
-  const Contents = () => {
-    return useRoutes([
-      { path: '*', element: <DataIndex /> },
-      { path: '/:garageId', element: <DataIndex /> },
-      { path: '/profile', element: <EditProfile /> }
-    ])
-  }
-
-  const Footer = (props) => {
-    const { toggleShowLogin } = props
-    const { colors } = useContext(ThemeContext)
-
-    const buttonStyle = { color: colors.font }
-
-    const langSelectButtonStyle = {
-      borderColor: colors.chartSecondary,
-      backgroundColor: colors.headerBackground,
-      color: colors.font
-    }
-
-    return (
-      <footer>
-        <div className='nav-bar'>
-          {localStorage.getItem('jwt') ?
-            <div>
-              <Link to='/' style={buttonStyle}>{i18n.t('View Charts')}</Link> | 
-              <Link to='/profile'>{i18n.t('Edit Profile')}</Link>
-              <Link to='/' onClick={() => localStorage.removeItem('jwt')}>{i18n.t('Sign out')}</Link>
-            </div>
-            :
-            <button style={buttonStyle} onClick={() => toggleShowLogin()}>{i18n.t('Sign in')}</button>
-          }
-        </div>
-        <ul className='lang-select'>
-          <hr />
-          {Object.keys(resources).map((lang, i) => 
-            <button key={i} style={langSelectButtonStyle} onClick={() => i18n.changeLanguage(lang)} data-testid={'button-to-'+lang}>{resources[lang].displayName}</button>
-          )}
-        </ul>
-      </footer>
-    )
-  }
 
   useTranslation()
 
   return (
     <>
-      <LoginFormOverlay />
+      {showLogin ? <LoginFormOverlay hideOverlay={() => setShowLogin(false)} /> : ''}
       <Header />
       <Contents />
-      <Footer toggleShowLogin={() => setShowLogin(true)} />
+      <Footer showOverlay={() => setShowLogin(true)} />
     </>
   )
 }

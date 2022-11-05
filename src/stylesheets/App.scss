@@ -10,3 +10,11 @@ div.background-overlay {
   height: 100%;
   background-color: rgba(0,0,0,0.7);
 }
+
+div#login-form {
+  display:none;
+}
+
+div#login-form--active {
+  display:block;
+}

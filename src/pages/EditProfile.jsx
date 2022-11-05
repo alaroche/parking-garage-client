@@ -6,7 +6,7 @@ import i18n from '../plugins/i18n'
 // HELPERS
 import { ThemeContext } from '../helpers/ThemeContext'
 // SNIPPETS
-import states from '../snippets/usStates'
+import states from '../lib/usStates'
 // STYLES
 import '../stylesheets/EditProfile.scss'
 
