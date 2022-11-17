@@ -9,9 +9,9 @@ import { generateChartOptions } from '../helpers/chartOptions.js'
 import { ThemeContext } from '../helpers/ThemeContext'
 
 export const MainPieChart = (props) => {
-  const { colors } = useContext(ThemeContext)
+  const { theme } = useContext(ThemeContext)
 
-  const [chartDataAndDisplayOptions, chartDesignOptions] = generateChartOptions(colors, props)
+  const [chartDataAndDisplayOptions, chartDesignOptions] = generateChartOptions(theme.chartColors, props)
   chartDataAndDisplayOptions.labels = [i18n.t('Taken'), i18n.t('Available')]
 
   return (
@@ -23,9 +23,9 @@ export const MainPieChart = (props) => {
 }
 
 export const MinorPieChart = (props) => {
-  const { colors } = useContext(ThemeContext)
+  const { theme } = useContext(ThemeContext)
 
-  let [chartDataAndDisplayOptions, chartDesignOptions] = generateChartOptions(colors, props)
+  let [chartDataAndDisplayOptions, chartDesignOptions] = generateChartOptions(theme.chartColors, props)
 
   chartDesignOptions.plugins.legend = {}
   chartDesignOptions.plugins.title.padding = { top: '1rem' }

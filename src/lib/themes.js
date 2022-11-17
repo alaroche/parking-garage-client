@@ -1,27 +1,25 @@
 import React from 'react'
 import Brightness3Icon from '@mui/icons-material/Brightness3'
 import Brightness7Icon from '@mui/icons-material/Brightness7'
+import colors from '../stylesheets/themes.module.scss'
 
 export const darkTheme = {
   name: 'dark',
-  colors: {
-    bodyBackground: '#222222',
-    chartPrimary: '#334e68',
-    chartSecondary: '#102a43',
-    font: '#829ab1',
-    headerBackground: '#383838',
-  },
+  chartColors: {
+    chartPrimary: colors.pieChartPrimaryDarkMode,
+    chartSecondary: colors.pieChartSecondaryDarkMode,
+    font: colors.fontDarkMode,
+  }
 }
-darkTheme.themeToggleIcon = <Brightness7Icon htmlColor={darkTheme.colors.font} />
+darkTheme.themeToggleIcon = <Brightness7Icon htmlColor={colors.fontDarkMode} />
 
 export const defaultTheme = {
   name: 'default',
-  colors: {
-    bodyBackground: '#f8f8ff',
-    chartPrimary: '#336699',
-    chartSecondary: '#87ceeb',
-    font: '#233e94',
-    headerBackground: '#add8e6',
-  },
+  chartColors: {
+    chartPrimary: colors.pieChartPrimaryDefault,
+    chartSecondary: colors.pieChartSecondaryDefault,
+    font: colors.fontDefault
+  }
 }
-defaultTheme.themeToggleIcon = <Brightness3Icon htmlColor={defaultTheme.colors.font} />
+
+defaultTheme.themeToggleIcon = <Brightness3Icon htmlColor={colors.fontDefault} />

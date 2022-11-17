@@ -1,3 +1,21 @@
+@import 'themes.module';
+
+body {
+  &.default {
+    .Modal {
+      border-color: $pie-chart-primary-default;
+      background-color: $header-background-default;
+    }
+  }
+
+  &.dark {
+    .Modal {
+      border-color: $pie-chart-primary-dark-mode;
+      background-color: $header-background-dark-mode;
+    }
+  }
+}
+
 .Modal {
   position: fixed;
   z-index: 2;

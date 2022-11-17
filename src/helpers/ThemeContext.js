@@ -13,12 +13,14 @@ const getTheme = () => {
     theme = darkTheme
   }
 
+  document.body.classList.replace(defaultTheme.name, theme.name)
   return theme
 }
 
 const toggleTheme = (theme) => {
   const newTheme = (theme.name === 'default' ? darkTheme : defaultTheme)
   localStorage.setItem('site-theme', newTheme.name)
+  document.body.classList.replace(theme.name, newTheme.name)
 
   return newTheme
 }
@@ -26,11 +28,8 @@ const toggleTheme = (theme) => {
 export const ThemeProvider = (props) => {
   const [theme, toggleThemeDispatch] = useReducer(toggleTheme, getTheme())
 
-  document.body.style.backgroundColor = theme.colors.bodyBackground
-  document.body.style.color = theme.colors.font
-
   return (<ThemeContext.Provider value={{
-    colors: theme.colors,
+    theme: theme,
     toggleTheme: toggleThemeDispatch, themeToggleIcon: theme.themeToggleIcon,
   }}>
     {props.children}

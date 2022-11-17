@@ -1,14 +1,63 @@
+@import 'themes.module';
+
+body {
+  &.default {
+    background-color: $body-background-default;
+    color: $font-default;
+
+    button {
+      color: $font-default;
+    }
+
+    header {
+      border-color: $font-default;
+      background-color: $header-background-default;
+    }
+
+    footer {
+      .lang-select button {
+        border-color: $pie-chart-secondary-default;
+        background-color: $header-background-default;
+        color: $font-default;
+      }
+    }
+  }
+
+  &.dark {
+    background-color: $body-background-dark-mode;
+    color: $font-dark-mode;
+
+    button {
+      color: $font-dark-mode;
+    }
+
+    header {
+      border-color: $font-dark-mode;
+      background-color: $header-background-dark-mode;
+    }
+
+    footer {
+      .lang-select button {
+        border-color: $pie-chart-secondary-dark-mode;
+        background-color: $header-background-dark-mode;
+      }
+    }
+  }
+}
+
 hr {
   border: none;
 }
 
 div.background-overlay {
   position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   z-index: 1;
-  display: block;
-  width: 100%;
-  height: 100%;
   background-color: rgba(0,0,0,0.7);
+  pointer-events: none;
 }
 
 div#login-form {

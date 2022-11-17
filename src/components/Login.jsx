@@ -1,11 +1,9 @@
 // REACT
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 // PLUGINS
 import axios from 'axios'
 // PACKAGES
 import i18n from '../plugins/i18n'
-// HELPERS
-import { ThemeContext } from '../helpers/ThemeContext'
 // STYLES
 import '../stylesheets/Login.scss'
 
@@ -14,8 +12,6 @@ export const Login = (props) => {
 
   const [data, setData] = useState({ username: '', password: '' })
   const [error, setError] = useState()
-
-  const { colors } = useContext(ThemeContext)
 
   const fieldChangeHandler = (e) => {
     setData({ ...data, [e.target.name]: e.target.value })
@@ -43,15 +39,11 @@ export const Login = (props) => {
     <div
       className='Modal'
       onKeyDown={(e) => e.key === 'Escape' ? closeWindow() : null}
-      style={{
-        borderColor: colors.chartPrimary,
-        backgroundColor: colors.headerBackground
-      }}
     >
       <button onClick={closeWindow} className='Close'>
         &times;
       </button>
-      <h1 style={{ color: colors.font }}>{i18n.t('Sign in')}</h1>
+      <h1>{i18n.t('Sign in')}</h1>
       <form onSubmit={submitHandler}>
         <span className='error-msg'>{i18n.t(error)}</span>
         <input type='text' name='username' onChange={fieldChangeHandler} autoFocus={true} placeholder={i18n.t('Username')} required />
