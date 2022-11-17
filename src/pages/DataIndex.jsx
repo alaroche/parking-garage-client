@@ -1,8 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+// REACT
+import React, { useContext, useEffect, useState } from 'react'
+// PACKAGES
+import { Pie } from 'react-chartjs-2'
+import 'chart.js/auto'
 import i18n from '../plugins/i18n'
-// COMPONENTS
-import { MainPieChart, MinorPieChart } from '../components/charts'
+// HELPERS
+import { generateChartOptions } from '../helpers/chartOptions.js'
+import { ThemeContext } from '../helpers/ThemeContext'
+import axios from 'axios'
 // STYLES
 import '../stylesheets/DataIndex.scss'
 
@@ -69,6 +74,36 @@ const Charts = () => {
       hour: 'numeric',
       minute: 'numeric'
     })
+  }
+
+  const MainPieChart = (props) => {
+    const { theme } = useContext(ThemeContext)
+
+    const [chartDataAndDisplayOptions, chartDesignOptions] = generateChartOptions(theme.chartColors, props)
+    chartDataAndDisplayOptions.labels = [i18n.t('Taken'), i18n.t('Available')]
+
+    return (
+      <Pie
+        data={chartDataAndDisplayOptions}
+        options={chartDesignOptions}
+      />
+    )
+  }
+
+  const MinorPieChart = (props) => {
+    const { theme } = useContext(ThemeContext)
+
+    let [chartDataAndDisplayOptions, chartDesignOptions] = generateChartOptions(theme.chartColors, props)
+
+    chartDesignOptions.plugins.legend = {}
+    chartDesignOptions.plugins.title.padding = { top: '1rem' }
+
+    return (
+      <Pie
+        data={chartDataAndDisplayOptions}
+        options={chartDesignOptions}
+      />
+    )
   }
 
   return (
