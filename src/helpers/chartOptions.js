@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { ThemeContext } from './ThemeContext'
+import 'chart.js/auto'
 
 export const generateChartOptions = (props) => {
   const { theme } = useContext(ThemeContext)

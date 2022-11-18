@@ -12,7 +12,7 @@ address {
   text-align: center;
 }
 
-.main-chart {
+canvas.main-chart {
   margin: 0 auto;
   width: 24rem;
   height: 24rem;
@@ -29,9 +29,9 @@ hr.main-divider {
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
-}
 
-.minor-charts__chart {
-  width: 9rem;
-  height: 9rem;
+  canvas {
+    width: 9rem;
+    height: 9rem;
+  }
 }

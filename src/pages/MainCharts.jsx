@@ -2,12 +2,12 @@
 import React, { useEffect, useState } from 'react'
 // PACKAGES
 import axios from 'axios'
-import 'chart.js/auto'
-import i18n from '../plugins/i18n'
 import { Pie } from 'react-chartjs-2'
 // HELPERS
 import { currentTimeToLocale } from '../helpers/currentTimeToLocale'
-import { generateChartOptions } from '../helpers/chartOptions.js'
+import { generateChartOptions } from '../helpers/chartOptions'
+// PLUGINS
+import i18n from '../plugins/i18n'
 // STYLES
 import '../stylesheets/MainCharts.scss'
 
@@ -40,7 +40,7 @@ const MainPieChart = (props) => {
   const [chartDataAndDisplayOptions, chartDesignOptions] = generateChartOptions({...props, chartTitle: chartTitle})
   chartDataAndDisplayOptions.labels = [i18n.t('Taken'), i18n.t('Available')]
 
-  return <Pie data={chartDataAndDisplayOptions} options={chartDesignOptions} />
+  return <Pie className='main-chart' data={chartDataAndDisplayOptions} options={chartDesignOptions} />
 }
 
 const MinorPieChart = (props) => {
@@ -67,13 +67,11 @@ const Charts = () => {
   if (data.total_spots > 0) {
     return (
       <div>
-        <div className='main-chart'>
-          <MainPieChart numSpotsFree={data.total_spots_free} numSpotsTotal={data.total_spots} />
-        </div>
+        <MainPieChart numSpotsFree={data.total_spots_free} numSpotsTotal={data.total_spots} />
         <hr className='main-divider' />
         <div className='minor-charts'>
           {Object.keys(data.parking_levels).map((i) =>
-            <div className='minor-charts__chart' key={i}>
+            <div key={i}>
               <MinorPieChart
                 chartTitle={data.parking_levels[i].name}
                 numSpotsFree={data.parking_levels[i].spots_free}
