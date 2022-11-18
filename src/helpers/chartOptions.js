@@ -1,6 +1,10 @@
-export const generateChartOptions = (colors, props) => {
+import { useContext } from 'react'
+import { ThemeContext } from './ThemeContext'
+
+export const generateChartOptions = (props) => {
+  const { theme } = useContext(ThemeContext)
   const { chartTitle, numSpotsFree, numSpotsTotal } = props
-  const [chartColors, chartTextAndOutlineColors] = [[colors.chartPrimary, colors.chartSecondary], colors.font]
+  const [chartColors, chartTextAndOutlineColors] = [[theme.chartColors.chartPrimary, theme.chartColors.chartSecondary], theme.chartColors.font]
 
   const chartDataAndDisplayOptions = {
     maintainAspectRatio: false,

@@ -9,7 +9,7 @@ import i18n, { resources } from './plugins/i18n'
 // HELPERS
 import { ThemeContext, ThemeProvider } from './helpers/ThemeContext'
 // PAGES
-import { DataIndex } from './pages/DataIndex'
+import { MainCharts } from './pages/MainCharts'
 import { EditProfile } from './pages/EditProfile'
 // COMPONENTS
 import { Login } from './components/Login'
@@ -22,8 +22,8 @@ import './stylesheets/App.scss'
 
 const Contents = () => {
   return useRoutes([
-    { path: '*', element: <DataIndex /> },
-    { path: '/:garageId', element: <DataIndex /> },
+    { path: '*', element: <MainCharts /> },
+    { path: '/:garageId', element: <MainCharts /> },
     { path: '/profile', element: <EditProfile /> }
   ])
 }
