@@ -29,7 +29,7 @@ export const EditProfile = () => {
   useEffect(() => {
     authUser()
       .then((response) => {
-        axios.get(`http://aaronhost:8000/garage/${response.data.garage_id}/profile`)
+        axios.get(`http://aaronhost:8000/garages/${response.data.garage_id}/profile`)
           .then((response) => {
             setEmailValid(true)
             setInputs(response.data)
@@ -48,7 +48,7 @@ export const EditProfile = () => {
 
     authUser()
       .then((response) => {
-        axios.put(`http://aaronhost:8000/garage/${response.data.garage_id}/profile?${inputParams}`, {
+        axios.put(`http://aaronhost:8000/garages/${response.data.garage_id}/profile?${inputParams}`, {
           headers: new Headers({ 'Authorization': 'Bearer ' + response.data.jwt })
         })
           .then(window.location.pathname = `/${response.data.garage_id}`)

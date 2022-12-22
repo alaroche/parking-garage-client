@@ -9,7 +9,7 @@ import i18n, { resources } from './plugins/i18n'
 // HELPERS
 import { ThemeContext, ThemeProvider } from './helpers/ThemeContext'
 // PAGES
-import { MainCharts } from './pages/MainCharts'
+import { Charts } from './pages/MainCharts'
 import { EditProfile } from './pages/EditProfile'
 // COMPONENTS
 import { Login } from './components/Login'
@@ -22,14 +22,15 @@ import './stylesheets/App.scss'
 
 const Contents = () => {
   return useRoutes([
-    { path: '*', element: <MainCharts /> },
-    { path: '/:garageId', element: <MainCharts /> },
+    { path: '*', element: <Charts /> },
+    { path: '/:garageId', element: <Charts /> },
     { path: '/profile', element: <EditProfile /> }
   ])
 }
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false)
+  useTranslation()
 
   const LoginFormOverlay = () => {
     return (
@@ -82,8 +83,6 @@ const App = () => {
       </footer>
     )
   }
-
-  useTranslation()
 
   return (
     <>
