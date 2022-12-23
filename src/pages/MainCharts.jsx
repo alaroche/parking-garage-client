@@ -38,12 +38,13 @@ export const Charts = () => {
   const [error, setError] = useState('')
 
   useEffect(() => {
-    axios.get(`http://aaronhost:8000/garages/${garageId}/availability`)
-      .then((response) =>
-        setData(response.data)
-      )
-      .then(response => setData(response.data))
-      .catch(error => setError(error.code))
+    const interval = setInterval(() => {
+      axios.get(`http://aaronhost:8000/garages/${garageId}`)
+        .then(response => setData(response.data))
+        .catch(error => setError(error.code))
+    }, [1000])
+
+    return () => clearInterval(interval)
   }, [garageId])
 
   if (data.total_spots > 0) {

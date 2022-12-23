@@ -19,6 +19,7 @@ import { Logo } from './logo'
 import './stylesheets/Header.scss'
 import './stylesheets/Footer.scss'
 import './stylesheets/App.scss'
+import axios from 'axios'
 
 const Contents = () => {
   return useRoutes([
@@ -61,15 +62,22 @@ const App = () => {
   }
 
   const Footer = () => {
+    const handleSignOut = () => {
+      // TODO: centralize the domain aaronhost:8000
+      axios.post('http://aaronhost:8000/logout', localStorage.getItem('jwt'))
+      localStorage.removeItem('jwt')
+      window.location.pathname = '/'
+    }
+
     return (
       <footer>
         <div className='nav-bar'>
           {localStorage.getItem('jwt') ?
-            <div>
-              <Link to='/'>{i18n.t('View Charts')}</Link> | 
-              <Link to='/profile'>{i18n.t('Edit Profile')}</Link>
-              <Link to='/' onClick={() => localStorage.removeItem('jwt')}>{i18n.t('Sign out')}</Link>
-            </div>
+            <ul>
+              <li><Link to='/'>{i18n.t('View Charts')}</Link></li>
+              <li><Link to='/profile'>{i18n.t('Edit Profile')}</Link></li>
+              <li><Link to='/' onClick={handleSignOut}>{i18n.t('Sign out')}</Link></li>
+            </ul>
             :
             <button onClick={() => setShowLogin(true)}>{i18n.t('Sign in')}</button>
           }

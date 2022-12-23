@@ -11,7 +11,7 @@ import states from '../lib/usStates'
 import '../stylesheets/EditProfile.scss'
 
 export const EditProfile = () => {
-  const { colors } = useContext(ThemeContext)
+  const { theme } = useContext(ThemeContext)
 
   const jsonWebToken = localStorage.getItem('jwt')
   if (!jsonWebToken) { window.location.pathname = '/' }
@@ -20,20 +20,11 @@ export const EditProfile = () => {
 
   const [inputs, setInputs] = useState({})
 
-  const authUser = () => {
-    return axios.post('http://aaronhost:8000/auth/authorize', {}, {
-      headers: { 'Authorization': `Bearer ${jsonWebToken}` }
-    })
-  }
-
   useEffect(() => {
-    authUser()
+    axios.get('http://aaronhost:8000/garages/1/profile')
       .then((response) => {
-        axios.get(`http://aaronhost:8000/garages/${response.data.garage_id}/profile`)
-          .then((response) => {
-            setEmailValid(true)
-            setInputs(response.data)
-          })
+        setEmailValid(true)
+        setInputs(response.data)
       })
   }, [])
 
@@ -46,18 +37,15 @@ export const EditProfile = () => {
 
     let inputParams = new URLSearchParams(inputs).toString()
 
-    authUser()
-      .then((response) => {
-        axios.put(`http://aaronhost:8000/garages/${response.data.garage_id}/profile?${inputParams}`, {
-          headers: new Headers({ 'Authorization': 'Bearer ' + response.data.jwt })
-        })
-          .then(window.location.pathname = `/${response.data.garage_id}`)
-          .catch(response => setInputs(response.data))
-      })
+    axios.put('http://aaronhost:8000/garages/1/update', inputParams, {
+      headers: new Headers({ 'Authorization': 'Bearer ' + jsonWebToken })
+    })
+      .then(window.location.pathname = '/')
+      .catch(response => setInputs(response.data))
   }
 
   const labelStyle = {
-    color: colors.font
+    color: theme.chartColors.font
   }
 
   const inputStyle = {}

@@ -22,7 +22,7 @@ export const Login = (props) => {
 
     if (!data.username || !data.password) return
 
-    axios.post('http://aaronhost:8000/auth/authenticate', data)
+    axios.post('http://aaronhost:8000/auth', data)
       .then((response) => {
         if (response.statusText === 'OK') {
           localStorage.setItem('jwt', response.data.json_web_token)
