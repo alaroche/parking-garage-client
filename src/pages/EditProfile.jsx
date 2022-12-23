@@ -1,9 +1,9 @@
 // REACT
 import React, { useContext, useEffect, useState } from 'react'
 // PACKAGES
-import axios from 'axios'
 import i18n from '../plugins/i18n'
 // HELPERS
+import { garagesApi } from '../helpers/garagesApi'
 import { ThemeContext } from '../helpers/ThemeContext'
 // SNIPPETS
 import states from '../lib/usStates'
@@ -21,7 +21,7 @@ export const EditProfile = () => {
   const [inputs, setInputs] = useState({})
 
   useEffect(() => {
-    axios.get('http://aaronhost:8000/garages/1/profile')
+    garagesApi.get('/garages/1/profile')
       .then((response) => {
         setEmailValid(true)
         setInputs(response.data)
@@ -37,9 +37,7 @@ export const EditProfile = () => {
 
     let inputParams = new URLSearchParams(inputs).toString()
 
-    axios.put('http://aaronhost:8000/garages/1/update', inputParams, {
-      headers: new Headers({ 'Authorization': 'Bearer ' + jsonWebToken })
-    })
+    garagesApi.put('/garages/1/update?' + inputParams)
       .then(window.location.pathname = '/')
       .catch(response => setInputs(response.data))
   }

@@ -1,9 +1,9 @@
 // REACT
 import React, { useState } from 'react'
-// PLUGINS
-import axios from 'axios'
 // PACKAGES
 import i18n from '../plugins/i18n'
+// HELPERS
+import { garagesApi } from '../helpers/garagesApi'
 // STYLES
 import '../stylesheets/Login.scss'
 
@@ -22,14 +22,12 @@ export const Login = (props) => {
 
     if (!data.username || !data.password) return
 
-    axios.post('http://aaronhost:8000/auth', data)
+    garagesApi.post('/auth', data)
       .then((response) => {
-        if (response.statusText === 'OK') {
+        if (response.request.statusText === 'OK') {
           localStorage.setItem('jwt', response.data.json_web_token)
 
           window.location.pathname = '/profile'
-        } else {
-          setError('login_failed')
         }
       })
       .catch(setError('login_failed'))

@@ -7,6 +7,7 @@ import { BrowserRouter, Link, useRoutes } from 'react-router-dom'
 import IconButton from '@mui/material/IconButton'
 import i18n, { resources } from './plugins/i18n'
 // HELPERS
+import { garagesApi } from './helpers/garagesApi'
 import { ThemeContext, ThemeProvider } from './helpers/ThemeContext'
 // PAGES
 import { Charts } from './pages/MainCharts'
@@ -19,7 +20,6 @@ import { Logo } from './logo'
 import './stylesheets/Header.scss'
 import './stylesheets/Footer.scss'
 import './stylesheets/App.scss'
-import axios from 'axios'
 
 const Contents = () => {
   return useRoutes([
@@ -63,8 +63,7 @@ const App = () => {
 
   const Footer = () => {
     const handleSignOut = () => {
-      // TODO: centralize the domain aaronhost:8000
-      axios.post('http://aaronhost:8000/logout', localStorage.getItem('jwt'))
+      garagesApi.post('/logout')
       localStorage.removeItem('jwt')
       window.location.pathname = '/'
     }

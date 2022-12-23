@@ -1,10 +1,10 @@
 // REACT
 import React, { useEffect, useState } from 'react'
 // PACKAGES
-import axios from 'axios'
 import { Pie } from 'react-chartjs-2'
 // HELPERS
 import { currentTimeToLocale } from '../helpers/currentTimeToLocale'
+import { garagesApi } from '../helpers/garagesApi'
 import { generateChartOptions } from '../helpers/chartOptions'
 // PLUGINS
 import i18n from '../plugins/i18n'
@@ -39,7 +39,7 @@ export const Charts = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      axios.get(`http://aaronhost:8000/garages/${garageId}`)
+      garagesApi.get(`/garages/${garageId}`)
         .then(response => setData(response.data))
         .catch(error => setError(error.code))
     }, [1000])
