@@ -19,12 +19,12 @@ import { Logo } from './logo'
 // STYLES
 import './stylesheets/Header.scss'
 import './stylesheets/Footer.scss'
-import './stylesheets/App.scss'
+import './stylesheets/index.scss'
 
 const Contents = () => {
   return useRoutes([
     { path: '*', element: <Charts /> },
-    { path: '/:garageId', element: <Charts /> },
+    { path: '/garages/:garageId', element: <Charts /> },
     { path: '/profile', element: <EditProfile /> }
   ])
 }

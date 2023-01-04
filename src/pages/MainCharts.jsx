@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 // PACKAGES
 import { Pie } from 'react-chartjs-2'
+import { useParams } from 'react-router-dom'
 // HELPERS
 import { currentTimeToLocale } from '../helpers/currentTimeToLocale'
 import { garagesApi } from '../helpers/garagesApi'
@@ -10,8 +11,6 @@ import { generateChartOptions } from '../helpers/chartOptions'
 import i18n from '../plugins/i18n'
 // STYLES
 import '../stylesheets/MainCharts.scss'
-
-const garageId = 1 // Default (TODO)
 
 const MainPieChart = (props) => {
   const chartTitle = currentTimeToLocale(i18n.language)
@@ -33,16 +32,21 @@ const MinorPieChart = (props) => {
 
 export const Charts = () => {
   const initData = { total_spots: 0, total_spots_free: 0, parking_levels: 0 }
+  const { garageId } = useParams()
+
   const [data, setData] = useState(initData)
 
   const [error, setError] = useState('')
 
+  const getApiData = () => {
+    garagesApi.get(`/garages/${garageId}`)
+      .then(response => setData(response.data))
+      .catch(error => setError(error.code))
+  }
+
   useEffect(() => {
-    const interval = setInterval(() => {
-      garagesApi.get(`/garages/${garageId}`)
-        .then(response => setData(response.data))
-        .catch(error => setError(error.code))
-    }, [1000])
+    getApiData()
+    const interval = setInterval(() => getApiData(), [1000])
 
     return () => clearInterval(interval)
   }, [garageId])
