@@ -1,12 +1,20 @@
 @import 'themes.module';
 
 #garages-index {
+  text-align: center;
+
   .minor-charts {
-    justify-content: space-evenly;
+    justify-content: center;
+    margin-left: 23%;
+    width: 60rem;
+
+    canvas {
+      margin: 1rem;
+    }
 
     canvas:hover {
       cursor: pointer;
-      border-bottom: solid 1px blue;
+      border: dashed 1px $font-default;
     }
   }
 }
