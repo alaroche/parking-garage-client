@@ -29,7 +29,11 @@ export const Login = (props) => {
           window.location.pathname = '/admin/garages'
         }
       })
-      .catch(error => setError('login_failed'))
+      .catch((error) =>  {
+        if (error.response.status === 401) {
+          setError('login_failed')
+        }
+      })
   }
 
   return (
