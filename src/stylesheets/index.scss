@@ -9,6 +9,10 @@ body {
       color: $font-default;
     }
 
+    a {
+      color: $font-default;
+    }
+
     header {
       border-color: $font-default;
       background-color: $header-background-default;
@@ -28,6 +32,10 @@ body {
     color: $font-dark-mode;
 
     button {
+      color: $font-dark-mode;
+    }
+
+    a {
       color: $font-dark-mode;
     }
 
