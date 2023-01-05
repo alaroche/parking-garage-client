@@ -10,6 +10,7 @@ import i18n, { resources } from './plugins/i18n'
 import { garagesApi } from './helpers/garagesApi'
 import { ThemeContext, ThemeProvider } from './helpers/ThemeContext'
 // PAGES
+import { GaragesIndex } from './pages/GaragesIndex'
 import { Charts } from './pages/MainCharts'
 import { EditProfile } from './pages/EditProfile'
 // COMPONENTS
@@ -24,8 +25,9 @@ import './stylesheets/index.scss'
 const Contents = () => {
   return useRoutes([
     { path: '*', element: <Charts /> },
+    { path: '/profile', element: <EditProfile /> },
     { path: '/garages/:garageId', element: <Charts /> },
-    { path: '/profile', element: <EditProfile /> }
+    { path: '/admin/garages', element: <GaragesIndex /> }
   ])
 }
 
@@ -73,7 +75,7 @@ const App = () => {
         <div className='nav-bar'>
           {localStorage.getItem('jwt') ?
             <ul>
-              <li><Link to='/'>{i18n.t('View Charts')}</Link></li>
+              <li><Link to='/admin/garages'>{i18n.t('Garages')}</Link></li>
               <li><Link to='/profile'>{i18n.t('Edit Profile')}</Link></li>
               <li><Link to='/' onClick={handleSignOut}>{i18n.t('Sign out')}</Link></li>
             </ul>

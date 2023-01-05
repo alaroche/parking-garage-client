@@ -26,8 +26,7 @@ export const Login = (props) => {
       .then((response) => {
         if (response.request.statusText === 'OK') {
           localStorage.setItem('jwt', response.data.json_web_token)
-
-          window.location.pathname = '/profile'
+          window.location.pathname = '/admin/garages'
         }
       })
       .catch(setError('login_failed'))

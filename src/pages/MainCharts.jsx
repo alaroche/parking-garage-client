@@ -21,7 +21,7 @@ const MainPieChart = (props) => {
   return <Pie className='main-chart' data={chartDataAndDisplayOptions} options={chartDesignOptions} />
 }
 
-const MinorPieChart = (props) => {
+export const MinorPieChart = (props) => {
   let [chartDataAndDisplayOptions, chartDesignOptions] = generateChartOptions(props)
 
   chartDesignOptions.plugins.legend = {}
@@ -35,11 +35,10 @@ export const Charts = () => {
   const { garageId } = useParams()
 
   const [data, setData] = useState(initData)
-
   const [error, setError] = useState('')
 
   const getApiData = () => {
-    garagesApi.get(`/garages/${garageId}`)
+    garagesApi.get(`/garages/${garageId || 1}`)
       .then(response => setData(response.data))
       .catch(error => setError(error.code))
   }
@@ -55,13 +54,17 @@ export const Charts = () => {
     return (
       <div>
         <div>
-          <MainPieChart numSpotsFree={data.total_spots_free} numSpotsTotal={data.total_spots} />
+          <MainPieChart
+            numSpotsFree={data.total_spots_free} 
+            numSpotsTotal={data.total_spots}
+          />
           <hr className='main-divider' />
           <div className='minor-charts'>
             {Object.keys(data.parking_levels).map((i) =>
               <div key={i}>
                 <MinorPieChart
                   chartTitle={data.parking_levels[i].name}
+                  subTitle={data.parking_levels[i].spots_free + ' spots available'}
                   numSpotsFree={data.parking_levels[i].spots_free}
                   numSpotsTotal={data.parking_levels[i].total_spots}
                 />
@@ -70,10 +73,10 @@ export const Charts = () => {
           </div>
         </div>
         <address>
-          <span><strong>{data['name']}</strong></span>
-          <span>{data['address1']}</span>
-          {data['address2'] ? <span>{data['address2']}</span> : ''}
-          <span>{data['city'] + ', ' + data['state'] + ' ' + data['zip']}</span>
+          <span><strong>{data.place.name}</strong></span>
+          <span>{data.place.address1}</span>
+          {data.place.address2 ? <span>{data.place.address2}</span> : ''}
+          <span>{data.place.city + ', ' + data.place.state + ' ' + data.place.zip}</span>
         </address>
       </div>
     )

@@ -1,0 +1,12 @@
+@import 'themes.module';
+
+#garages-index {
+  .minor-charts {
+    justify-content: space-evenly;
+
+    canvas:hover {
+      cursor: pointer;
+      border-bottom: solid 1px blue;
+    }
+  }
+}

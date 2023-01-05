@@ -4,7 +4,7 @@ import 'chart.js/auto'
 
 export const generateChartOptions = (props) => {
   const { theme } = useContext(ThemeContext)
-  const { chartTitle, numSpotsFree, numSpotsTotal } = props
+  const { chartTitle, subTitle, numSpotsFree, numSpotsTotal } = props
   const [chartColors, chartTextAndOutlineColors] = [[theme.chartColors.chartPrimary, theme.chartColors.chartSecondary], theme.chartColors.font]
 
   const chartDataAndDisplayOptions = {
@@ -37,6 +37,13 @@ export const generateChartOptions = (props) => {
         text: chartTitle,
         font: {
           size: '20rem'
+        }
+      },
+      subtitle: {
+        display: true,
+        text: subTitle,
+        font: {
+          size: '14rem'
         }
       }
     },
