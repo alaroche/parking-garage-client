@@ -1,16 +1,8 @@
 # Parking Garage Client
-Parking Garage Client is a front-end web application for interaction with [Parking Garage Server](https://github.com/alaroche/parking-garage-server).
-## Requirements
-* [Parking Garage Server](https://github.com/alaroche/parking-garage-server)
+Parking Garage Client is a React App to interact with [Parking Garage Server](https://github.com/alaroche/parking-garage-server).
 ## Installation
-* Follow the instructions for setting up [Parking Garage Server](https://github.com/alaroche/parking-garage-server#readme).
-* Once that is done, clone this repo. Then in the newly generated `parking-garage-client/` directory run:
-```
-npm install
-```
+* Clone this repo and inside the repo run `npm install`
 ## Startup
-In `parking-garage-client/` run:
-```
-npm start
-```
+* Run `npm start`
+
 A web interface should become available on [localhost:3000](http://localhost:3000).
