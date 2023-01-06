@@ -4,7 +4,7 @@ import React from 'react'
 import '@testing-library/jest-dom'
 import { fireEvent, render, screen } from '@testing-library/react'
 // COMPONENTS
-import App from '../App'
+import App from '../index'
 // ASSETS
 import { resources } from '../plugins/i18n'
 
