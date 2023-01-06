@@ -11,7 +11,7 @@ import { Footer } from './layout/Footer'
 // PAGES
 import { GaragesIndex } from './pages/GaragesIndex'
 import { Charts } from './pages/MainCharts'
-import { EditProfile } from './pages/EditProfile'
+import { UserProfile } from './pages/UserProfile'
 // COMPONENTS
 import { Login } from './components/Login'
 // STYLES
@@ -20,7 +20,7 @@ import './stylesheets/index.scss'
 const Contents = () => {
   return useRoutes([
     { path: '*', element: <Charts /> },
-    { path: '/profile', element: <EditProfile /> },
+    { path: '/profile', element: <UserProfile /> },
     { path: '/garages/:garageId', element: <Charts /> },
     { path: '/admin/garages', element: <GaragesIndex /> }
   ])

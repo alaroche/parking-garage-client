@@ -6,9 +6,9 @@ import i18n from '../plugins/i18n'
 import { garagesApi } from '../helpers/garagesApi'
 import { ThemeContext } from '../helpers/ThemeContext'
 // STYLES
-import '../stylesheets/EditProfile.scss'
+import '../stylesheets/UserProfile.scss'
 
-export const EditProfile = () => {
+export const UserProfile = () => {
   const { theme } = useContext(ThemeContext)
 
   if (!localStorage.getItem('jwt')) { window.location.pathname = '/' }

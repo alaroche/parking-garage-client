@@ -6,6 +6,7 @@ import { garagesApi } from '../helpers/garagesApi'
 import { MinorPieChart } from './MainCharts'
 // STYLES
 import '../stylesheets/GaragesIndex.scss'
+import i18n from '../plugins/i18n'
 
 export const GaragesIndex = () => {
   const [garages, setGarages] = useState([])
@@ -23,8 +24,8 @@ export const GaragesIndex = () => {
 
     return (
       <div id='garages-index'>
-        <h1>Open Garages</h1>
-        <h2>Downtown {city + ', ' + state}</h2>
+        <h1>{i18n.t('Open Garages')}</h1>
+        <h2>{city + ', ' + state}</h2>
         <div className='minor-charts'>
           {garages.map((garage) =>
             <div key={garage.id} onClick={() => window.location.pathname = '/garages/' + garage.id}>
