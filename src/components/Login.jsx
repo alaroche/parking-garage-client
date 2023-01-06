@@ -25,7 +25,7 @@ export const Login = (props) => {
     garagesApi.post('/auth', data)
       .then((response) => {
         if (response.request.statusText === 'OK') {
-          localStorage.setItem('jwt', response.data.json_web_token)
+          localStorage.setItem('jwt', response.data.jwt)
           window.location.pathname = '/admin/garages'
         }
       })

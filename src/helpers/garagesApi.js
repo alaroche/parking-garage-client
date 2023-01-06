@@ -7,5 +7,7 @@ export const garagesApi = axios.create({
 })
 
 if (jwt) {
-  garagesApi.defaults.headers = { 'Authorization': 'Bearer ' + jwt}
+  garagesApi.defaults.headers = {
+    'Authorization': 'Bearer ' + jwt,
+  }
 }

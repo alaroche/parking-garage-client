@@ -8,7 +8,7 @@ export const Footer = (props) => {
   const { setShowLogin } = props
 
   const handleSignOut = () => {
-    garagesApi.post('/logout')
+    garagesApi.delete('/logout')
     localStorage.removeItem('jwt')
     window.location.pathname = '/'
   }

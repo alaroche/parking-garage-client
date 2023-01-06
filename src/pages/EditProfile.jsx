@@ -13,15 +13,14 @@ import '../stylesheets/EditProfile.scss'
 export const EditProfile = () => {
   const { theme } = useContext(ThemeContext)
 
-  const jsonWebToken = localStorage.getItem('jwt')
-  if (!jsonWebToken) { window.location.pathname = '/' }
+  if (!localStorage.getItem('jwt')) { window.location.pathname = '/' }
 
   const [emailIsValid, setEmailValid] = useState()
 
   const [inputs, setInputs] = useState({})
 
   useEffect(() => {
-    garagesApi.get('/garages/1/profile')
+    garagesApi.get('/users/profile')
       .then((response) => {
         setEmailValid(true)
         setInputs(response.data)
@@ -37,8 +36,8 @@ export const EditProfile = () => {
 
     let inputParams = new URLSearchParams(inputs).toString()
 
-    garagesApi.put('/garages/1/update?' + inputParams)
-      .then(window.location.pathname = '/')
+    garagesApi.put('/users/update?' + inputParams)
+      .then(window.location.pathname = '/admin/garages')
       .catch(response => setInputs(response.data))
   }
 
