@@ -5,8 +5,6 @@ import i18n from '../plugins/i18n'
 // HELPERS
 import { garagesApi } from '../helpers/garagesApi'
 import { ThemeContext } from '../helpers/ThemeContext'
-// SNIPPETS
-import states from '../lib/usStates'
 // STYLES
 import '../stylesheets/EditProfile.scss'
 
