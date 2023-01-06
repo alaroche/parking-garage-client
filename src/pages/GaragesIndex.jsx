@@ -10,32 +10,34 @@ import '../stylesheets/GaragesIndex.scss'
 export const GaragesIndex = () => {
   const [garages, setGarages] = useState([])
 
+  if (!localStorage.getItem('jwt')) { window.location.pathname = '/' }
+
   useEffect(() => {
-    // Should require creds
-    garagesApi.get('/garages')
-      .then((response) => {
-        console.log(response)
-        console.log(garages)
-        setGarages(response.data)
-      })
+    localStorage.getItem('jwt') ? '' : window.location.href = '/'
+
+    garagesApi.get('/garages').then(response => { setGarages(response.data) })
   }, [])
 
-  return (
-    <div id='garages-index'>
-      <h1>Open Garages</h1>
-      <h2>Downtown Denver, CO</h2>
-      <div className='minor-charts'>
-        {garages.map((garage) =>
-          <div key={garage.id} onClick={() => window.location.pathname = '/garages/'+garage.id}>
-            <MinorPieChart
-              chartTitle={garage.place.name}
-              subTitle={garage.place.address1}
-              numSpotsFree={garage.spots_free}
-              numSpotsTotal={garage.total_spots}
-            />
-          </div>
-        )}
+  if (garages.length > 0) {
+    const { city, state } = garages[0]['place']
+
+    return (
+      <div id='garages-index'>
+        <h1>Open Garages</h1>
+        <h2>Downtown {city + ', ' + state}</h2>
+        <div className='minor-charts'>
+          {garages.map((garage) =>
+            <div key={garage.id} onClick={() => window.location.pathname = '/garages/' + garage.id}>
+              <MinorPieChart
+                chartTitle={garage.place.name}
+                subTitle={garage.place.address1}
+                numSpotsFree={garage.spots_free}
+                numSpotsTotal={garage.total_spots}
+              />
+            </div>
+          )}
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }

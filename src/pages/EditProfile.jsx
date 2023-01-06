@@ -51,26 +51,12 @@ export const EditProfile = () => {
         className='profile-form'
         onSubmit={submitHandler}
       >
-        <label style={labelStyle}>{i18n.t('Name of Garage')}</label>
-        <input style={inputStyle} name='name' defaultValue={inputs.name} onChange={inputChangeHandler} />
-        <label style={labelStyle}>{i18n.t('Address 1')}</label>
-        <input style={inputStyle} name='address1' defaultValue={inputs.address1} onChange={inputChangeHandler} required />
-        <label style={labelStyle}>{i18n.t('Address 2')}</label>
-        <input style={inputStyle} name='address2' defaultValue={inputs.address2} onChange={inputChangeHandler} />
-        <label style={labelStyle}>{i18n.t('City')}</label>
-        <input style={inputStyle} name='city' defaultValue={inputs.city} onChange={inputChangeHandler} required />
-        <label style={labelStyle}>{i18n.t('State')}</label>
-        <select style={inputStyle} name='state' value={inputs.state} onChange={inputChangeHandler} required>
-          {states().map((state, i) =>
-            <option key={i} value={state.abbreviation}>
-              {state.name}
-            </option>
-          )}
-        </select>
-        <label style={labelStyle}>{i18n.t('Zip Code')}</label>
-        <input style={inputStyle} name='zip' defaultValue={inputs.zip} onChange={inputChangeHandler} />
+        <label style={labelStyle}>{i18n.t('First Name')}</label>
+        <input type='text' style={inputStyle} name='first_name' defaultValue={inputs.first_name} onChange={inputChangeHandler} />
+        <label style={labelStyle}>{i18n.t('Last Name')}</label>
+        <input type='text' style={inputStyle} name='last_name' defaultValue={inputs.last_name} onChange={inputChangeHandler} />
         <label style={labelStyle}>{i18n.t('Email Address')}</label>
-        <input style={inputStyle} name='email' defaultValue={inputs.email} type='email' />
+        <input type='email' style={inputStyle} name='email' defaultValue={inputs.email} onChange={inputChangeHandler} />
 
         <input style={inputStyle} type='submit' disabled={!emailIsValid} />
       </form>
