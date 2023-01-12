@@ -45,9 +45,9 @@ export const Charts = () => {
 
   useEffect(() => {
     getApiData()
-    const interval = setInterval(() => getApiData(), [1000])
+    //const interval = setInterval(() => getApiData(), [1000])
 
-    return () => clearInterval(interval)
+    //return () => clearInterval(interval)
   }, [garageId])
 
   if (data.total_spots > 0) {
